@@ -1,0 +1,264 @@
+[
+  {
+    "topic": "headcount",
+    "title": "Headcount",
+    "keywords": ["headcount", "how many people", "how many employees", "employees do we", "team size", "how big is", "staff", "people work", "people do we have"],
+    "dispute": "resolved",
+    "claims": [
+      {"id": "H1", "role": "answer", "confidence": "High",
+       "statement": "Veloxa has 19 people on the Keka roster: 18 Active plus 1 on notice who exits on 31 Oct 2026 (so 18 after that date). Contractors are not in Keka.",
+       "reasoning": "Three independent systems agree on 19: Keka, both board updates, and the payroll register (19 people in Mar 2026). Payroll Rs 31.75 L / 19 people is a plausible salary base for a B2B SaaS team; it would not be for 180.",
+       "evidence": [
+         {"source": "employee_master", "quote": "Siddharth Mehta | sid@veloxa.in"},
+         {"source": "board_update_apr", "quote": "Team 19"},
+         {"source": "board_update_jul", "quote": "Team 19"}]},
+      {"id": "H2", "role": "dissent", "confidence": "Low",
+       "statement": "T1 summary says the company is 'roughly eighteen people (\"one-eighty, give or take\")' and the candidate brief says 180-person.",
+       "reasoning": "The T1 summary contradicts itself (eighteen vs one-eighty) and is machine-generated from fair-quality audio. The brief figure is not an export. Treated as a misstatement or mishearing of ~19, not as a second headcount.",
+       "evidence": [
+         {"source": "t1_ceo", "quote": "roughly eighteen people"},
+         {"source": "candidate_brief", "quote": "180-person B2B SaaS company"}]}
+    ]
+  },
+  {
+    "topic": "arr",
+    "title": "ARR",
+    "keywords": ["arr", "annual recurring", "recurring revenue", "revenue run rate"],
+    "dispute": "unresolved",
+    "claims": [
+      {"id": "ARR1", "role": "answer", "confidence": "Medium",
+       "statement": "ARR was Rs 6.1 Cr at the Jul-Sep 2026 board update (sent 6 Oct), up from Rs 5.8 Cr in the Apr-Jun update (sent 8 Jul).",
+       "reasoning": "Written, numeric, sent to the board, and the only figure whose size fits 66 customers and a 19-person team. Medium rather than High because I cannot reconcile it with the CEO's and CFO's spoken figures or with burn/runway (see ASSUMPTIONS A-003).",
+       "evidence": [
+         {"source": "board_update_jul", "quote": "ARR (recurring) Rs. 6.1 Cr"},
+         {"source": "board_update_apr", "quote": "ARR (recurring) Rs. 5.8 Cr"}]},
+      {"id": "ARR2", "role": "dissent", "confidence": "Low",
+       "statement": "CEO (T1) said ARR is 'around forty-two crore, maybe forty-five now'. CFO (T2) said ARR at the start of the year was 'forty-eight'. Units are not stated for the CFO figure.",
+       "reasoning": "Taken literally (Rs 42 Cr) ARR would be ~7x the board figure and imply ~Rs 64 L per customer. Likely a misheard decimal (4.2 / 4.5 / 4.8 Cr) or the speakers are quoting something other than ARR. Could not be settled from Day 1 data.",
+       "evidence": [
+         {"source": "t1_ceo", "quote": "around forty-two crore, maybe forty-five now"},
+         {"source": "t2_cfo", "quote": "ARR at the start of the year was \"forty-eight\""}]}
+    ]
+  },
+  {
+    "topic": "customers",
+    "title": "Customers",
+    "keywords": ["customers", "customer count", "how many clients", "logos"],
+    "dispute": "resolved",
+    "claims": [
+      {"id": "CU1", "role": "answer", "confidence": "Medium",
+       "statement": "66 customers at the Jul-Sep board update, up from 61 in Apr-Jun.",
+       "reasoning": "Single source type (board updates); no export of customers exists in the Day 1 data room to cross-check.",
+       "evidence": [
+         {"source": "board_update_jul", "quote": "Customers 66"},
+         {"source": "board_update_apr", "quote": "Customers 61"}]}
+    ]
+  },
+  {
+    "topic": "burn",
+    "title": "Monthly burn",
+    "keywords": ["burn", "cash burn", "monthly spend", "cash out"],
+    "dispute": "unresolved",
+    "claims": [
+      {"id": "B1", "role": "answer", "confidence": "Medium",
+       "statement": "Monthly burn was Rs 44 L in the Jul-Sep board update (Rs 46 L in Apr-Jun).",
+       "reasoning": "Right order of magnitude against the GL: payroll alone is Rs 31.75 L/month, plus Rs 2.36 L rent and Rs 1.8-2.5 L AWS. Medium because the GL covers only selected cost centres, and burn vs ARR/runway does not reconcile cleanly (A-004).",
+       "evidence": [
+         {"source": "board_update_jul", "quote": "Monthly burn Rs. 44 L"},
+         {"source": "board_update_apr", "quote": "Monthly burn Rs. 46 L"}]},
+      {"id": "B2", "role": "dissent", "confidence": "Low",
+       "statement": "CFO (T2) said burn is 'two point two lakhs a month, sometimes two point five'; CEO (T1) said burn is 'around two point two' with no unit.",
+       "reasoning": "Rs 2.2 lakh/month is impossible: one month of payroll is Rs 31.75 L. Unit or number is wrong in the transcript (two speakers repeating '2.2' hints at a systematic mishearing or a different measure, e.g. a quarterly or per-something figure). Not resolvable from Day 1.",
+       "evidence": [
+         {"source": "t2_cfo", "quote": "two point two lakhs a month, sometimes two point five"},
+         {"source": "t1_ceo", "quote": "burn is \"around two point two\""}]}
+    ]
+  },
+  {
+    "topic": "runway",
+    "title": "Runway",
+    "keywords": ["runway", "months of cash", "cash left"],
+    "dispute": "resolved",
+    "claims": [
+      {"id": "RW1", "role": "answer", "confidence": "Medium",
+       "statement": "Runway was 13 months at the Jul-Sep board update (14 months in Apr-Jun). The CFO plans a hiring freeze if the raise slips, and the Q3 board update says hiring is paused while the round closes.",
+       "reasoning": "Board figure; inherits the burn uncertainty. Medium.",
+       "evidence": [
+         {"source": "board_update_jul", "quote": "Runway 13 months"},
+         {"source": "board_update_apr", "quote": "Runway 14 months"},
+         {"source": "t2_cfo", "quote": "hiring freeze \"if the raise slips\""}]}
+    ]
+  },
+  {
+    "topic": "atlas_ga",
+    "title": "Atlas (routing engine v3) GA",
+    "keywords": ["atlas", "routing engine", "version three", "v3", "ga date", "general availability"],
+    "open_question": "(new|revised|current|actual|updated).*(date|ga|launch)|when (will|is|does|do)|expected date",
+    "unknown_reason": "No source gives a new GA date. The Q3 board update only says GA was moved.",
+    "dispute": "resolved",
+    "claims": [
+      {"id": "A1", "role": "answer", "confidence": "High",
+       "statement": "Atlas GA was planned for 15 September 2026 (Q2 board update, 8 Jul). The Q3 board update (6 Oct) says GA was moved to absorb reliability work after a difficult August and the engine is feature-complete, but gives no new date. The CEO (T1) says some customers were promised v3 'by the festive season' and she is unsure it will make it.",
+       "reasoning": "Two board documents are consistent with each other and with the CEO's worry. What is missing is the new date; I do not invent one.",
+       "evidence": [
+         {"source": "board_update_apr", "quote": "on track for GA on 15 September"},
+         {"source": "board_update_jul", "quote": "We moved GA to absorb unplanned reliability work"},
+         {"source": "t1_ceo", "quote": "by the festive season"}]}
+    ]
+  },
+  {
+    "topic": "summit_spend",
+    "title": "Logistics Summit spend and reach",
+    "keywords": ["summit", "event spend", "marketing spend", "sapphire", "event cost", "registrations"],
+    "dispute": "resolved",
+    "derived": "summit_spend",
+    "claims": [
+      {"id": "S2", "role": "answer", "confidence": "High",
+       "statement": "The Logistics Summit drew 212 registrations (Q3 board update). Registrations are not attendees.",
+       "reasoning": "Board figure; wording is 'registrations'.",
+       "evidence": [{"source": "board_update_jul", "quote": "212 registrations"}]},
+      {"id": "S3", "role": "context", "confidence": "Medium",
+       "statement": "CFO says 'Nikhil's numbers never match mine' on marketing spend; the CEO thinks marketing spend is 'fine'. Day 1 data cannot show which marketing figure is right.",
+       "reasoning": "Opinion statements from two speakers; no marketing-side spend record has been released yet.",
+       "evidence": [
+         {"source": "t2_cfo", "quote": "Nikhil's numbers never match mine"},
+         {"source": "t1_ceo", "quote": "marketing spend is \"fine\""}]}
+    ]
+  },
+  {
+    "topic": "hiring_backend",
+    "title": "The two backend roles / hiring",
+    "keywords": ["backend", "hiring", "recruit", "open roles", "cohere", "search fee", "hiring freeze", "backend engineers"],
+    "dispute": "resolved",
+    "claims": [
+      {"id": "HB1", "role": "answer", "confidence": "Medium",
+       "statement": "A Rs 1,77,000 (177,000) advance, stated as 50% of the search fee for 2 backend roles, was paid to Cohere Recruiting Partners on 30 Jun 2026 (so the full fee is ~Rs 3.54 L; the balance is not in the GL). The Q2 board update planned two backend hires to de-risk Atlas; the Q3 update says hiring is paused. Keka shows no one joining after Rahul Verma (3 Feb 2026), so neither role appears filled as of the 31 Oct export.",
+       "reasoning": "The 'no hire' part is an absence-of-evidence claim, hence Medium: Keka excludes contractors and the export is a single snapshot. Rahul Verma (a February joiner) is not one of these two roles.",
+       "evidence": [
+         {"source": "gl_export", "quote": "Search fee, 2 backend roles (50% advance)"},
+         {"source": "board_update_apr", "quote": "add two backend engineers this quarter"},
+         {"source": "board_update_jul", "quote": "Hiring is paused while we close the round"},
+         {"source": "employee_master", "quote": "Rahul Verma | rahul.v@veloxa.in"}]}
+    ]
+  },
+  {
+    "topic": "payroll_total",
+    "title": "Payroll totals",
+    "keywords": ["payroll", "salary bill", "salaries total", "salary cost", "wage bill", "spend on salaries", "payroll total"],
+    "dispute": "resolved",
+    "derived": "payroll_total",
+    "claims": []
+  },
+  {
+    "topic": "payroll_feb_joiner",
+    "title": "February 2026 payroll: new joiner",
+    "keywords": ["overpaid", "overpayment", "payroll error", "payroll mistake", "february payroll", "feb payroll", "payslip", "prorat", "pro-rat", "payroll anomaly", "payroll issue"],
+    "dispute": "resolved",
+    "derived": "payroll_feb_joiner",
+    "claims": []
+  },
+  {
+    "topic": "aws_cost",
+    "title": "AWS cost trend",
+    "keywords": ["aws", "cloud cost", "infrastructure cost", "hosting cost", "amazon web"],
+    "dispute": "resolved",
+    "derived": "aws_cost",
+    "claims": []
+  },
+  {
+    "topic": "oncall_contractor",
+    "title": "On-call contractor",
+    "keywords": ["patil", "on-call support", "on call support", "contractor"],
+    "dispute": "resolved",
+    "claims": [
+      {"id": "OC1", "role": "answer", "confidence": "Medium",
+       "statement": "Patil Infra Services (an external contractor, not in Keka) billed Rs 70,800 for on-call support 18-31 Aug 2026, booked on 2 Sep under ENG-OPS. August is the month the Q3 board update calls 'difficult'.",
+       "reasoning": "GL row is explicit; link to the August reliability problems is my inference from timing (A-007).",
+       "evidence": [
+         {"source": "gl_export", "quote": "On-call support, 18-31 Aug"},
+         {"source": "board_update_jul", "quote": "after a difficult August"}]}
+    ]
+  },
+  {
+    "topic": "marketing_departure",
+    "title": "Marketing departure",
+    "keywords": ["leaving", "departure", "notice period", "resign", "exit", "who is leaving", "who left", "on notice"],
+    "dispute": "resolved",
+    "claims": [
+      {"id": "MD1", "role": "answer", "confidence": "High",
+       "statement": "Siddharth Mehta (Product Marketing Manager, reports to Nikhil Bose) is on notice with an exit date of 31 Oct 2026, the same day as the Keka export. The Q3 board update lists 'one planned departure in marketing'. He is the only person in Keka with an exit date. Why he is leaving is not in the Day 1 data.",
+       "reasoning": "Keka row and board update agree. Status still 'Notice period' on the export date is consistent with an exit on that day, not an error.",
+       "evidence": [
+         {"source": "employee_master", "quote": "Notice period | 2026-10-31"},
+         {"source": "board_update_jul", "quote": "One planned departure in marketing"}]}
+    ]
+  },
+  {
+    "topic": "attrition",
+    "title": "Attrition",
+    "keywords": ["attrition", "turnover", "people leaving", "retention"],
+    "dispute": "resolved",
+    "claims": [
+      {"id": "AT1", "role": "answer", "confidence": "Low",
+       "statement": "On Day 1 data there is one departure (Siddharth Mehta, exit 31 Oct 2026) among 19 people, which does not look high. But Keka may not list people who already left, so this cannot confirm or refute the CEO's 'feels high' or Head of People's 'it's normal'.",
+       "reasoning": "Absence of exit rows in an employees export is weak evidence. Pulse survey and leave data arrive on Day 2.",
+       "evidence": [
+         {"source": "employee_master", "quote": "Notice period | 2026-10-31"},
+         {"source": "t1_ceo", "quote": "attrition \"feels high but Deepa says it's normal\""}]}
+    ]
+  },
+  {
+    "topic": "tools",
+    "title": "Systems and tools",
+    "keywords": ["accounting software", "books", "zoho", "tally", "keka", "hrms", "which tool", "what tool", "jira", "linear", "github", "project management tool", "culture amp", "pulse survey tool", "systems do we use", "tools do we use", "software do we use", "tool does engineering", "tool do we"],
+    "dispute": "resolved",
+    "claims": [
+      {"id": "TL1", "role": "answer", "confidence": "Medium",
+       "statement": "Accounting: Zoho Books (the GL export is from Zoho Books; the CFO says books moved from Tally in Jan or Feb 2026, so older numbers may not match). HR: Keka HRMS; Jan-Mar 2026 payroll came from a pre-Keka payroll workbook. Engineering: Jira (ATLAS) per the data-room README, plus Git history and PagerDuty; the CEO was unsure whether Jira or Linear. Pulse survey: Culture Amp. Slack and HubSpot are only mentioned in garbled form in T1 and are unconfirmed.",
+       "reasoning": "README (written by IT) and export headers beat spoken tool names ('Joho books', 'Kayka', 'Jeera', 'Cult Amp' are phonetic mishearings of Zoho, Keka, Jira, Culture Amp).",
+       "evidence": [
+         {"source": "gl_export", "quote": "Zoho Books"},
+         {"source": "t2_cfo", "quote": "Joho books"},
+         {"source": "readme", "quote": "Jira (ATLAS)"},
+         {"source": "readme", "quote": "Culture Amp pulse"}]}
+    ]
+  },
+  {
+    "topic": "fiscal_year",
+    "title": "Fiscal year",
+    "keywords": ["fiscal year", "financial year", "fy26", "fy27", "fy 26", "fy 27", "fy2"],
+    "dispute": "resolved",
+    "claims": [
+      {"id": "FY1", "role": "answer", "confidence": "Medium",
+       "statement": "The financial year runs April to March, so Nov 2026 falls in FY2026-27 (FY27). The CFO transcript says 'FY twenty-six' but flags she may have said twenty-seven.",
+       "reasoning": "Indian convention names the year by the year it ends; Apr 2026 starts FY27. Jan-Mar 2026 (the 'Payroll Q4' sheet) is the last quarter of FY26.",
+       "evidence": [{"source": "t2_cfo", "quote": "April to March"}]}
+    ]
+  },
+  {
+    "topic": "key_person",
+    "title": "Key-person risk: routing",
+    "keywords": ["bus factor", "holds the routing", "hold the routing", "routing together", "key person", "single point of failure"],
+    "dispute": "resolved",
+    "claims": [
+      {"id": "KP1", "role": "answer", "confidence": "Low",
+       "statement": "The CEO says Priya Nair (Staff Engineer) 'basically holds the routing thing together'. This is a single, second-hand claim and I have no engineering data (commits, tickets) yet to confirm it.",
+       "reasoning": "The transcript spells the name 'Pria'; resolved to Priya Nair (VX007, the only Priya in Keka). The claim itself is unverified.",
+       "evidence": [{"source": "t1_ceo", "quote": "Pria"}]}
+    ]
+  },
+  {
+    "topic": "board_number",
+    "title": "'The number' the board wants by March",
+    "keywords": ["board wants", "number by march", "by march"],
+    "open_question": ".*",
+    "unknown_reason": "T1 itself flags this as 'not clear which number'. Speaker 2 is unidentified.",
+    "dispute": "resolved",
+    "claims": [
+      {"id": "BN1", "role": "context", "confidence": "Low",
+       "statement": "T1 records that Speaker 2 (unidentified) said the board wants 'the number by March'; which number is unclear.",
+       "reasoning": "Unidentified speaker plus an unclear referent. I will not guess (ARR, burn and runway are all candidates).",
+       "evidence": [{"source": "t1_ceo", "quote": "the board wants \"the number by March\""}]}
+    ]
+  }
+]

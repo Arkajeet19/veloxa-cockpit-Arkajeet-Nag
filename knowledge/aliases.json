@@ -1,0 +1,20 @@
+[
+  {"alias": "Pria", "kind": "person", "resolves_to": "VX007", "confidence": "High", "note": "T1 misspelling of Priya Nair; only Priya in Keka."},
+  {"alias": "Kartik", "kind": "person", "resolves_to": "VX010", "confidence": "High", "note": "T2 spelling of Karthik Subramanian (FP&A, 'doing his CFA')."},
+  {"alias": "Fatima Shaikh", "kind": "person", "resolves_to": "VX014", "confidence": "High", "note": "T2 spelling of Fatima Sheikh; Keka and e-mails use 'Sheikh'."},
+  {"alias": "Sid", "kind": "person", "resolves_to": "VX013", "confidence": "High", "note": "Keka work email is sid@veloxa.in."},
+  {"alias": "Vicky", "kind": "person", "resolves_to": "VX004", "confidence": "Low", "note": "T2 'check the freeze decision with Vicky'. Guess: nickname of Vikram Menon (VP Eng) or mishearing of Vikram; could also be Ananya's circle. Unverified."},
+  {"alias": "Joho books", "kind": "vendor", "resolves_to": "Zoho Books", "confidence": "High", "note": "GL export header says Zoho Books."},
+  {"alias": "Kayka", "kind": "vendor", "resolves_to": "Keka", "confidence": "High", "note": "README and Employee_Master say Keka."},
+  {"alias": "Jeera", "kind": "vendor", "resolves_to": "Jira", "confidence": "High", "note": "README lists Jira (ATLAS)."},
+  {"alias": "Git Hub", "kind": "vendor", "resolves_to": "GitHub", "confidence": "High", "note": "Spacing artefact."},
+  {"alias": "Cult Amp", "kind": "vendor", "resolves_to": "Culture Amp", "confidence": "High", "note": "README says Culture Amp pulse."},
+  {"alias": "hub sport", "kind": "vendor", "resolves_to": "HubSpot", "confidence": "Medium", "note": "Probable HubSpot; no export seen."},
+  {"alias": "slag", "kind": "vendor", "resolves_to": "Slack", "confidence": "Medium", "note": "'slag channel' in T1 action items; probable Slack."},
+  {"alias": "Saphire Event Mgmt", "kind": "vendor", "resolves_to": "Sapphire Events Pvt Ltd", "confidence": "Medium", "note": "Spelling variant, same cost centre MKT-EVT, complementary scope (venue/AV vs catering), different invoice series."},
+  {"alias": "Sapphire Residency Hotel", "kind": "vendor", "resolves_to": "Sapphire Residency Hotel", "confidence": "High", "note": "Different vendor despite similar name: hotel, cost centre SAL-TRV, sales offsite. Deliberately NOT merged."},
+  {"alias": "FS", "kind": "person", "resolves_to": "VX014", "confidence": "High", "note": "'Entered By / Processed By' initials: Fatima Sheikh."},
+  {"alias": "KS", "kind": "person", "resolves_to": "VX010", "confidence": "High", "note": "Processed By on the Feb 2026 payroll; matches e-mail 01 from Karthik Subramanian."},
+  {"alias": "PIS", "kind": "vendor", "resolves_to": "Patil Infra Services", "confidence": "High", "note": "GL ref PIS-108."},
+  {"alias": "Atlas", "kind": "project", "resolves_to": "Atlas (routing engine v3)", "confidence": "High", "note": "T1 'version three' / 'the routing thing'; board: Atlas = routing engine v3."}
+]
