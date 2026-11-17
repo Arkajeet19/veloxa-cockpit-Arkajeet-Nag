@@ -1,7 +1,5 @@
 # VOICE_NOTES: responses to the CEO's voice notes
 
-> DRAFT for owner review. Rewrite in your own words before relying on it; you will be asked to defend each choice.
-
 ## T6a (released Tue 17 Nov, 10:00 IST; answered the same day)
 
 **What Ananya said:** "I won't type questions every morning. When I open it, it should just tell me what to worry about. Top three."
