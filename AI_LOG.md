@@ -12,3 +12,14 @@ Honest log of AI use. Entries that record AI mistakes matter most. **Owner actio
 | 4 | Resolve source conflicts (ARR, burn, headcount) | AI proposed conclusions and reasoning in TRANSCRIPT_NOTES. Rules say the owner must decide. All entries are marked DRAFT with a Reviewed box. | Owner must review and rewrite each in own words before relying on them |
 
 Things I (owner) have not yet verified myself: see the unchecked boxes in TRANSCRIPT_NOTES.md.
+
+
+## Day 2 (Tue 17 Nov)
+
+| # | Task given to AI (Claude Code) | Where it was wrong or weak | What I changed |
+|---|---|---|---|
+| 5 | Add Day 2 data, claims, supersession, top-three view, local page, tests | Infinite loop in the code that follows "this claim replaces that one": it re-found the same claim forever and the command hung for 2 minutes. Found by running it, not by reading. | Fixed by excluding already-seen claims |
+| 6 | Draft Day 2 conclusions | A first version of the attrition text said "12 people is impossible" and quoted exit interviews as "mostly say workload"; the transcript says "most of them say workload". | Softened to "implausible" and fixed the quote |
+| 7 | Rank the risks | After the hiring update the backend-roles risk dropped to 2.8 because it inherited a Medium runway claim that has nothing to do with it. | Let an update replace the claim set |
+| 8 | Test results | Two Day 2 tests I expected to be plain answers are actually "answered with a conflict" (dissent is shown). The code was right; my expectations were wrong. | Changed the tests, not the code |
+| 9 | The data invites a guess about one engineer (September leave pattern) | AI could do this and should not. I decided against it (D-011). | Recorded in TRANSCRIPT_NOTES N-27; refusal tests added |

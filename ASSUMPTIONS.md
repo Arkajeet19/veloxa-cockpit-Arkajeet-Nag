@@ -42,3 +42,21 @@ Entries are revised, never deleted. `A-P*` entries cover invented personal lives
 | A-P18 | Rahul Verma | Moved from Coimbatore, PG, supports parents | n/a |
 
 Rule for agents: an invented fact must never contradict a record. Where a record later contradicts one, the entry here is revised and the persona file changed.
+
+## Day 2 additions and revisions (originals above stay, per the rule)
+
+| ID | Date | Assumption | Rests on | Conf. | What would change my mind | Status |
+|---|---|---|---|---|---|---|
+| A-015 | 17 Nov | "In pipeline" in the hiring tracker means active candidates (3 for REQ-014, 5 for REQ-015). | Column name only | Medium | Keka Hire documentation or a recruiter e-mail | Active |
+| A-016 | 17 Nov | Attrition for Jan-Oct 2026 is about 6% annualised. Exits before Jan 2026 are invisible to me. | Jan payroll register vs Keka roster; resignation letter | Medium | An exits export or earlier payroll | Active; supersedes the Day 1 attrition claim |
+| A-017 | 17 Nov | Deepa's "about twelve" means a percentage, not a headcount. | 12 people would be 63% of the company | Medium | Any later statement | Active |
+| A-018 | 17 Nov | The pause on REQ-014/015 and the Atlas GA slip are related only in time; I claim no cause. | E-mail 06 (12 Aug), Q3 board update | n/a | Engineering call (Day 3) | Active |
+| A-019 | 17 Nov | No reply to Arjun's remote request (18 Sep) means no decision, not that none was made. | Absence in a selected e-mail export | Low-Medium | A later e-mail or a policy | Active |
+
+**Revisions**
+- **A-008** (product marketing owns Atlas launch messaging) rose from Low to Low-Medium: the resignation letter says he prepared "the launch kit" and wants "clearer launch timelines". Still waiting for the Day 3 marketing call.
+- **A-013** ("Vicky" = Vikram Menon) rose from Low to Medium after e-mail 06 (see TRANSCRIPT_NOTES N-25).
+- **A-P13 (Siddharth):** his reason for leaving is now grounded in the resignation letter; the invented private details stay.
+- **A-P07 (Priya):** five afternoons of personal leave in September are grounded in the leave register; the reason is deliberately unspecified and agents must not speculate (D-011).
+- **A-P09 (Arjun):** relocation leave in March and the remote request e-mail are now grounded; his current concern is revised.
+- **A-P15 (Rohan):** concern revised to the cancelled final round and 8 candidates waiting.

@@ -21,6 +21,9 @@ Needs Python 3.10+ and internet for `pip install` (openpyxl, python-docx, pypdf)
 .venv/bin/python -m cockpit worry
 .venv/bin/python -m cockpit agent "Fatima"        # or no name for all 14
 ./run.sh repl                                      # interactive
+python -m cockpit              # no arguments: the top three things to worry about
+python -m cockpit serve        # local page at http://127.0.0.1:8000: top three, then an ask box
+python -m cockpit ask "Is attrition high?" --as-of 2026-11-16   # the same question as it stood on Day 1
 ```
 
 ## Tests
@@ -29,9 +32,6 @@ Needs Python 3.10+ and internet for `pip install` (openpyxl, python-docx, pypdf)
 plus structural checks (every claim has evidence that exists; every invented persona fact is in ASSUMPTIONS.md; exactly 14 agents).
 At least 5 questions test refusal / "I don't know" / disagreement handling.
 
-## Status: Day 1 of 5
+## Status: Day 2 of 5
 
-Loaded: Day 1 folder (T1, T2, brief, README, Employee Master, GL Apr-Sep, payroll Jan-Mar, two board updates, three e-mails).
-Later folders are added on their release day (see git history). See ARCHITECTURE.md, DECISIONS.md, ASSUMPTIONS.md, TRANSCRIPT_NOTES.md, AI_LOG.md.
-
-Veloxa and everything in `data/raw` is fictional and provided by the hackathon organisers.
+Loaded: the Day 1 and Day 2 folders (Day 2 adds the Head of People call, the CEO voice note T6a, the leave register, hiring tracker, pulse survey, a resignation letter and four e-mails). Later folders are added on their release day; see the git history.

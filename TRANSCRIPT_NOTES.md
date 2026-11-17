@@ -12,22 +12,55 @@ Format: ID | what looks wrong | evidence | conclusion | confidence | Reviewed.
 
 **N-03 Burn.** T1 "around two point two (unit not stated)"; T2 "two point two lakhs a month, sometimes two point five". Board: Rs 46 L, then Rs 44 L. GL payroll alone is Rs 31.75 L/month. *Conclusion:* "2.2 lakh" is impossible; two speakers saying 2.2 suggests a systematic unit error (maybe crore per year/quarter, or "forty-two" heard as "two"). Board figure believed, Medium; flagged unresolved. Also noted: burn 44 L vs ARR 6.1 Cr (51 L/mo revenue) vs 13-month runway does not reconcile under either gross or net definitions. Reviewed: [x]
 
-**N-04 Tool names.** "Jeera" = Jira, "Git Hub" = GitHub, "Cult Amp" = Culture Amp, "Joho books" = Zoho Books, "Kayka" = Keka, "hub sport" = HubSpot (probable), "slag channel" = Slack (probable). T1 hedges "Linear, I think, or they moved back to the Jeera board"; the README lists Jira (ATLAS) as the engineering export. *Conclusion:* the README and export headers beat spoken names. Linear is not supported by any record. High (Slack/HubSpot Medium). Reviewed: [ ]
+**N-04 Tool names.** "Jeera" = Jira, "Git Hub" = GitHub, "Cult Amp" = Culture Amp, "Joho books" = Zoho Books, "Kayka" = Keka, "hub sport" = HubSpot (probable), "slag channel" = Slack (probable). T1 hedges "Linear, I think, or they moved back to the Jeera board"; the README lists Jira (ATLAS) as the engineering export. *Conclusion:* the README and export headers beat spoken names. Linear is not supported by any record. High (Slack/HubSpot Medium). Reviewed: [x]
 
-**N-05 Names.** "Pria" -> Priya Nair (only Priya); "Kartik" -> Karthik Subramanian; "Fatima Shaikh" -> Fatima Sheikh (Keka, e-mails); "Vicky" -> probably Vikram Menon (Low). Processed/Entered By "FS" = Fatima, "KS" = Karthik. Reviewed: [ ]
+**N-05 Names.** "Pria" -> Priya Nair (only Priya); "Kartik" -> Karthik Subramanian; "Fatima Shaikh" -> Fatima Sheikh (Keka, e-mails); "Vicky" -> probably Vikram Menon (Low). Processed/Entered By "FS" = Fatima, "KS" = Karthik. Reviewed: [x]
 
-**N-06 Fiscal year.** T2 "FY twenty-six (maybe twenty-seven)". April-March year puts Nov 2026 in FY27. The payroll sheet called "Payroll Q4" (Jan-Mar 2026) is Q4 of FY26. Medium. Reviewed: [ ]
+**N-06 Fiscal year.** T2 "FY twenty-six (maybe twenty-seven)". April-March year puts Nov 2026 in FY27. The payroll sheet called "Payroll Q4" (Jan-Mar 2026) is Q4 of FY26. Medium. Reviewed: [x]
 
-**N-07 Books migration.** T2: moved from Tally to Zoho "Jan or Feb", older numbers "may not match". The only GL given is Apr-Sep 2026 (all Zoho), so I cannot test the mismatch. Jan-Mar payroll comes from a pre-Keka workbook; its total matches Apr-Sep GL payroll to the rupee, so no break there. Reviewed: [ ]
+**N-07 Books migration.** T2: moved from Tally to Zoho "Jan or Feb", older numbers "may not match". The only GL given is Apr-Sep 2026 (all Zoho), so I cannot test the mismatch. Jan-Mar payroll comes from a pre-Keka workbook; its total matches Apr-Sep GL payroll to the rupee, so no break there. Reviewed: [x]
 
-**N-08 "The two backend roles".** Mentioned in passing in T2. GL: Rs 1.77 L = 50% advance for a 2-role search (30 Jun). Board Q2 plans two backend hires; Q3 says hiring paused; Keka shows no joiner after 3 Feb (Rahul Verma). *Conclusion:* not filled as of 31 Oct. Medium (absence of evidence; contractors not in Keka). Reviewed: [ ]
+**N-08 "The two backend roles".** Mentioned in passing in T2. GL: Rs 1.77 L = 50% advance for a 2-role search (30 Jun). Board Q2 plans two backend hires; Q3 says hiring paused; Keka shows no joiner after 3 Feb (Rahul Verma). *Conclusion:* not filled as of 31 Oct. Medium (absence of evidence; contractors not in Keka). Reviewed: [x]
 
-**N-09 Summit vendors.** "Sapphire Events Pvt Ltd" (INV-2291) and "Saphire Event Mgmt" (SEM-0087) are both MKT-EVT. "Sapphire Residency Hotel" is SAL-TRV, sales offsite. *Conclusion:* first two are one vendor (Medium); the hotel is a false friend and is excluded. T2 "Nikhil's numbers never match mine" cannot be tested until marketing's own numbers arrive. Reviewed: [ ]
+**N-09 Summit vendors.** "Sapphire Events Pvt Ltd" (INV-2291) and "Saphire Event Mgmt" (SEM-0087) are both MKT-EVT. "Sapphire Residency Hotel" is SAL-TRV, sales offsite. *Conclusion:* first two are one vendor (Medium); the hotel is a false friend and is excluded. T2 "Nikhil's numbers never match mine" cannot be tested until marketing's own numbers arrive. Reviewed: [x]
 
-**N-10 Payroll anomaly (not a mishearing, a record error).** Rahul Verma joined 3 Feb but the Feb register shows 28/28 days payable at the full amount. E-mails 01-03 explain it (Karthik covered while Fatima was out, reused the Jan sheet; Rahul queried on 6 Mar; Fatima: "Will check and get back" on 10 Mar). Not a quirk: a real error. Reviewed: [ ]
+**N-10 Payroll anomaly (not a mishearing, a record error).** Rahul Verma joined 3 Feb but the Feb register shows 28/28 days payable at the full amount. E-mails 01-03 explain it (Karthik covered while Fatima was out, reused the Jan sheet; Rahul queried on 6 Mar; Fatima: "Will check and get back" on 10 Mar). Not a quirk: a real error. Reviewed: [x]
 
-**N-11 Things that look wrong but are not.** (a) Rahul is absent from the Jan register: he joined in Feb. (b) Siddharth is "Notice period" with exit date equal to the export date: consistent with exiting that day. (c) GL vouchers out of date order (JV-0904 dated 3 Sep before JV-0903 dated 4 Sep): voucher number sequence is not chronological, not an error. (d) AWS booked "previous month": txn date is a month after the service month. (e) GL says "selected cost centres": absence of a cost is not proof of no cost. Reviewed: [ ]
+**N-11 Things that look wrong but are not.** (a) Rahul is absent from the Jan register: he joined in Feb. (b) Siddharth is "Notice period" with exit date equal to the export date: consistent with exiting that day. (c) GL vouchers out of date order (JV-0904 dated 3 Sep before JV-0903 dated 4 Sep): voucher number sequence is not chronological, not an error. (d) AWS booked "previous month": txn date is a month after the service month. (e) GL says "selected cost centres": absence of a cost is not proof of no cost. Reviewed: [x]
 
-**N-12 Brief vs HR e-mail.** Brief: 10 working days, live sessions on days 2/4/8, drops on days 1/3/4. E-mail: 5 days, no live sessions, folders on days 1/2/3/4. Latest instruction wins (A-012). Reviewed: [ ]
+**N-12 Brief vs HR e-mail.** Brief: 10 working days, live sessions on days 2/4/8, drops on days 1/3/4. E-mail: 5 days, no live sessions, folders on days 1/2/3/4. Latest instruction wins (A-012). Reviewed: [x]
 
-**N-13 Board "number by March".** Speaker 2 unidentified, referent unclear. Cockpit says "I don't know". Reviewed: [ ]
+**N-13 Board "number by March".** Speaker 2 unidentified, referent unclear. Cockpit says "I don't know". Reviewed: [x]
+
+## Day 2 (T3 Head of People call, T6a voice note, leave register, hiring tracker, pulse survey, resignation letter, e-mails 06, 07, 10, 11)
+
+> DRAFT proposals for owner review. Tick `Reviewed` only after re-reading the evidence and rewriting the reasoning in your own words.
+
+**N-14 "Twenty-two open roles in April", "lost six of them in August".** T3 (Rohan). The hiring tracker has six requisitions in total; at most one (REQ-011, closed 2 Apr) was open in April; REQ-014/015 opened 18 May. 22 is impossible for a 19-person company. *Conclusion:* misheard or a different measure; tracker believed. "Offer acceptance fifty-something" cannot be checked (one accepted offer recorded). High that 22 is wrong; unknown what was meant. Reviewed: [x]
+
+**N-15 "The two backend roles" are now identified.** REQ-014 (Routing) and REQ-015 (Platform), opened 18 May under Vikram, paused by Meera on 12 Aug (e-mail 06, cc Ananya and Rohan); Vikram: "We'll absorb it" (e-mail 07). Tracker agrees on 12 Aug. This confirms my Day 1 inference that neither was filled and replaces it (HB2 supersedes HB1). High. Reviewed: [x]
+
+**N-16 Board: "Hiring is paused" vs tracker.** Tracker has two other requisitions Open (REQ-016 PMM backfill from 17 Sep, REQ-017 Support Associate from 1 Oct). *Conclusion:* the board sentence over-generalises one decision (pausing the two backend roles). Tracker believed. High. Reviewed: [x]
+
+**N-17 Attrition "about twelve".** T3, unit unclear. Jan 2026 payroll had 18 people, one joined in Feb, all 19 are still in Keka on 31 Oct, and only Siddharth is leaving: 1 exit in ~10 months, about 6% annualised. 12% would be ~2 people; 12 people is implausible. *Conclusion:* attrition is not high in the data I can see; I cannot see before Jan 2026, and one more exit would double the percentage. Medium. Supersedes Day 1 AT1. Reviewed: [x]
+
+**N-18 Comment visibility: T3 vs e-mail 11 vs export.** T3: Deepa wants Ananya to see survey comments directly. E-mail 11 (later, her own words): "the team is too small for me to share comments". Export: "Not shown: team smaller than 6" for every team. *Conclusion:* the cockpit shows no comments. Whether to override is Ananya's decision (T3 action item), not mine (D-011). High. Reviewed: [ ]
+
+**N-19 Engineering pulse.** 4.0, 4.0, 3.9, 3.1; responses 5/5 then 4/5. T3 ("dipped in the July round") and e-mail 11 agree with the export. Three other signals: Marketing 3.8 to 3.4; Finance, People, Sales and Support within 0.2. With 5 people one answer can move the average by up to 0.8, so size of the drop is uncertain, direction is not. High on direction. Reviewed: [ ]
+
+**N-20 Team sizes in the pulse (5+3+3+3+2+2 = 18, plus the CEO = 19)** corroborate headcount again (see N-01). Reviewed: [ ]
+
+**N-21 Resignation letter.** Dated 15 Sep, to Nikhil, last day 31 Oct; Keka exit date 31 Oct; T3 "Sid from marketing has put in his papers". Consistent. His stated reason is wanting "clearer launch timelines". 15 Sep is also Atlas's original GA date; I report that as a timing observation, not a cause. High (facts), Low (any causal reading). Reviewed: [ ]
+
+**N-22 Lakshmi's role.** T3: "Lakshmi as HRBP (she handles exits)". Keka: HR & Office Executive. *Conclusion:* Keka title stands; handling exit paperwork can be part of her duties. No conflict worth resolving. Reviewed: [ ]
+
+**N-23 "Liver", "Kekka".** T3. Tracker header says Keka Hire, so "Liver" is a mishearing (Lever possible but unsupported); "Kekka" = Keka. Medium/High. Reviewed: [ ]
+
+**N-24 Manager training "after Diwali, November-ish" (Deepa) vs "January" (Rohan).** No record settles it; left unresolved and not used. Reviewed: [ ]
+
+**N-25 "Vicky" (Day 1) now Medium.** E-mail 06 shows the CFO pausing reqs with Vikram, i.e. the freeze decision was checked with Vikram. Alias confidence raised from Low to Medium. Reviewed: [ ]
+
+**N-26 Leave register quirks.** (a) Names are abbreviated ("A. Das"); approvers are initials (VM, MI, AR, NB, DJ) resolved through aliases. (b) "Days" counts working days (Fatima 9-27 Feb = 15 weekdays). (c) It is a Google Sheet, so I do not treat it as complete. (d) It corroborates Fatima's Feb leave (so Karthik ran the Feb payroll), Karthik's exam week, and Arjun's relocation in March. Reviewed: [ ]
+
+**N-27 One engineer "I'm worried about" (T3), and a pattern in the leave register.** Five half-day personal leaves by one engineer in September invite a guess. *Conclusion:* I am deliberately not making it. It is a guess about a named person, from thin data; the policy (D-011) is that the cockpit reports team-level indicators only. The register and the persona are kept, but their reasons are left unspecified. Reviewed: [ ]
+
