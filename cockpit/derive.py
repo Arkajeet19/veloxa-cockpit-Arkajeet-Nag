@@ -99,4 +99,71 @@ def summit_spend(con):
                  evidence=ev)]
 
 
-DERIVERS = {f.__name__: f for f in (payroll_total, payroll_feb_joiner, aws_cost, summit_spend)}
+def _rec(con, source, text):
+    r = con.execute("SELECT rec_id FROM records WHERE source_id LIKE ? AND text LIKE ? ORDER BY rowid LIMIT 1", (source + "%", f"%{text}%")).fetchone()
+    return r[0] if r else None
+
+
+def payroll_feb_leave(con):
+    """Day 2 corroboration kept as its own claim so the Day 1 answer is unchanged as-of Day 1."""
+    r = _rec(con, "leave_register", "F. Sheikh | Marriage")
+    if not r:
+        return []
+    return [dict(id="PF2", role="context", confidence="High",
+                 statement="Corroboration (leave register): Fatima Sheikh was on approved Marriage leave 9-27 Feb 2026, which is why Karthik ran the February payroll.",
+                 reasoning="Leave register row matches the e-mail and T2 ('she was out for her wedding').",
+                 evidence=[dict(rec_id=r, quote="F. Sheikh | Marriage")])]
+
+
+def attrition_check(con):
+    res = _rec(con, "resignation_letter_sm", "resignation")
+    if not res:
+        return []
+    jan = [(r, p) for r, p in _rows(con, "payroll_register") if p.get("Month") == "Jan-2026" and str(p.get("Emp ID", "")).startswith("VX")]
+    emp = [(r, p) for r, p in _rows(con, "employee_master") if str(p.get("Emp ID", "")).startswith("VX")]
+    exits = [(r, p) for r, p in emp if p.get("Exit Date")]
+    jan_ids = {p["Emp ID"] for _, p in jan}
+    keka_ids = {p["Emp ID"] for _, p in emp}
+    joined_after = sorted(keka_ids - jan_ids)
+    if not jan or not exits or not jan_ids <= keka_ids:
+        return []
+    annual = len(exits) / len(emp) * 12 / 10 * 100
+    t3 = _rec(con, "t3_head_of_people", "about twelve")
+    ev = [dict(rec_id=r, quote="") for r, _ in exits] + [dict(rec_id=res, quote="")] + [dict(rec_id=r, quote="") for r, _ in jan]
+    if t3:
+        ev.append(dict(rec_id=t3, quote=""))
+    return [dict(id="AT2", role="answer", confidence="Medium", supersedes="AT1",
+                 statement=(f"Evidence points to low attrition this year, not 12%. The Jan 2026 payroll register had {len(jan_ids)} people; {len(joined_after)} joined later (the Feb new joiner), and all {len(keka_ids)} are still in Keka on 31 Oct. "
+                            f"The only exit is Siddharth Mehta (resigned 15 Sep, last day 31 Oct). That is {len(exits)} exit in about ten months, roughly {annual:.0f}% annualised on a team of 19. "
+                            f"The Head of People's 'about twelve, which is normal for Bangalore' (T3) has no stated unit: 12% would be about 2 people, 12 people would be implausible. "
+                            f"I cannot see exits before Jan 2026, and Rohan's remark that exit interviews 'most of them say workload' cannot be checked."),
+                 reasoning="Set comparison between the payroll register (people paid in Jan) and the Keka roster (people employed on 31 Oct). Works only for Jan-Oct 2026. A small team makes any percentage jumpy: one more exit would double it.",
+                 evidence=ev)]
+
+
+def pulse_trend(con):
+    rows = [p for _, p in _rows(con, "pulse_survey") if p.get("Quarter") and p.get("Team")]
+    if not rows:
+        return []
+    quarters = []
+    for p in rows:
+        if p["Quarter"] not in quarters:
+            quarters.append(p["Quarter"])
+    last, prev = quarters[-1], quarters[-2]
+    by = {(p["Team"], p["Quarter"]): p for p in rows}
+    deltas = sorted(((by[(t, last)]["Engagement (1-5)"] - by[(t, prev)]["Engagement (1-5)"], t)
+                     for t in {p["Team"] for p in rows}))
+    eng, eng_prev = by[("Engineering", last)], by[("Engineering", prev)]
+    worst, worst_team = deltas[0]
+    others = ", ".join(f"{t} {by[(t, prev)]['Engagement (1-5)']} to {by[(t, last)]['Engagement (1-5)']}" for d, t in deltas[1:] if d != 0)
+    ids = [r for r, p in _rows(con, "pulse_survey") if p.get("Team") in ("Engineering", "Marketing") and p.get("Quarter") in (last, prev)]
+    return [dict(id="PL1", role="answer", confidence="High",
+                 statement=(f"Engineering engagement fell from {eng_prev['Engagement (1-5)']} ({prev}) to {eng['Engagement (1-5)']} ({last}), the biggest drop of any team and the lowest score in the data; "
+                            f"responses fell from {eng_prev['Responses']}/{eng_prev['Team size']} to {eng['Responses']}/{eng['Team size']}. "
+                            f"Other teams, {prev} to {last}: {others if others else 'no change'}. "
+                            f"Engineering had held at 4.0 for the two quarters before. Culture Amp shows no comments for any team (every team has under 6 people), so this is team-level only."),
+                 reasoning=f"Computed from the Culture Amp export. Largest change is {worst_team} ({worst:+.1f}). With 5 people, one person's answer moves the average by up to 0.8, so treat the size of the drop with care even though the direction is clear. T3 ('dipped in the July round') and Deepa's 29 Sep e-mail agree.",
+                 evidence=[dict(rec_id=r, quote="") for r in ids])]
+
+
+DERIVERS = {f.__name__: f for f in (payroll_total, payroll_feb_joiner, aws_cost, summit_spend, payroll_feb_leave, attrition_check, pulse_trend)}

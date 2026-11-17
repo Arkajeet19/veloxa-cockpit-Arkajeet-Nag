@@ -1,30 +1,118 @@
 [
-  {"id": "R1", "title": "Atlas GA has slipped with no new date, and customers were promised the festive season",
-   "severity": 5, "claims": ["A1"],
-   "why": "GA moved from 15 Sep; no replacement date is recorded anywhere; the CEO herself is unsure it will land in time for customers who were promised v3.",
-   "suggested_action": "Ask Vikram for a committed GA date and a list of customers who were promised the festive season."},
-  {"id": "R2", "title": "Backend capacity: two roles paid for but not filled, and hiring is paused",
-   "severity": 4, "claims": ["HB1", "RW1"],
-   "why": "Rs 1.77 L advance paid on 30 Jun; no joiner since Feb; hiring paused; the Q2 board update said these hires were to de-risk Atlas.",
-   "suggested_action": "Decide whether to stop the search (the balance fee) or ring-fence these two roles from the freeze."},
-  {"id": "R3", "title": "The leadership's headline numbers do not agree with each other or with the board updates",
-   "severity": 4, "claims": ["ARR1", "B1"],
-   "why": "ARR, burn and headcount are quoted very differently by the CEO, CFO and board documents (e.g. Rs 6.1 Cr vs 'forty-two crore'; Rs 44 L vs 'two point two lakhs'). The board wants 'the number' by March.",
-   "suggested_action": "Agree one definition and one owner for ARR, burn and runway before the board asks."},
-  {"id": "R4", "title": "AWS cost up sharply and still climbing",
-   "severity": 3, "claims": ["AW1"],
-   "why": "Every monthly bill from Apr to Sep is higher than the one before (+37% overall); the August bill, booked in Sep, is the largest and the biggest single step.",
-   "suggested_action": "Ask for a cost breakdown separating incident-driven spend from structural growth."},
-  {"id": "R5", "title": "Only product marketer is leaving right after the summit",
-   "severity": 3, "claims": ["MD1"],
-   "why": "Siddharth Mehta (Product Marketing Manager) exited 31 Oct and hiring is paused. I am assuming (A-008) that product marketing owns launch messaging for Atlas; launch material arrives later in the week.",
-   "suggested_action": "Confirm who owns Atlas launch positioning now."},
-  {"id": "R6", "title": "Payroll control gap: a new joiner was overpaid in February and the query was never visibly closed",
-   "severity": 2, "claims": ["PF1"],
-   "why": "Proration was missed when someone covered the payroll run; the employee raised it and got 'will check' with no follow-up on record.",
-   "suggested_action": "Have Meera confirm the correction and add a proration check to the checklist for covered runs."},
-  {"id": "R7", "title": "Routing knowledge may sit with one person (unverified)",
-   "severity": 3, "claims": ["KP1"],
-   "why": "The CEO says Priya 'basically holds the routing thing together'. Only one second-hand source; engineering data is not in yet.",
-   "suggested_action": "Wait for commit and Jira data before acting; do not treat as established."}
+ {
+  "id": "R1",
+  "title": "Atlas GA has slipped with no new date, and customers were promised the festive season",
+  "severity": 5,
+  "claims": [
+   "A1"
+  ],
+  "why": "GA moved from 15 Sep; no replacement date is recorded anywhere; the CEO herself is unsure it will land in time for customers who were promised v3.",
+  "suggested_action": "Ask Vikram for a committed GA date and a list of customers who were promised the festive season."
+ },
+ {
+  "id": "R2",
+  "title": "Backend capacity: two roles paid for but not filled, and hiring is paused",
+  "severity": 4,
+  "claims": [
+   "HB1",
+   "RW1"
+  ],
+  "why": "Rs 1.77 L advance paid on 30 Jun; no joiner since Feb; hiring paused; the Q2 board update said these hires were to de-risk Atlas.",
+  "suggested_action": "Decide whether to stop the search (the balance fee) or ring-fence these two roles from the freeze.",
+  "updates": [
+   {
+    "requires": [
+     "HB2"
+    ],
+    "title": "Both backend roles (Routing and Platform) have been on hold since 12 Aug while Atlas slipped",
+    "why": "The CFO paused REQ-014 (Routing) and REQ-015 (Platform) on 12 Aug to protect burn; Vikram agreed to 'absorb it'. 8 candidates are in the pipeline and a final round was cancelled. The Atlas GA then moved. Cause and effect are not proven, and the recruiter's advance (Rs 1.77 L) is already paid. Meanwhile the marketing backfill (REQ-016) is open.",
+    "suggested_action": "Decide with Meera and Vikram: reopen the Routing role first, or accept the Atlas delay explicitly and tell the customers.",
+    "claims": [
+     "HB2"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "R3",
+  "title": "The leadership's headline numbers do not agree with each other or with the board updates",
+  "severity": 4,
+  "claims": [
+   "ARR1",
+   "B1"
+  ],
+  "why": "ARR, burn and headcount are quoted very differently by the CEO, CFO and board documents (e.g. Rs 6.1 Cr vs 'forty-two crore'; Rs 44 L vs 'two point two lakhs'). The board wants 'the number' by March.",
+  "suggested_action": "Agree one definition and one owner for ARR, burn and runway before the board asks."
+ },
+ {
+  "id": "R4",
+  "title": "AWS cost up sharply and still climbing",
+  "severity": 3,
+  "claims": [
+   "AW1"
+  ],
+  "why": "Every monthly bill from Apr to Sep is higher than the one before (+37% overall); the August bill, booked in Sep, is the largest and the biggest single step.",
+  "suggested_action": "Ask for a cost breakdown separating incident-driven spend from structural growth."
+ },
+ {
+  "id": "R5",
+  "title": "Only product marketer is leaving right after the summit",
+  "severity": 3,
+  "claims": [
+   "MD1"
+  ],
+  "why": "Siddharth Mehta (Product Marketing Manager) exited 31 Oct and hiring is paused. I am assuming (A-008) that product marketing owns launch messaging for Atlas; launch material arrives later in the week.",
+  "suggested_action": "Confirm who owns Atlas launch positioning now.",
+  "updates": [
+   {
+    "requires": [
+     "MD2"
+    ],
+    "title": "Product marketer has left citing unclear launch timelines; backfill is open but the launch kit handover is unverified",
+    "severity": 3,
+    "why": "Siddharth resigned on 15 Sep (the original GA date), last day 31 Oct, saying he wants 'clearer launch timelines'. He promised to hand over the launch kit. The backfill (REQ-016) has 7 candidates. His reason is a signal about launch timing, not only about him.",
+    "suggested_action": "Confirm the launch-kit handover was completed and who owns Atlas messaging; read his reason as feedback on launch planning."
+   }
+  ]
+ },
+ {
+  "id": "R6",
+  "title": "Payroll control gap: a new joiner was overpaid in February and the query was never visibly closed",
+  "severity": 2,
+  "claims": [
+   "PF1"
+  ],
+  "why": "Proration was missed when someone covered the payroll run; the employee raised it and got 'will check' with no follow-up on record.",
+  "suggested_action": "Have Meera confirm the correction and add a proration check to the checklist for covered runs."
+ },
+ {
+  "id": "R7",
+  "title": "Routing knowledge may sit with one person (unverified)",
+  "severity": 3,
+  "claims": [
+   "KP1"
+  ],
+  "why": "The CEO says Priya 'basically holds the routing thing together'. Only one second-hand source; engineering data is not in yet.",
+  "suggested_action": "Wait for commit and Jira data before acting; do not treat as established."
+ },
+ {
+  "id": "R8",
+  "title": "Engineering engagement fell from 3.9 to 3.1 in one quarter, the sharpest drop in the company",
+  "severity": 4,
+  "claims": [
+   "PL1"
+  ],
+  "why": "Team of 5, one fewer response, no comments available (team under 6). Deepa told Ananya on 29 Sep and suggested Vikram hold 1:1s that week; nothing shows whether they happened. The CEO's own concern is engineering speed.",
+  "suggested_action": "Ask Vikram whether the 1:1s happened and what he is seeing. Keep it team-level; do not try to identify individuals."
+ },
+ {
+  "id": "R9",
+  "title": "Arjun's request to make remote work permanent has no recorded answer",
+  "severity": 2,
+  "claims": [
+   "RM1"
+  ],
+  "why": "Asked on 18 Sep; no reply in the records (which are a selection of threads). Low cost to answer, and the engineering team is already under strain.",
+  "suggested_action": "Ask Deepa whether it was answered."
+ }
 ]

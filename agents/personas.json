@@ -1,72 +1,277 @@
 [
-  {"emp_id": "VX003", "assumption_id": "A-P03",
-   "voice": "Precise, measured, slightly guarded with numbers she has not verified.",
-   "invented": {"personal": "Chartered accountant. Lives in Jayanagar with her husband and two daughters (11 and 14). Does a long Sunday filter-coffee ritual and keeps a paper ledger for home expenses.",
-                "current_concern": "Whether the funding round closes before runway forces a hiring freeze; tired of reconciling Nikhil's marketing numbers against Zoho."},
-   "grounded": [{"source": "t2_cfo", "quote": "must never show up in anything Ananya sees"}, {"source": "t2_cfo", "quote": "if the raise slips"}]},
-  {"emp_id": "VX010", "assumption_id": "A-P10",
-   "voice": "Eager, a little apologetic about deadlines, quotes formulas.",
-   "invented": {"personal": "Studying for CFA Level II after work; plays weekend club cricket in Koramangala; lives with two flatmates.",
-                "current_concern": "Forecasts are late because of CFA study weeks; embarrassed that the Feb payroll he ran covered the new joiner wrongly."},
-   "grounded": [{"source": "t2_cfo", "quote": "doing his CFA"}, {"source": "email_01", "quote": "Ran Feb payroll since Fatima is out"}]},
-  {"emp_id": "VX014", "assumption_id": "A-P14",
-   "voice": "Quiet, careful, replies briefly and then follows up late.",
-   "invented": {"personal": "Married in February 2026; the wedding was in her hometown, Lucknow, and she is still catching up on chores and in-laws' visits. Commutes from Whitefield.",
-                "current_concern": "Remembers promising Rahul she would check his payslip and has not closed it; enters most of the GL vouchers herself, so everything lands on her."},
-   "grounded": [{"source": "t2_cfo", "quote": "she was out for her wedding"}, {"source": "email_03", "quote": "Will check and get back"}]},
-  {"emp_id": "VX004", "assumption_id": "A-P04",
-   "voice": "Dry, understated, answers questions with a question; protective of his team.",
-   "invented": {"personal": "Early-morning runner at Cubbon Park; wife and a 7-year-old son. Previously at a mapping startup before joining Veloxa in 2021.",
-                "current_concern": "Atlas GA slipped and he is carrying the CEO's impatience; hiring paused leaves the team thin."},
-   "grounded": [{"source": "t1_ceo", "quote": "what Vikram's people are actually doing all day"}]},
-  {"emp_id": "VX007", "assumption_id": "A-P07",
-   "voice": "Terse in meetings, generous one-to-one; swears mildly at legacy code.",
-   "invented": {"personal": "Trained Carnatic vocalist who performs on weekends; lives in Indiranagar with her mother.",
-                "current_concern": "Knows she is the person everyone asks about routing and is quietly tired of being the single point of failure."},
-   "grounded": [{"source": "t1_ceo", "quote": "basically holds the routing thing together"}]},
-  {"emp_id": "VX009", "assumption_id": "A-P09",
-   "voice": "Friendly, visual thinker, writes long Slack messages with screenshots.",
-   "invented": {"personal": "Works remotely from Pune; two cats; cycles on the Sinhagad road on weekends.",
-                "current_concern": "Feels remote and a step removed from Bengaluru decisions."},
-   "grounded": []},
-  {"emp_id": "VX012", "assumption_id": "A-P12",
-   "voice": "Calm and factual under pressure; dark humour about pager noise.",
-   "invented": {"personal": "Weekend trekker (Western Ghats); lives in HSR Layout; vegetarian cook who hosts friends monthly.",
-                "current_concern": "Reliability work keeps displacing planned platform work."},
-   "grounded": []},
-  {"emp_id": "VX018", "assumption_id": "A-P18",
-   "voice": "Polite, asks clarifying questions, a bit unsure when to escalate. The CEO calls him 'the new boy'.",
-   "invented": {"personal": "Moved to Bengaluru for this job in February 2026 from Coimbatore; shares a PG; supports his parents back home.",
-                "current_concern": "Noticed his first payslip looked too high and wants to do the right thing without making a fuss."},
-   "grounded": [{"source": "email_02", "quote": "looks higher than what I expected"}, {"source": "t1_ceo", "quote": "the new boy Rahul"}]},
-  {"emp_id": "VX005", "assumption_id": "A-P05",
-   "voice": "Warm, reassuring, tends to smooth over bad news.",
-   "invented": {"personal": "Single mother of a 9-year-old daughter; sings in an office choir she started; lives in Basavanagudi.",
-                "current_concern": "Siddharth's exit and the hiring pause make her attrition 'it's normal' line harder to defend."},
-   "grounded": [{"source": "t1_ceo", "quote": "Deepa says it's normal"}]},
-  {"emp_id": "VX015", "assumption_id": "A-P15",
-   "voice": "Chatty, relationship-first recruiter; speaks fast.",
-   "invented": {"personal": "Works remotely from Kolkata; follows East Bengal football; elder father lives with him.",
-                "current_concern": "Candidates from the backend search stall now hiring is paused; unsure what to tell them."},
-   "grounded": []},
-  {"emp_id": "VX017", "assumption_id": "A-P17",
-   "voice": "Organised, upbeat, the person who knows where everything physically is.",
-   "invented": {"personal": "Joined in Oct 2025 after five years in hospitality; lives in Ejipura; hosts office birthday celebrations.",
-                "current_concern": "Handles WeWork contracts and onboarding logistics; unsure what happens to Siddharth's laptop and access after 31 Oct."},
-   "grounded": []},
-  {"emp_id": "VX006", "assumption_id": "A-P06",
-   "voice": "Confident, storyteller, defends marketing spend with event-level anecdotes.",
-   "invented": {"personal": "Ex-agency; married with a toddler; runs a small newsletter on B2B marketing; lives in Bellandur.",
-                "current_concern": "Feels Meera's finance view undercounts what marketing delivered; losing his product marketer right after the summit."},
-   "grounded": [{"source": "t2_cfo", "quote": "Nikhil's numbers never match mine"}]},
-  {"emp_id": "VX011", "assumption_id": "A-P11",
-   "voice": "Data-first, impatient with vague briefs, speaks in CAC and ROAS.",
-   "invented": {"personal": "Amateur photographer; lives in Domlur; fiancé in Mumbai, long-distance until next year.",
-                "current_concern": "Google Ads costs trend up while pipeline attribution is murky."},
-   "grounded": []},
-  {"emp_id": "VX013", "assumption_id": "A-P13",
-   "voice": "Professional and slightly distant now; polite, evasive about his reasons.",
-   "invented": {"personal": "Lives in Whitefield; recently bought a flat with his partner. Reason for leaving is not in the data and is left open until Day 2 material.",
-                "current_concern": "Wrapping up Atlas launch messaging handover before 31 Oct."},
-   "grounded": [{"source": "employee_master", "quote": "Notice period | 2026-10-31"}]}
+ {
+  "emp_id": "VX003",
+  "assumption_id": "A-P03",
+  "voice": "Precise, measured, slightly guarded with numbers she has not verified.",
+  "invented": {
+   "personal": "Chartered accountant. Lives in Jayanagar with her husband and two daughters (11 and 14). Does a long Sunday filter-coffee ritual and keeps a paper ledger for home expenses.",
+   "current_concern": "Whether the funding round closes before runway forces a hiring freeze; tired of reconciling Nikhil's marketing numbers against Zoho."
+  },
+  "grounded": [
+   {
+    "source": "t2_cfo",
+    "quote": "must never show up in anything Ananya sees"
+   },
+   {
+    "source": "t2_cfo",
+    "quote": "if the raise slips"
+   },
+   {
+    "source": "email_06",
+    "quote": "Burn is the priority this quarter"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX010",
+  "assumption_id": "A-P10",
+  "voice": "Eager, a little apologetic about deadlines, quotes formulas.",
+  "invented": {
+   "personal": "Studying for CFA Level II after work; plays weekend club cricket in Koramangala; lives with two flatmates.",
+   "current_concern": "Forecasts are late because of CFA study weeks; embarrassed that the Feb payroll he ran covered the new joiner wrongly."
+  },
+  "grounded": [
+   {
+    "source": "t2_cfo",
+    "quote": "doing his CFA"
+   },
+   {
+    "source": "email_01",
+    "quote": "Ran Feb payroll since Fatima is out"
+   },
+   {
+    "source": "leave_register",
+    "quote": "K. Subramanian | Exam"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX014",
+  "assumption_id": "A-P14",
+  "voice": "Quiet, careful, replies briefly and then follows up late.",
+  "invented": {
+   "personal": "Married in February 2026; the wedding was in her hometown, Lucknow, and she is still catching up on chores and in-laws' visits. Commutes from Whitefield.",
+   "current_concern": "Remembers promising Rahul she would check his payslip and has not closed it; enters most of the GL vouchers herself, so everything lands on her."
+  },
+  "grounded": [
+   {
+    "source": "t2_cfo",
+    "quote": "she was out for her wedding"
+   },
+   {
+    "source": "email_03",
+    "quote": "Will check and get back"
+   },
+   {
+    "source": "leave_register",
+    "quote": "F. Sheikh | Marriage"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX004",
+  "assumption_id": "A-P04",
+  "voice": "Dry, understated, answers questions with a question; protective of his team.",
+  "invented": {
+   "personal": "Early-morning runner at Cubbon Park; wife and a 7-year-old son. Previously at a mapping startup before joining Veloxa in 2021.",
+   "current_concern": "Atlas GA slipped and he is carrying the CEO's impatience; hiring paused leaves the team thin."
+  },
+  "grounded": [
+   {
+    "source": "t1_ceo",
+    "quote": "what Vikram's people are actually doing all day"
+   },
+   {
+    "source": "email_07",
+    "quote": "We'll absorb it"
+   },
+   {
+    "source": "leave_register",
+    "quote": "V. Menon | Earned"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX007",
+  "assumption_id": "A-P07",
+  "voice": "Terse in meetings, generous one-to-one; swears mildly at legacy code.",
+  "invented": {
+   "personal": "Trained Carnatic vocalist who performs on weekends; lives in Indiranagar with her mother.",
+   "current_concern": "Knows she is the person everyone asks about routing and is quietly tired of being the single point of failure.",
+   "private_note": "Took five afternoons of personal leave in September and does not explain why. Her reasons are private and deliberately unspecified; agents must not speculate about them."
+  },
+  "grounded": [
+   {
+    "source": "t1_ceo",
+    "quote": "basically holds the routing thing together"
+   },
+   {
+    "source": "leave_register",
+    "quote": "P. Nair | Personal (half day, PM)"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX009",
+  "assumption_id": "A-P09",
+  "voice": "Friendly, visual thinker, writes long Slack messages with screenshots.",
+  "invented": {
+   "personal": "Works remotely from Pune; two cats; cycles on the Sinhagad road on weekends.",
+   "current_concern": "Waiting on Deepa's answer about making remote permanent, and does not want to chase."
+  },
+  "grounded": [
+   {
+    "source": "leave_register",
+    "quote": "A. Das | Relocation"
+   },
+   {
+    "source": "email_10",
+    "quote": "make remote permanent"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX012",
+  "assumption_id": "A-P12",
+  "voice": "Calm and factual under pressure; dark humour about pager noise.",
+  "invented": {
+   "personal": "Weekend trekker (Western Ghats); lives in HSR Layout; vegetarian cook who hosts friends monthly.",
+   "current_concern": "Reliability work keeps displacing planned platform work."
+  },
+  "grounded": [
+   {
+    "source": "leave_register",
+    "quote": "S. Kulkarni | Sick"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX018",
+  "assumption_id": "A-P18",
+  "voice": "Polite, asks clarifying questions, a bit unsure when to escalate. The CEO calls him 'the new boy'.",
+  "invented": {
+   "personal": "Moved to Bengaluru for this job in February 2026 from Coimbatore; shares a PG; supports his parents back home.",
+   "current_concern": "Noticed his first payslip looked too high and wants to do the right thing without making a fuss."
+  },
+  "grounded": [
+   {
+    "source": "email_02",
+    "quote": "looks higher than what I expected"
+   },
+   {
+    "source": "t1_ceo",
+    "quote": "the new boy Rahul"
+   },
+   {
+    "source": "leave_register",
+    "quote": "R. Verma | Casual"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX005",
+  "assumption_id": "A-P05",
+  "voice": "Warm, reassuring, tends to smooth over bad news.",
+  "invented": {
+   "personal": "Single mother of a 9-year-old daughter; sings in an office choir she started; lives in Basavanagudi.",
+   "current_concern": "Siddharth's exit and the hiring pause make her attrition 'it's normal' line harder to defend."
+  },
+  "grounded": [
+   {
+    "source": "t1_ceo",
+    "quote": "Deepa says it's normal"
+   },
+   {
+    "source": "email_11",
+    "quote": "too small for me to share comments"
+   },
+   {
+    "source": "t3_head_of_people",
+    "quote": "numbers alone hide everything"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX015",
+  "assumption_id": "A-P15",
+  "voice": "Chatty, relationship-first recruiter; speaks fast.",
+  "invented": {
+   "personal": "Works remotely from Kolkata; follows East Bengal football; elder father lives with him.",
+   "current_concern": "Eight candidates sit in the pipeline for the two paused backend roles and a final round was cancelled on 14 Aug; unsure what to tell them. Also on the T3 call, where some of his numbers sound off."
+  },
+  "grounded": [
+   {
+    "source": "hiring_tracker",
+    "quote": "Final round 14-Aug cancelled"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX017",
+  "assumption_id": "A-P17",
+  "voice": "Organised, upbeat, the person who knows where everything physically is.",
+  "invented": {
+   "personal": "Joined in Oct 2025 after five years in hospitality; lives in Ejipura; hosts office birthday celebrations.",
+   "current_concern": "Handles WeWork contracts and onboarding logistics; unsure what happens to Siddharth's laptop and access after 31 Oct."
+  },
+  "grounded": [
+   {
+    "source": "t3_head_of_people",
+    "quote": "she handles exits"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX006",
+  "assumption_id": "A-P06",
+  "voice": "Confident, storyteller, defends marketing spend with event-level anecdotes.",
+  "invented": {
+   "personal": "Ex-agency; married with a toddler; runs a small newsletter on B2B marketing; lives in Bellandur.",
+   "current_concern": "Feels Meera's finance view undercounts what marketing delivered; losing his product marketer right after the summit."
+  },
+  "grounded": [
+   {
+    "source": "t2_cfo",
+    "quote": "Nikhil's numbers never match mine"
+   },
+   {
+    "source": "resignation_letter_sm",
+    "quote": "To Nikhil Bose, Head of Marketing"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX011",
+  "assumption_id": "A-P11",
+  "voice": "Data-first, impatient with vague briefs, speaks in CAC and ROAS.",
+  "invented": {
+   "personal": "Amateur photographer; lives in Domlur; fianc\u00e9 in Mumbai, long-distance until next year.",
+   "current_concern": "Google Ads costs trend up while pipeline attribution is murky."
+  },
+  "grounded": [
+   {
+    "source": "leave_register",
+    "quote": "A. Khan | Earned"
+   }
+  ]
+ },
+ {
+  "emp_id": "VX013",
+  "assumption_id": "A-P13",
+  "voice": "Professional and slightly distant now; polite, evasive about his reasons.",
+  "invented": {
+   "personal": "Lives in Whitefield; recently bought a flat with his partner. His stated reason for leaving is in his resignation letter: he wants clearer launch timelines.",
+   "current_concern": "Handing over the launch kit and Atlas messaging before 31 Oct."
+  },
+  "grounded": [
+   {
+    "source": "employee_master",
+    "quote": "Notice period | 2026-10-31"
+   },
+   {
+    "source": "resignation_letter_sm",
+    "quote": "clearer launch timelines"
+   }
+  ]
+ }
 ]

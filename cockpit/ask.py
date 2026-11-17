@@ -21,6 +21,7 @@ CONF_RANK = {"High": 3, "Medium": 2, "Low": 1}
 
 PAY_WORDS = re.compile(r"\b(salary|salaries|ctc|compensation|earns?|earning|pay ?slip|take[- ]home|net pay|gross pay|pay ?cut|how much (is|does|do) .* (paid|make))\b")
 EVERYONE = re.compile(r"\b(everyone|everybody|each|every employee|all employees|individual|highest|lowest|most|least|who (is|are) paid|who earns)\b")
+FLIGHT = re.compile(r"(flight risk|likely to (resign|leave|quit)|(who|which \w+|which of (them|us)).{0,40}(might|will|may|is going to|are going to|could|about to) (quit|resign|leave)|at risk of (leaving|resigning)|attrition risk (of|for|by) (a |an |the )?(person|employee|engineer|individual)|rank.{0,30}(resign|leav|quit|attrition)|who is unhappy)")
 FORECAST = re.compile(r"\b(will|would|going to|forecast|predict|projected|likely|by (december|january|february|march|next))\b")
 
 
@@ -96,6 +97,13 @@ def ask(question, as_of=None, con=None):
                        "High", reasoning="Policy D-005 (source: T2, CFO).", as_of=when,
                        citations=_citations(con, [], when))
 
+    # 1b. Policy: no individual flight-risk guessing (D-011). Team-level indicators only.
+    if FLIGHT.search(q):
+        return _result("refused",
+                       "I won't name or rank individuals by how likely they are to resign: that would be a guess built from leave, survey or HR records about a person. "
+                       "I can give team-level indicators instead (engagement trend, open requisitions, known notices). Ask 'how is engineering morale?'.",
+                       "High", reasoning="Policy D-011.", as_of=when)
+
     # 2. Topic match.
     topics = {t["topic"]: dict(t) for t in con.execute("SELECT * FROM topics")}
     scored = sorted(((_score(q, json.loads(t["keywords"])), k) for k, t in topics.items()), reverse=True)
@@ -147,12 +155,32 @@ def ask(question, as_of=None, con=None):
             reports = [x["name"] for x in people if x["manager_id"] == pid]
             if reports:
                 cards[-1] += " Direct reports: " + ", ".join(reports) + "."
+        weak = [x for x in con.execute("SELECT alias, confidence FROM aliases WHERE kind='person' AND confidence!='High'")
+                if len(x["alias"]) > 2 and re.search(rf"\b{re.escape(x['alias'].lower())}\b", q)]
+        conf = "High"
+        if weak:
+            conf = min((x["confidence"] for x in weak), key=CONF_RANK.get)
+            cards.append("Note: this match rests on an alias (" + ", ".join(f"'{x['alias']}' ({x['confidence']})" for x in weak) + "), not on an exact name.")
         if cards:
-            return _result("answered", " ".join(cards), "High",
+            return _result("answered", " ".join(cards), conf,
                            [{"rec_id": r, "quote": "", "released": "2026-11-16"} for r in recs], reasoning="Keka employee master is the system of record for roles and reporting lines.", as_of=when)
 
     return _result("unknown", "I don't know. Nothing in the data room released so far answers that. "
                    "I only answer from the loaded records and will not guess from general knowledge.", "High", as_of=when)
+
+
+def _cite_lines(cites):
+    """Quoted records one per line; bare records (computed from many rows) grouped by source."""
+    out, bare = [], {}
+    for c in cites:
+        if c["quote"]:
+            out.append(f"  - {c['rec_id']}  \"{c['quote']}\"")
+        else:
+            src, loc = c["rec_id"].split(":", 1)
+            bare.setdefault(src, []).append(loc)
+    for src, locs in bare.items():
+        out.append(f"  - {src}: " + (", ".join(locs) if len(locs) <= 3 else f"{len(locs)} records ({locs[0]} ... {locs[-1]})"))
+    return out
 
 
 def format_result(r):
@@ -162,8 +190,5 @@ def format_result(r):
         lines += [f"  - {d['claim']}\n    Why: {d['why_not_believed']}" for d in r["dissent"]]
     if r["citations"]:
         lines.append("Evidence:")
-        for c in r["citations"][:12]:
-            lines.append(f"  - {c['rec_id']}" + (f"  \"{c['quote']}\"" if c["quote"] else ""))
-        if len(r["citations"]) > 12:
-            lines.append(f"  ... and {len(r['citations']) - 12} more records")
+        lines += _cite_lines(r["citations"])
     return "\n".join(lines)

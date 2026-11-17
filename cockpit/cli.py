@@ -6,39 +6,52 @@ from . import agents, ask as askmod, build, worry as worrymod
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="cockpit", description="Veloxa CXO Cockpit")
-    sub = ap.add_subparsers(dest="cmd", required=True)
+    ap = argparse.ArgumentParser(prog="cockpit", description="Veloxa CXO Cockpit. With no command it prints the top three things to worry about (CEO voice note T6a).")
+    sub = ap.add_subparsers(dest="cmd")
     sub.add_parser("build", help="rebuild build/veloxa.db from data/raw")
     a = sub.add_parser("ask", help="ask one question")
     a.add_argument("question")
     a.add_argument("--as-of", help="YYYY-MM-DD (end of day IST) or ISO timestamp; default now")
     a.add_argument("--json", action="store_true")
-    w = sub.add_parser("worry", help="ranked list of what to worry about")
+    w = sub.add_parser("worry", help="full ranked list of what to worry about")
     w.add_argument("--as-of")
+    t = sub.add_parser("top", help="top three things to worry about (default)")
+    t.add_argument("--as-of")
     g = sub.add_parser("agent", help="show an agent card (name) or all")
     g.add_argument("who", nargs="?")
+    s = sub.add_parser("serve", help="local web page: top three on open, ask box below")
+    s.add_argument("--port", type=int, default=8000)
+    s.add_argument("--as-of")
     sub.add_parser("test", help="run the automated question set")
     r = sub.add_parser("repl", help="interactive cockpit")
     r.add_argument("--as-of")
     args = ap.parse_args(argv)
+    cmd = args.cmd or "top"
+    as_of = getattr(args, "as_of", None)
 
-    if args.cmd == "build":
+    if cmd == "build":
         build.build()
         print("database built")
         return 0
-    if args.cmd == "test":
+    if cmd == "test":
         from tests.run_tests import run
         return run()
     if not build.DB.exists():
         build.build()
-    if args.cmd == "ask":
-        res = askmod.ask(args.question, args.as_of)
+    if cmd == "ask":
+        res = askmod.ask(args.question, as_of)
         print(json.dumps(res, indent=2) if args.json else askmod.format_result(res))
-    elif args.cmd == "worry":
-        print(worrymod.format_worry(worrymod.worry(args.as_of)))
-    elif args.cmd == "agent":
+    elif cmd == "top":
+        print("Top three things to worry about:\n")
+        print(worrymod.format_worry(worrymod.worry(as_of), top=3))
+    elif cmd == "worry":
+        print(worrymod.format_worry(worrymod.worry(as_of)))
+    elif cmd == "agent":
         print(agents.card(args.who) if args.who else agents.all_cards())
-    elif args.cmd == "repl":
+    elif cmd == "serve":
+        from .serve import serve
+        serve(args.port, as_of)
+    elif cmd == "repl":
         print("Ask the cockpit (blank line to quit; 'worry' for the ranked list).")
         while True:
             try:
@@ -47,7 +60,7 @@ def main(argv=None):
                 break
             if not q:
                 break
-            print(worrymod.format_worry(worrymod.worry(args.as_of)) if q == "worry" else askmod.format_result(askmod.ask(q, args.as_of)))
+            print(worrymod.format_worry(worrymod.worry(as_of)) if q == "worry" else askmod.format_result(askmod.ask(q, as_of)))
             print()
     return 0
 

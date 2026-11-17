@@ -22,6 +22,9 @@ def check(case, res):
             errs.append(f"missing citation containing {s!r}")
     if case.get("no_citations") and res["citations"]:
         errs.append("leaked citations from unreleased material")
+    for s in case.get("no_citations_from", []):
+        if s in ids:
+            errs.append(f"leaked citation from {s!r} (released later)")
     if case.get("dissent") and not res["dissent"]:
         errs.append("expected conflicting sources to be shown")
     if "conf" in case and res["confidence"] != case["conf"]:
@@ -42,6 +45,13 @@ def structural_checks(con):
     for a in json.load(open(root / "agents" / "personas.json")):
         if a["assumption_id"] not in log:
             errs.append(f"{a['assumption_id']} not logged in ASSUMPTIONS.md")
+    # every grounded persona quote must exist in the cited source
+    for a in json.load(open(root / "agents" / "personas.json")):
+        for g in a["grounded"]:
+            srcs = [s for (s,) in con.execute("SELECT source_id FROM sources") if s.startswith(g["source"])]
+            ok = any(g["quote"].replace("\u2019", "'") in t for s in srcs for (t,) in con.execute("SELECT text FROM records WHERE source_id=?", (s,)))
+            if not ok:
+                errs.append(f"{a['emp_id']}: grounded quote not found in {g['source']}: {g['quote']!r}")
     if con.execute("SELECT COUNT(*) FROM people WHERE is_agent=1").fetchone()[0] != 14:
         errs.append("expected exactly 14 agents")
     return errs

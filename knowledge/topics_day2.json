@@ -1,0 +1,274 @@
+[
+ {
+  "topic": "hiring_backend",
+  "claims": [
+   {
+    "id": "HB2",
+    "role": "answer",
+    "confidence": "High",
+    "supersedes": "HB1",
+    "statement": "'The two backend roles' are REQ-014 (Backend Engineer, Routing) and REQ-015 (Backend Engineer, Platform), both opened 18 May 2026 under Vikram. Meera paused both on 12 Aug 2026 ('until the round closes. Burn is the priority this quarter'), copying Ananya and Rohan; Vikram replied 'We'll absorb it'. The tracker shows both On hold, with 3 and 5 candidates in the pipeline, and a final round on 14 Aug cancelled. The Rs 1.77 L advance to the recruiter had been paid on 30 Jun. Neither role is filled; both are on hold, not closed. The Q3 board update's 'Hiring is paused' is broader than the tracker: the Product Marketing backfill (REQ-016, opened 17 Sep) and a Support Associate (REQ-017, opened 1 Oct) are Open.",
+    "reasoning": "Hiring tracker (Keka Hire export) and e-mails 06/07 agree on role, owner and the 12 Aug date, and tie back to the Day 1 GL advance and board plan. I read 'In pipeline' as active candidates (my assumption, A-015). The board sentence is a simplification, so I trust the tracker.",
+    "evidence": [
+     {
+      "source": "hiring_tracker",
+      "quote": "REQ-014 | Backend Engineer (Routing)"
+     },
+     {
+      "source": "hiring_tracker",
+      "quote": "REQ-015 | Backend Engineer (Platform)"
+     },
+     {
+      "source": "email_06",
+      "quote": "Pausing REQ-014 and REQ-015 until the round closes"
+     },
+     {
+      "source": "email_07",
+      "quote": "We'll absorb it"
+     },
+     {
+      "source": "hiring_tracker",
+      "quote": "REQ-016 | Product Marketing Manager"
+     },
+     {
+      "source": "gl_export",
+      "quote": "Search fee, 2 backend roles (50% advance)"
+     }
+    ]
+   },
+   {
+    "id": "HB3",
+    "role": "dissent",
+    "confidence": "Low",
+    "statement": "T3 (Rohan): 'twenty-two open roles in April', 'we lost six of them in August', offer acceptance 'down to fifty-something'.",
+    "reasoning": "The tracker lists six requisitions in total, and at most one (REQ-011, closed 2 Apr) was open in April; REQ-014/015 opened 18 May. Twenty-two is not possible for a 19-person company. Probably a misheard number, or a different count (e.g. candidates). The offer-acceptance rate cannot be checked: the tracker records only one accepted offer.",
+    "evidence": [
+     {
+      "source": "t3_head_of_people",
+      "quote": "twenty-two open roles in April"
+     }
+    ]
+   }
+  ],
+  "keywords": [
+   "req-0",
+   "requisition",
+   "open roles",
+   "open reqs",
+   "is hiring paused",
+   "hiring paused",
+   "hiring tracker"
+  ]
+ },
+ {
+  "topic": "marketing_departure",
+  "claims": [
+   {
+    "id": "MD2",
+    "role": "answer",
+    "confidence": "High",
+    "supersedes": "MD1",
+    "statement": "Siddharth Mehta (Product Marketing Manager, reports to Nikhil Bose) resigned in writing on 15 Sep 2026; last working day 31 Oct 2026. His stated reason: he wants 'a role with clearer launch timelines, where the work I prepare reaches customers'. He promised to hand over 'everything I've built, including the launch kit'. The backfill (REQ-016) opened 17 Sep and has 7 candidates in the pipeline. Timing note, not proven cause: 15 Sep was also Atlas's original GA date, and the Q3 board update says GA moved.",
+    "reasoning": "Letter, Keka exit date and T3 ('Sid from marketing has put in his papers') agree. His stated reason is about launch timing; the link to the Atlas slip is my inference from his wording and the dates.",
+    "evidence": [
+     {
+      "source": "resignation_letter_sm",
+      "quote": "clearer launch timelines"
+     },
+     {
+      "source": "resignation_letter_sm",
+      "quote": "including the launch kit"
+     },
+     {
+      "source": "employee_master",
+      "quote": "Notice period | 2026-10-31"
+     },
+     {
+      "source": "t3_head_of_people",
+      "quote": "Sid from marketing"
+     },
+     {
+      "source": "hiring_tracker",
+      "quote": "REQ-016 | Product Marketing Manager"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "attrition",
+  "derived": "attrition_check",
+  "claims": []
+ },
+ {
+  "topic": "pulse",
+  "title": "Employee pulse survey",
+  "keywords": [
+   "pulse",
+   "engagement",
+   "morale",
+   "survey",
+   "sentiment",
+   "engineering scores",
+   "how is the team feeling",
+   "how do people feel"
+  ],
+  "open_question": "comment|verbatim|what did (people|they|engineers|the team) (write|say)|what are (people|they) saying",
+  "unknown_reason": "Comments are not available: the Culture Amp export suppresses them for every team because every team has fewer than 6 people ('Not shown: team smaller than 6'). Deepa also told Ananya on 29 Sep that the engineering team is too small to share comments.",
+  "dispute": "resolved",
+  "derived": "pulse_trend",
+  "claims": [
+   {
+    "id": "PL2",
+    "role": "answer",
+    "confidence": "Medium",
+    "statement": "On 29 Sep Deepa told Ananya the engineering pulse dropped this quarter, that the team is too small to share comments, and suggested Vikram do 1:1s that week. Nothing in the records shows whether those 1:1s happened.",
+    "reasoning": "E-mail is Deepa's own, written and later than the call. 'Not happened' is not claimed; it is simply unknown.",
+    "evidence": [
+     {
+      "source": "email_11",
+      "quote": "engineering pulse dropped this quarter"
+     }
+    ]
+   },
+   {
+    "id": "PL3",
+    "role": "dissent",
+    "confidence": "Medium",
+    "statement": "On the T3 call Deepa 'wants Ananya to see survey comments directly: numbers alone hide everything'; the action item is 'Ananya to decide on comment visibility'.",
+    "reasoning": "Conflicts with Deepa's own later e-mail (team too small to share comments) and with the export, which shows no comments for any team. The cockpit follows the export and the small-team rule. Whether to override that is Ananya's decision, not the cockpit's (D-011).",
+    "evidence": [
+     {
+      "source": "t3_head_of_people",
+      "quote": "see survey comments directly"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "hr_concern",
+  "title": "The engineer the Head of People is worried about",
+  "keywords": [
+   "worried about",
+   "which engineer",
+   "who is deepa worried",
+   "one engineer",
+   "who might quit",
+   "who will quit",
+   "who is unhappy"
+  ],
+  "open_question": ".*",
+  "unknown_reason": "On the T3 call Deepa said there is 'one engineer I'm worried about' but did not name them. This cockpit does not guess individuals' resignation risk from leave, survey or other records (policy D-011); it reports team-level indicators only.",
+  "dispute": "resolved",
+  "claims": [
+   {
+    "id": "HC1",
+    "role": "context",
+    "confidence": "High",
+    "statement": "Deepa said there is one engineer she is worried about and would not name them on the call.",
+    "reasoning": "The call summary records the refusal to name. Team-level signal available instead: see the pulse topic.",
+    "evidence": [
+     {
+      "source": "t3_head_of_people",
+      "quote": "one engineer I'm worried about"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "remote_work",
+  "title": "Remote work request",
+  "keywords": [
+   "remote",
+   "work from home",
+   "wfh",
+   "pune",
+   "relocat",
+   "work from pune"
+  ],
+  "dispute": "resolved",
+  "claims": [
+   {
+    "id": "RM1",
+    "role": "answer",
+    "confidence": "Medium",
+    "statement": "Arjun Das (Senior Frontend Engineer) took 5 days of 'Relocation' leave on 2-6 Mar 2026 and is listed in Keka as 'Pune (remote)'. On 18 Sep he asked Deepa to make remote permanent, offering to come to Bengaluru once a month. No reply or decision is in the records.",
+    "reasoning": "Three records agree on the move; 'no decision' is absence of evidence (the e-mail export is a selection of threads), so Medium.",
+    "evidence": [
+     {
+      "source": "email_10",
+      "quote": "make remote permanent"
+     },
+     {
+      "source": "leave_register",
+      "quote": "A. Das | Relocation"
+     },
+     {
+      "source": "employee_master",
+      "quote": "Pune (remote)"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "tools",
+  "claims": [
+   {
+    "id": "TL2",
+    "role": "answer",
+    "confidence": "Medium",
+    "statement": "Day 2 additions: hiring runs on Keka Hire (the hiring tracker's export header); leave is kept in a Google Sheet maintained by People & Ops, not in Keka; the pulse survey is Culture Amp. T3's 'Liver' and 'Kekka' are mishearings (Keka Hire / Keka).",
+    "reasoning": "Export headers beat spoken names, as on Day 1.",
+    "evidence": [
+     {
+      "source": "hiring_tracker",
+      "quote": "Keka Hire"
+     },
+     {
+      "source": "leave_register",
+      "quote": "Google Sheet"
+     },
+     {
+      "source": "pulse_survey",
+      "quote": "Culture Amp"
+     },
+     {
+      "source": "t3_head_of_people",
+      "quote": "Liver"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "key_person",
+  "claims": [
+   {
+    "id": "KP2",
+    "role": "answer",
+    "confidence": "Low",
+    "supersedes": "KP1",
+    "statement": "The CEO says Priya Nair (Staff Engineer) 'basically holds the routing thing together' (T1, single second-hand source, still untested). Day 2 adds that one of the two paused backend requisitions, REQ-014, is specifically a Routing role, so the organisation itself treated routing as short of people. No commit or ticket data yet to test the claim about Priya. This cockpit does not assess any individual's likelihood of leaving.",
+    "reasoning": "A paused 'Routing' requisition supports 'routing is thin' but says nothing about who holds the knowledge. Stays Low until Day 3 git and Jira data.",
+    "evidence": [
+     {
+      "source": "t1_ceo",
+      "quote": "Pria"
+     },
+     {
+      "source": "hiring_tracker",
+      "quote": "REQ-014 | Backend Engineer (Routing)"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "payroll_feb_joiner",
+  "derived": "payroll_feb_leave",
+  "claims": []
+ }
+]
