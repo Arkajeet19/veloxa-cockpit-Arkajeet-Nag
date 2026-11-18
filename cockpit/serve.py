@@ -1,7 +1,7 @@
 """Local page for the CEO: opens on the top three worries (T6a), with an ask box below.
 Standard library only; binds to 127.0.0.1 so nothing is exposed on the network."""
 import html
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlparse
 
 from . import ask as askmod, worry as worrymod
@@ -41,15 +41,12 @@ def serve(port=8000, as_of=None):
             u = urlparse(self.path)
             q = (parse_qs(u.query).get("q") or [None])[0]
             body = all_page(as_of) if u.path == "/all" else page(as_of, q) if u.path in ("/", "/ask") else None
-            try:
-                self.send_response(200 if body else 404)
-                self.send_header("Content-Type", "text/html; charset=utf-8")
-                self.end_headers()
-                self.wfile.write((body or "not found").encode())
-            except (ConnectionError, BrokenPipeError):
-                pass  # the browser closed the connection (refresh, favicon, tab closed)
+            self.send_response(200 if body else 404)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.end_headers()
+            self.wfile.write((body or "not found").encode())
 
         def log_message(self, *a):
             pass
     print(f"Cockpit running at http://127.0.0.1:{port}  (Ctrl+C to stop)")
-    ThreadingHTTPServer(("127.0.0.1", port), H).serve_forever()
+    HTTPServer(("127.0.0.1", port), H).serve_forever()

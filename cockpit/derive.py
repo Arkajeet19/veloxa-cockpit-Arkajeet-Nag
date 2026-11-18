@@ -167,3 +167,169 @@ def pulse_trend(con):
 
 
 DERIVERS = {f.__name__: f for f in (payroll_total, payroll_feb_joiner, aws_cost, summit_spend, payroll_feb_leave, attrition_check, pulse_trend)}
+
+
+# ---------------------------------------------------------------- Day 3: engineering and marketing
+import csv as _csv
+from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+
+IST = _tz(_td(hours=5, minutes=30))
+PRIYA_EMAILS = ("priya.n@veloxa.in", "pnair@users.noreply.github.com")
+
+
+def _jira(con):
+    issues = [(r, p) for r, p in _rows(con, "jira_export_atlas") if str(p.get("Key", "")).startswith("ATLAS-") and p.get("Type") == "Story"]
+    epics = {p["Key"]: p["Epic Name"] for r, p in _rows(con, "jira_export_atlas") if str(p.get("Key", "")).startswith("ATLAS-") and "Epic Name" in p}
+    ver = next((p for r, p in _rows(con, "jira_export_atlas") if p.get("Version") == "Atlas GA"), None)
+    return issues, epics, ver
+
+
+def jira_progress(con):
+    issues, epics, ver = _jira(con)
+    git = [p for _, p in _rows(con, "git_log") if p.get("sha")]
+    if not issues or not ver:
+        return []
+    pts = lambda p: int(p["Story Points"] or 0)
+    tot = {st: sum(pts(p) for _, p in issues if p["Status"] == st) for st in ("Done", "In Progress", "To Do")}
+    total = sum(tot.values())
+    open_pts = tot["In Progress"] + tot["To Do"]
+    per_epic = []
+    for k in sorted({p["Epic Link"] for _, p in issues}):
+        t = sum(pts(p) for _, p in issues if p["Epic Link"] == k)
+        d = sum(pts(p) for _, p in issues if p["Epic Link"] == k and p["Status"] == "Done")
+        per_epic.append(f"{epics.get(k, k)} {d}/{t}")
+    vel = {}
+    for _, p in issues:
+        if p["Resolved"]:
+            vel[str(p["Resolved"])[:7]] = vel.get(str(p["Resolved"])[:7], 0) + pts(p)
+    last_res = max(str(p["Resolved"]) for _, p in issues if p["Resolved"])
+    last_cre = max(str(p["Created"]) for _, p in issues)
+    ga = _dt.fromisoformat(str(ver["Release Date"])[:10])
+    export = _dt(2026, 10, 31)
+    months_left = (ga - export).days / 30.4
+    need = open_pts / months_left
+    best = max(vel.values())
+    commits = {}
+    for p in git:
+        m = p["committed_at"][:7]
+        commits[m] = commits.get(m, 0) + 1
+    recent = ", ".join(f"{m} {commits[m]}" for m in sorted(commits)[-3:])
+    ev = [dict(rec_id=r, quote="") for r, _ in issues] + [dict(rec_id=r, quote="") for r, p in _rows(con, "jira_export_atlas") if p.get("Version") == "Atlas GA"]
+    return [dict(id="JP1", role="answer", confidence="Medium",
+                 statement=(f"Jira (ATLAS, exported 31 Oct) has {len(issues)} stories worth {total} points: {tot['Done']} done ({tot['Done'] * 100 // total}%), {tot['In Progress']} in progress, {tot['To Do']} to do, so {open_pts} points ({open_pts * 100 // total}%) are still open. "
+                            f"Done / total points by epic: {'; '.join(per_epic)}. The Q3 board update's 'the engine itself is feature-complete' does not match this: the core engine and real-time re-routing epics both have open work. "
+                            f"Points resolved per month: {', '.join(f'{m} {v}' for m, v in sorted(vel.items()))}; the last ticket was resolved on {last_res} and the last one created on {last_cre}. "
+                            f"To finish {open_pts} points by 15 Dec (about {months_left:.1f} months after the export) needs about {need:.0f} points a month, against a best month of {best}. "
+                            f"Caution: git shows steady work through October (commits per month, all repos: {recent}), so Jira may simply be out of date; treat the pace figure as a warning, not a forecast."),
+                 reasoning="Straight arithmetic on the Jira export. Story points are the team's own and unaudited. Jira is the only formal plan, but its silence since mid-Sep conflicts with git, which is why confidence is Medium and why this is framed as required pace, not a prediction.",
+                 evidence=ev)]
+
+
+def key_person_data(con):
+    git = [(r, p) for r, p in _rows(con, "git_log") if p.get("sha")]
+    issues, _, _ = _jira(con)
+    if not git or not issues:
+        return []
+    eng = [(r, p) for r, p in git if p["repo"] == "atlas-engine"]
+    pr = [(r, p) for r, p in git if p["author_email"] in PRIYA_EMAILS]
+    pr_eng = [x for x in pr if x[1]["repo"] == "atlas-engine"]
+    only_vendor = [x for x in eng if x[1]["author_email"] == "priya.n@veloxa.in"]
+    hour = lambda p: _dt.fromisoformat(p["committed_at"]).astimezone(IST)
+    late = lambda p: hour(p).hour >= 22 or hour(p).hour < 5
+    weekend = lambda p: hour(p).weekday() >= 5
+    late_by, wk_by = {}, {}
+    for _, p in git:
+        late_by[p["author_email"]] = late_by.get(p["author_email"], 0) + late(p)
+        wk_by[p["author_email"]] = wk_by.get(p["author_email"], 0) + weekend(p)
+    pr_late = sum(late_by.get(e, 0) for e in PRIYA_EMAILS)
+    pr_wk = sum(wk_by.get(e, 0) for e in PRIYA_EMAILS)
+    others_late = sum(v for k, v in late_by.items() if k not in PRIYA_EMAILS)
+    others_wk = sum(v for k, v in wk_by.items() if k not in PRIYA_EMAILS)
+    pts = lambda p: int(p["Story Points"] or 0)
+    all_pts = sum(pts(p) for _, p in issues)
+    pn = [(r, p) for r, p in issues if p["Assignee"] == "PN"]
+    pn_pts = sum(pts(p) for _, p in pn)
+    ip_all = sum(pts(p) for _, p in issues if p["Status"] == "In Progress")
+    ip_pn = sum(pts(p) for _, p in pn if p["Status"] == "In Progress")
+    re_all = [p for _, p in issues if p["Epic Link"] == "ATLAS-2"]
+    re_pn = [p for p in re_all if p["Assignee"] == "PN"]
+    ev = [dict(rec_id=r, quote="") for r, _ in pr] + [dict(rec_id=r, quote="") for r, _ in pn]
+    for e in ("email_04:msg", "email_09:msg"):
+        if con.execute("SELECT 1 FROM records WHERE rec_id=?", (e,)).fetchone():
+            ev.append(dict(rec_id=e, quote=""))
+    return [dict(id="KP3", role="answer", confidence="High", supersedes="KP2",
+                 statement=(f"The CEO's remark is supported by the data: work on Atlas is concentrated in Priya Nair. "
+                            f"Her two git identities (priya.n@veloxa.in and pnair@users.noreply.github.com) account for {len(pr_eng)} of {len(eng)} atlas-engine commits ({round(len(pr_eng) * 100 / len(eng))}%); "
+                            f"counting only her company address it is {round(len(only_vendor) * 100 / len(eng))}%, still the largest. "
+                            f"In Jira she holds {pn_pts} of {all_pts} story points ({round(pn_pts * 100 / all_pts)}%), {ip_pn} of {ip_all} in-progress points, and every re-routing story ({len(re_pn)} of {len(re_all)}). "
+                            f"She also authors {pr_late} of {sum(late_by.values())} commits made between 22:00 and 05:00 IST and {pr_wk} of {sum(wk_by.values())} weekend commits; everyone else combined has {others_late} late-night and {others_wk} weekend commits (timestamps are UTC in the export; I converted to IST on the assumption the team works from Bengaluru). "
+                            f"On 1 Sep (23:47) she asked Vikram for time to discuss 'Atlas ownership'; no reply is in the records. Vikram's 2 Jun plan names her as lead of the core engine and re-routing. "
+                            f"This is about concentration of work, not about anyone's plans or intentions."),
+                 reasoning="Commit and ticket counts are computed from the exports. Two git emails are assumed to be one person (handle 'pnair', same repo, Jira initials PN, the only P. Nair in Keka); the conclusion survives if that is wrong, because the company-address share alone is 50%. 'She likes it' (T5) cannot be tested from data.",
+                 evidence=ev)]
+
+
+def incidents_summary(con):
+    inc = [(r, p) for r, p in _rows(con, "incidents_aug-oct") if str(p.get("ID", "")).startswith("INC-")]
+    if not inc:
+        return []
+    f = lambda s: _dt.fromisoformat(s.replace("Z", "+00:00"))
+    sev, month, svc = {}, {}, {}
+    sev1 = []
+    for _, p in inc:
+        sev[p["Severity"]] = sev.get(p["Severity"], 0) + 1
+        month[p["Opened"][:7]] = month.get(p["Opened"][:7], 0) + 1
+        svc[p["Service"]] = svc.get(p["Service"], 0) + 1
+        if p["Severity"] == "SEV1":
+            dur = f(p["Resolved"]) - f(p["Opened"])
+            sev1.append((p["ID"], f(p["Opened"]).astimezone(IST), dur, p["Responder"]))
+    hrs = sum((d for _, _, d, _ in sev1), _td()).total_seconds() / 3600
+    s1 = "; ".join(f"{i} {o:%d %b %H:%M} IST, {d.total_seconds() / 3600:.1f} h, {r}" for i, o, d, r in sev1)
+    return [dict(id="IN1", role="answer", confidence="High",
+                 statement=(f"PagerDuty shows {len(inc)} incidents from Aug to Oct 2026: {sev.get('SEV1', 0)} SEV1, {sev.get('SEV2', 0)} SEV2, {sev.get('SEV3', 0)} SEV3. "
+                            f"By month: {', '.join(f'{m} {n}' for m, n in sorted(month.items()))}, so August was the spike. All SEV1s were in August, all on routing-api ({s1}); about {hrs:.0f} hours in total. "
+                            f"routing-api caused {svc.get('routing-api', 0)} of {len(inc)} incidents and kept producing SEV2s in Sep and Oct. "
+                            f"Timestamps in the export are UTC; I converted to IST, and two of the three SEV1s ran in the early hours. "
+                            f"This matches Sneha's 24 Aug e-mail ('Third SEV1 this month') and the Q3 board update's 'difficult August'."),
+                 reasoning="Computed from the PagerDuty export. The export is Aug to Oct only, so I cannot compare with earlier months.",
+                 evidence=[dict(rec_id=r, quote="") for r, _ in inc])]
+
+
+def oncall_rota_summary(con):
+    rota = [(r, p) for r, p in _rows(con, "oncall_rota") if str(p.get("Week of", ""))[:2] == "20"]
+    if not rota:
+        return []
+    first = [(w["Week of"][:10], w["Primary"], w["Secondary"]) for _, w in rota]
+    sneha_run = 0
+    for _, pr, _ in first:
+        if pr == "Sneha":
+            sneha_run += 1
+        else:
+            break
+    both = [wk for wk, pr, sc in first if {pr, sc} == {"Sneha", "Snehal"}]
+    pa = [wk for wk, pr, sc in first if "Priya" in (pr, sc) or "Arjun" in (pr, sc)]
+    return [dict(id="RT1", role="answer", confidence="Medium",
+                 statement=(f"The on-call rota (a copied wiki table) covers {first[0][0]} to {first[-1][0]}. Sneha was primary for the first {sneha_run} weeks in a row; Priya and Arjun were secondary until the week of {pa[-1]} and then drop out. "
+                            f"From 17 Aug the rota lists 'Snehal' as well, and in {len(both)} weeks Sneha and Snehal are both on it (one primary, one secondary). One person cannot be both, so Snehal is a different person from Sneha: most likely the Patil Infra contractor (see the on-call contractor topic)."),
+                 reasoning="Same-week co-listing of both names is what separates them. The rota is a hand-copied wiki table, so exact dates may be off by a week.",
+                 evidence=[dict(rec_id=r, quote="") for r, _ in rota])]
+
+
+def marketing_spend_check(con):
+    gl = [(r, p) for r, p in _rows(con, "gl_export") if p.get("Cost Centre") in ("MKT-PS", "MKT-EVT")]
+    t4 = _rec(con, "t4_head_of_marketing", "one point eight")
+    if not gl or not t4:
+        return []
+    ads = sum(p["Amount (Rs.)"] for _, p in gl if p["Cost Centre"] == "MKT-PS")
+    evt = sum(p["Amount (Rs.)"] for _, p in gl if p["Cost Centre"] == "MKT-EVT")
+    total = ads + evt
+    gap = 1_800_000 - total
+    return [dict(id="MS1", role="answer", confidence="Low",
+                 statement=(f"Marketing spend does not reconcile. The GL's marketing cost centres for Apr-Sep show {lakh(total)} (Google Ads {lakh(ads)} + summit events {lakh(evt)}). "
+                            f"Nikhil (T4) says the half-year total is 'one point eight' with no unit; if that is Rs 18 L, the gap to the GL is {lakh(gap)}. It could be spend the GL extract does not include (it covers 'selected cost centres', and LinkedIn, tools and agencies have no rows) or a real difference between marketing's and finance's numbers, as the CFO said ('Nikhil's numbers never match mine'). "
+                            f"If 'one point eight' meant Rs 1.8 crore it would be ten times the GL, which I treat as a mishearing. 'The summit went a little over' cannot be checked: no summit budget exists in any record."),
+                 reasoning="Only the GL extract is available for finance; there is no marketing-side sheet (the T4 action item is to send the campaign sheet to finance, which is not in the data room). So the conflict is real but not resolvable here.",
+                 evidence=[dict(rec_id=r, quote="") for r, _ in gl] + [dict(rec_id=t4, quote="")])]
+
+
+DERIVERS.update({f.__name__: f for f in (jira_progress, key_person_data, incidents_summary, oncall_rota_summary, marketing_spend_check)})

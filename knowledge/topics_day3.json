@@ -1,0 +1,442 @@
+[
+ {
+  "topic": "atlas_ga",
+  "claims": [
+   {
+    "id": "AG2",
+    "role": "resolution",
+    "confidence": "High",
+    "supersedes": "A1",
+    "statement": "As of the 31 Oct Jira export, the 'Atlas GA' version has a release date of 15 Dec 2026. Vikram changed it on 2 Sep 2026 from the original 15 Sep 2026. This is the only record of a new date: the Q3 board update (6 Oct) says only that GA moved. 15 Dec falls after the festive season the CEO says some customers were promised (T1), and the launch kit's 'planned 22 Sep' launch date is now stale. The date may have changed again after the export.",
+    "reasoning": "Jira's version table is a system record with a 'last changed' stamp and author, so it beats the spoken 'September-ish' (T5). Note the change was made on 2 Sep, five weeks before the board was told (6 Oct) and well before the transcripts.",
+    "evidence": [
+     {
+      "source": "jira_export_atlas",
+      "quote": "Atlas GA | 2026-12-15 | 2026-09-15 | 2026-09-02 | vikram"
+     },
+     {
+      "source": "board_update_jul",
+      "quote": "We moved GA to absorb unplanned reliability work"
+     },
+     {
+      "source": "t1_ceo",
+      "quote": "by the festive season"
+     }
+    ]
+   },
+   {
+    "id": "AG3",
+    "role": "dissent",
+    "confidence": "Low",
+    "statement": "T5 (Vikram): v3 is 'on track, maybe a couple of weeks of buffer needed'; the board date is 'still September-ish'.",
+    "reasoning": "Contradicted by Vikram's own Jira change on 2 Sep (GA to 15 Dec), by the Q3 board update, and by 115 of 233 story points still open. He owns delivery, so he has reason to sound reassuring. The call date is unknown, but it mentions the August incidents, so it is after August. Not relied on.",
+    "evidence": [
+     {
+      "source": "t5_vp_engineering",
+      "quote": "on track, maybe a couple of weeks of buffer needed"
+     }
+    ]
+   },
+   {
+    "id": "AG4",
+    "role": "context",
+    "confidence": "High",
+    "statement": "On 2 Jun Vikram told Ananya the 15 Sep GA was 'achievable if the two backend hires land by July'. They did not: both requisitions were put on hold on 12 Aug. The plan also names who does what: Priya core engine and re-routing, Rahul the API, Arjun the UI, Sneha hardening.",
+    "reasoning": "The condition attached to the original date was not met. This is a timeline of facts, not proof that the missing hires caused the slip.",
+    "evidence": [
+     {
+      "source": "email_04",
+      "quote": "15 Sep GA is achievable if the two backend hires land by July"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "atlas_progress",
+  "title": "Atlas engineering progress",
+  "keywords": [
+   "progress",
+   "burndown",
+   "remaining work",
+   "story points",
+   "how much is left",
+   "feature complete",
+   "feature-complete",
+   "backlog",
+   "velocity",
+   "is atlas on track",
+   "on track",
+   "jira",
+   "tickets",
+   "how far along"
+  ],
+  "dispute": "unresolved",
+  "derived": "jira_progress",
+  "claims": [
+   {
+    "id": "PR1",
+    "role": "dissent",
+    "confidence": "Low",
+    "statement": "The Q3 board update says Atlas is in final hardening and 'the engine itself is feature-complete'.",
+    "reasoning": "Jira shows the core engine and real-time re-routing epics with open or in-progress stories and the hardening epic only partly started (all of Sneha's hardening tickets are still To Do). Either the board text is optimistic or Jira is stale; git activity suggests Jira is partly stale. Not settled.",
+    "evidence": [
+     {
+      "source": "board_update_jul",
+      "quote": "engine itself is feature-complete"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "key_person",
+  "keywords": [
+   "late night",
+   "overloaded",
+   "workload",
+   "commits",
+   "who writes the code",
+   "atlas ownership",
+   "who holds atlas",
+   "who does the work",
+   "concentration",
+   "depend on one",
+   "atlas code",
+   "who writes",
+   "writes most",
+   "who is doing most"
+  ],
+  "derived": "key_person_data",
+  "claims": [
+   {
+    "id": "KP4",
+    "role": "dissent",
+    "confidence": "Low",
+    "statement": "T5 (Vikram) disputes that anyone is overloaded: 'everyone's busy, that's startups'.",
+    "reasoning": "The data does not measure overload, but it does show that late-night and weekend commits come from one person, that Sneha's SEV1 load fell on one person in August, and that Vikram's own plan names Priya as the lead on two of the five epics. 'Busy' and 'concentrated' are different claims; I report the concentration and leave 'overloaded' as a judgement.",
+    "evidence": [
+     {
+      "source": "t5_vp_engineering",
+      "quote": "everyone's busy, that's startups"
+     }
+    ]
+   },
+   {
+    "id": "KP5",
+    "role": "context",
+    "confidence": "Medium",
+    "statement": "T5 says 'Pria has been doing late nights but she likes it'. The summary places this after a 4-minute audio gap, so treat the wording with care. The git log supports 'late nights'; 'she likes it' cannot be tested.",
+    "reasoning": "Late-night commits are measurable; enjoyment is not.",
+    "evidence": [
+     {
+      "source": "t5_vp_engineering",
+      "quote": "Pria has been doing late nights"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "oncall_contractor",
+  "keywords": [
+   "snehal",
+   "s. patil",
+   "retainer",
+   "pis-1",
+   "on-call contractor",
+   "on call contractor",
+   "sre contractor"
+  ],
+  "set_dispute": "unresolved",
+  "claims": [
+   {
+    "id": "OC2",
+    "role": "answer",
+    "confidence": "Medium",
+    "supersedes": "OC1",
+    "statement": "'Snehal' is not Sneha Kulkarni: the on-call rota lists both in the same weeks, and the invoices bill an on-call SRE called 'S. Patil' from Patil Infra Services (a contractor, so not in Keka). I take Snehal to be that contractor. Sneha (employee) was responder on all three August SEV1s; 'Snehal' responds to later incidents. Cost: PIS-108 was Rs 70,800 incl. GST for 18-31 Aug (half a month's retainer); PIS-114 (dated 1 Oct, for September) is the monthly retainer, Rs 1,20,000 + 18% IGST = Rs 1,41,600, which is a recurring cost of about Rs 1.4 L a month, not one-off. IGST is correct because the vendor is in Maharashtra and the customer in Karnataka.",
+    "reasoning": "Two names that appear together in one rota week cannot be one person. 'S. Patil' + 'Snehal' + the contractor starting on the rota in late August fits; no record names the contractor in full, so Medium. The Day 1 link to August reliability problems is now supported by the rota and incident log.",
+    "evidence": [
+     {
+      "source": "oncall_rota",
+      "quote": "Snehal | Sneha"
+     },
+     {
+      "source": "invoice_pis-114",
+      "quote": "S. Patil"
+     },
+     {
+      "source": "invoice_pis-114",
+      "quote": "Total 1,41,600"
+     },
+     {
+      "source": "gl_export",
+      "quote": "On-call support, 18-31 Aug"
+     },
+     {
+      "source": "incidents_aug-oct",
+      "quote": "INC-205 | SEV1"
+     }
+    ]
+   },
+   {
+    "id": "OC3",
+    "role": "dissent",
+    "confidence": "Low",
+    "statement": "Start date conflict. The rota lists Snehal from the week of 17 Aug and PIS-108 bills from 18 Aug; but Sneha's 24 Aug e-mail says the contractor 'starts on the rota this week', and Sneha herself handled SEV1 INC-205 on 22 Aug.",
+    "reasoning": "Unresolved: the 24 Aug e-mail and the 22 Aug incident point to a start in the week of 24 Aug. If so, about a week of the PIS-108 bill (roughly Rs 34,000 incl. GST on a calendar-day pro-rata) would be for time before the contractor started. The rota is a hand-copied wiki table, so it may be off by a week. Worth one question to Vikram; not a finding.",
+    "evidence": [
+     {
+      "source": "email_08",
+      "quote": "The contractor starts on the rota this week"
+     },
+     {
+      "source": "invoice_pis-114",
+      "quote": "PIS-108 (18 to 31 Aug, pro rata) settled"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "oncall_rota",
+  "title": "On-call rota",
+  "keywords": [
+   "rota",
+   "who is on call",
+   "who is on-call",
+   "on-call rota",
+   "on call rota",
+   "who covers on-call",
+   "who covers on call"
+  ],
+  "dispute": "resolved",
+  "derived": "oncall_rota_summary",
+  "claims": []
+ },
+ {
+  "topic": "incidents",
+  "title": "Incidents",
+  "keywords": [
+   "incident",
+   "sev1",
+   "sev2",
+   "outage",
+   "pagerduty",
+   "downtime",
+   "reliability",
+   "august problems",
+   "difficult august"
+  ],
+  "dispute": "resolved",
+  "derived": "incidents_summary",
+  "claims": [
+   {
+    "id": "IN2",
+    "role": "context",
+    "confidence": "Medium",
+    "statement": "Vikram (T5) names the August incidents as the main blocker for v3: they 'pulled Snehal off'. By name this is ambiguous (Sneha the employee or Snehal the contractor). The data points to Sneha: she was responder on all three SEV1s, her commits fell to 5 in August (about 21 a month before), and her hardening tickets are all still To Do. Her 24 Aug e-mail says she paused the Atlas performance tickets to stabilise routing-api.",
+    "reasoning": "T5 spells two similar names; the evidence, not the transcript, decides which one.",
+    "evidence": [
+     {
+      "source": "t5_vp_engineering",
+      "quote": "incidents in August that pulled Snehal off"
+     },
+     {
+      "source": "email_08",
+      "quote": "I'm pausing the Atlas perf tickets"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "marketing_spend",
+  "title": "Marketing spend",
+  "keywords": [
+   "marketing spend",
+   "marketing budget",
+   "total marketing",
+   "google ads",
+   "paid search",
+   "linkedin",
+   "campaign spend",
+   "how much did marketing",
+   "marketing numbers"
+  ],
+  "dispute": "unresolved",
+  "derived": "marketing_spend_check",
+  "claims": [
+   {
+    "id": "MS2",
+    "role": "dissent",
+    "confidence": "Low",
+    "statement": "Nikhil (T4): marketing spend for the half is 'one point eight' by his numbers, finance 'counts things differently', and the summit budget 'went a little over, nothing crazy'. CFO (T2): 'Nikhil's numbers never match mine'.",
+    "reasoning": "Two leaders disagree and neither provides a sheet. I cannot tell which is right. The unit of 'one point eight' is missing.",
+    "evidence": [
+     {
+      "source": "t4_head_of_marketing",
+      "quote": "one point eight"
+     },
+     {
+      "source": "t2_cfo",
+      "quote": "Nikhil's numbers never match mine"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "summit_spend",
+  "remove_keywords": [
+   "marketing spend"
+  ],
+  "claims": []
+ },
+ {
+  "topic": "summit_leads",
+  "title": "Summit lead quality",
+  "keywords": [
+   "pipeline",
+   "summit leads",
+   "leads cold",
+   "best quarter",
+   "lead quality",
+   "pipeline from the summit"
+  ],
+  "open_question": ".*",
+  "unknown_reason": "There is no lead or pipeline data in the data room (no HubSpot export), so the claim cannot be checked either way.",
+  "dispute": "resolved",
+  "claims": [
+   {
+    "id": "SL1",
+    "role": "context",
+    "confidence": "Low",
+    "statement": "Nikhil (T4) calls the September summit 'our best quarter ever for pipeline'. He also relays that Manoj from sales says the summit leads are cold, and dismisses it. The board update says the summit drew 212 registrations, its biggest event yet. Registrations are not pipeline.",
+    "reasoning": "Two opposed claims, both second-hand or self-interested, and no data.",
+    "evidence": [
+     {
+      "source": "t4_head_of_marketing",
+      "quote": "best quarter ever for pipeline"
+     },
+     {
+      "source": "t4_head_of_marketing",
+      "quote": "summit leads are cold"
+     },
+     {
+      "source": "board_update_jul",
+      "quote": "212 registrations"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "launch",
+  "title": "Atlas launch kit and launch date",
+  "keywords": [
+   "launch kit",
+   "launch plan",
+   "launch date",
+   "press note",
+   "go-to-market",
+   "gtm",
+   "launch materials",
+   "website page",
+   "marketing ready"
+  ],
+  "dispute": "resolved",
+  "claims": [
+   {
+    "id": "LK1",
+    "role": "answer",
+    "confidence": "High",
+    "statement": "The Atlas launch kit v1 (owner Sid, 21 Jul) is ready except the press note (draft): sales deck Ready, website page Ready but unpublished, 3-email customer sequence Ready. Launch date: 'TBC with engineering (planned 22 Sep)'. Sid told Nikhil (cc Vikram) on 22 Jul that he only needed a date from engineering, and Nikhil says the same in T4, so marketing was waiting on engineering, not the other way round. The planned 22 Sep date is stale now that GA is 15 Dec (Jira), and no new launch date is recorded. Sid left on 31 Oct; whether the handover happened is not in the records.",
+    "reasoning": "Kit, e-mail and transcript agree (kit dated 21 Jul, e-mail 22 Jul, 'ready since July'). Sid's resignation reason ('clearer launch timelines') is consistent with this history.",
+    "evidence": [
+     {
+      "source": "atlas_launch_kit_v1",
+      "quote": "Launch date TBC with engineering (planned 22 Sep)"
+     },
+     {
+      "source": "email_05",
+      "quote": "Just need a date from engineering"
+     },
+     {
+      "source": "t4_head_of_marketing",
+      "quote": "launch kit has been ready since July"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "org_change",
+  "title": "Marketing reporting line change (new CRO)",
+  "keywords": [
+   " cro",
+   "new cro",
+   "chief revenue officer",
+   "who will marketing report",
+   "marketing will report",
+   "reorg",
+   "org change",
+   "reporting line change",
+   "move people around"
+  ],
+  "dispute": "resolved",
+  "claims": [
+   {
+    "id": "OG1",
+    "role": "answer",
+    "confidence": "Medium",
+    "statement": "Planned, not confirmed: the CEO says marketing will report to 'the new CRO' from next month 'or the month after, still finalising' (T6b, i.e. Dec 2026 or Jan 2027); Nikhil (T4) says he heard the same with no date. No CRO exists in Keka, the hiring tracker (no CRO requisition) or the ledger, and no name is given. Keka still shows Nikhil reporting to Ananya, so that is what the cockpit reports until an HR record changes. The change is stored as a planned entry with an effective date, so it can be confirmed without rebuilding anything.",
+    "reasoning": "The CEO is the authority on her own org plan, so the plan itself is credible; the date and the person are not known. I do not invent a CRO or switch reporting lines on the strength of a voice note.",
+    "evidence": [
+     {
+      "source": "t6b_ceo",
+      "quote": "marketing will report to the new CRO from next month"
+     },
+     {
+      "source": "t4_head_of_marketing",
+      "quote": "report into the new CRO"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "tools",
+  "claims": [
+   {
+    "id": "TL3",
+    "role": "answer",
+    "confidence": "Medium",
+    "statement": "Engineering tools (Day 3): tickets are in Jira (project ATLAS, the export header), code is in git (repos atlas-engine, atlas-api, planner-web, infra), incidents are in PagerDuty. T5 says the team 'tried Linear for a month and went back', which explains the CEO's 'Linear or Jira' hedge in T1: Jira is confirmed. Marketing says leads are in HubSpot and ads run on Google and LinkedIn Campaign Manager; no export of either exists, so those are unverified.",
+    "reasoning": "System exports beat spoken tool names.",
+    "evidence": [
+     {
+      "source": "jira_export_atlas",
+      "quote": "Jira export, project ATLAS"
+     },
+     {
+      "source": "t5_vp_engineering",
+      "quote": "we tried Linear for a month and went back"
+     },
+     {
+      "source": "incidents_aug-oct",
+      "quote": "PagerDuty incident export"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "hr_concern",
+  "remove_keywords": [
+   "which engineer"
+  ],
+  "claims": []
+ }
+]

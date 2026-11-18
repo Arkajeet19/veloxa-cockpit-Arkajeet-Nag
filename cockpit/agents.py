@@ -1,6 +1,8 @@
 """The 14 colleagues. Facts from Keka are grounded; personal life is invented and tagged with an assumption id."""
 import json
-from .ask import _people_in, connect
+from datetime import datetime
+
+from .ask import IST, _people_in, connect, effective_manager
 from .build import ROOT
 
 
@@ -18,10 +20,11 @@ def card(who, con=None):
     pid = ids[0]
     p = dict(con.execute("SELECT * FROM people WHERE emp_id=?", (pid,)).fetchone())
     a = personas[pid]
-    mgr = con.execute("SELECT name FROM people WHERE emp_id=?", (p["manager_id"],)).fetchone()
+    byid = {r["emp_id"]: dict(r) for r in con.execute("SELECT * FROM people")}
+    mgr_name, plan = effective_manager(con, p, byid, datetime.now(IST))
     lines = [f"{p['name']} - {p['title']}, {p['department']} ({p['emp_id']})",
              f"GROUNDED (Keka {p['rec_id']}): joined {p['join_date']}, {p['location']}, status {p['status']}"
-             + (f", reports to {mgr['name']}" if mgr else ""),
+             + (f", reports to {mgr_name}" if mgr_name else "") + (f". {plan}" if plan else ""),
              f"VOICE (invented): {a['voice']}"]
     for k, v in a["invented"].items():
         lines.append(f"{k.upper()} (invented, see {a['assumption_id']}): {v}")

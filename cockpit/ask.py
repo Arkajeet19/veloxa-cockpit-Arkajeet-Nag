@@ -40,6 +40,22 @@ def connect(db=DB):
     return con
 
 
+def effective_manager(con, person, byid, when):
+    """Manager as of `when`: Keka, overridden by confirmed effective changes. Planned changes only add a note."""
+    mgr = byid.get(person["manager_id"])
+    name = mgr["name"] if mgr else None
+    note = None
+    for c in con.execute("SELECT * FROM org_changes WHERE person_id=? ORDER BY effective_from", (person["emp_id"],)):
+        if datetime.fromisoformat(c["known_at"]) > when:
+            continue
+        if c["status"] == "confirmed" and c["effective_from"] and datetime.fromisoformat(c["effective_from"] + "T00:00:00+05:30") <= when:
+            name = byid[c["new_manager_id"]]["name"] if c["new_manager_id"] in byid else c["new_manager_label"]
+            note = None
+        elif c["status"] == "planned":
+            note = f"Planned change, not confirmed: {c['note']}"
+    return name, note
+
+
 def _people_in(con, q):
     ids = set()
     for p in con.execute("SELECT emp_id, name FROM people"):
@@ -113,11 +129,12 @@ def ask(question, as_of=None, con=None):
         tc = [c for c in claims if c["topic"] == best]
         if not tc:
             return _result("unknown", f"I don't know. The records on '{t['title']}' had not been released by {when.date()}.", "High", as_of=when)
-        if t["open_question"] and re.search(t["open_question"], q):
+        resolved = any(c["role"] == "resolution" for c in tc)  # a later record supplied the missing value
+        if t["open_question"] and re.search(t["open_question"], q) and not resolved:
             return _result("unknown", f"I don't know. {t['unknown_reason']} What the records do say: " + " ".join(c["statement"] for c in tc if c["role"] in ("answer", "context")),
                            "High", citations=_citations(con, [c["claim_id"] for c in tc], when), as_of=when,
                            reasoning="Refusing to invent a value the sources do not contain.")
-        answers = [c for c in tc if c["role"] == "answer"] or [c for c in tc if c["role"] == "context"]
+        answers = [c for c in tc if c["role"] in ("answer", "resolution")] or [c for c in tc if c["role"] == "context"]
         superseded = {c["supersedes"] for c in answers if c["supersedes"]}
         answers = [c for c in answers if c["claim_id"] not in superseded]
         context = [c for c in tc if c["role"] == "context" and c not in answers]
@@ -146,15 +163,17 @@ def ask(question, as_of=None, con=None):
             p = byid.get(pid)
             if not p:
                 continue
-            mgr = byid.get(p["manager_id"])
+            mgr, note = effective_manager(con, p, byid, when)
             cards.append(f"{p['name']} ({p['emp_id']}): {p['title']}, {p['department']}"
-                         + (f", reports to {mgr['name']}" if mgr else "") +
+                         + (f", reports to {mgr}" if mgr else "") +
                          f". Joined {p['join_date']}, based in {p['location']}. Status: {p['status']}"
                          + (f" (exit {p['exit_date']})" if p["exit_date"] else "") + ".")
             recs.append(p["rec_id"])
-            reports = [x["name"] for x in people if x["manager_id"] == pid]
+            reports = [x["name"] for x in people if effective_manager(con, x, byid, when)[0] == p["name"]]
             if reports:
                 cards[-1] += " Direct reports: " + ", ".join(reports) + "."
+            if note:
+                cards[-1] += " " + note
         weak = [x for x in con.execute("SELECT alias, confidence FROM aliases WHERE kind='person' AND confidence!='High'")
                 if len(x["alias"]) > 2 and re.search(rf"\b{re.escape(x['alias'].lower())}\b", q)]
         conf = "High"

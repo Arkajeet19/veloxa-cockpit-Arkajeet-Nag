@@ -7,7 +7,25 @@
    "A1"
   ],
   "why": "GA moved from 15 Sep; no replacement date is recorded anywhere; the CEO herself is unsure it will land in time for customers who were promised v3.",
-  "suggested_action": "Ask Vikram for a committed GA date and a list of customers who were promised the festive season."
+  "suggested_action": "Ask Vikram for a committed GA date and a list of customers who were promised the festive season.",
+  "updates": [
+   {
+    "requires": [
+     "AG2",
+     "JP1"
+    ],
+    "claims": [
+     "AG2"
+    ],
+    "title": "Atlas GA is now 15 Dec (moved on 2 Sep), after the festive season customers were promised, with about half the work still open",
+    "severity": 5,
+    "why": "Vikram moved the Jira GA date from 15 Sep to 15 Dec on 2 Sep; the board heard on 6 Oct and the CEO's transcript still says 'festive season'. Jira shows 115 of 233 story points open; finishing by 15 Dec needs roughly 77 points a month against a best month of 42. Git shows steady work, so Jira may be stale: this is a pace warning, not a forecast. Vikram told the CEO 'on track' (T5).",
+    "suggested_action": "Ask Vikram for the real remaining scope and a committed date, and tell the customers who were promised the festive season before they ask.",
+    "cite_also": [
+     "JP1"
+    ]
+   }
+  ]
  },
  {
   "id": "R2",
@@ -25,7 +43,7 @@
      "HB2"
     ],
     "title": "Both backend roles (Routing and Platform) have been on hold since 12 Aug while Atlas slipped",
-    "why": "The CFO paused REQ-014 (Routing) and REQ-015 (Platform) on 12 Aug to protect burn; Vikram agreed to 'absorb it'. 8 candidates are in the pipeline and a final round was cancelled. The Atlas GA then moved. Cause and effect are not proven, and the recruiter's advance (Rs 1.77 L) is already paid. Meanwhile the marketing backfill (REQ-016) is open.",
+    "why": "The CFO paused REQ-014 (Routing) and REQ-015 (Platform) on 12 Aug to protect burn; Vikram agreed to 'absorb it'. 8 candidates are in the pipeline and a final round was cancelled. The Atlas GA then moved. Cause and effect are not proven, and the recruiter's advance (Rs 1.77 L) is already paid. Meanwhile the marketing backfill (REQ-016) is open. On 2 Jun Vikram said the 15 Sep date was 'achievable if the two backend hires land by July'; they did not land.",
     "suggested_action": "Decide with Meera and Vikram: reopen the Routing role first, or accept the Atlas delay explicitly and tell the customers.",
     "claims": [
      "HB2"
@@ -93,7 +111,21 @@
    "KP1"
   ],
   "why": "The CEO says Priya 'basically holds the routing thing together'. Only one second-hand source; engineering data is not in yet.",
-  "suggested_action": "Wait for commit and Jira data before acting; do not treat as established."
+  "suggested_action": "Wait for commit and Jira data before acting; do not treat as established.",
+  "updates": [
+   {
+    "requires": [
+     "KP3"
+    ],
+    "claims": [
+     "KP3"
+    ],
+    "title": "Atlas work is concentrated in one engineer: about 70% of engine commits and 56% of story points",
+    "severity": 4,
+    "why": "Priya Nair authors about 70% of atlas-engine commits (50% on her company e-mail alone), holds 56% of Atlas story points and every re-routing story, and all late-night and weekend commits. The paused Routing role (REQ-014) is the one that would have shared this. This is about concentration of work, not about anyone's plans.",
+    "suggested_action": "Decide who else owns the core engine and re-routing, and whether to reopen REQ-014. Ask Vikram about Priya's 1 Sep request to discuss Atlas ownership, which has no recorded reply."
+   }
+  ]
  },
  {
   "id": "R8",
@@ -114,5 +146,46 @@
   ],
   "why": "Asked on 18 Sep; no reply in the records (which are a selection of threads). Low cost to answer, and the engineering team is already under strain.",
   "suggested_action": "Ask Deepa whether it was answered."
+ },
+ {
+  "id": "R10",
+  "title": "A contractor on-call retainer (about Rs 1.4 L a month) runs alongside the paused permanent hires; the August invoice may include a week before the contractor started",
+  "severity": 2,
+  "claims": [
+   "OC1"
+  ],
+  "why": "Day 1 data shows the contractor's first invoice. Day 3 shows a recurring retainer of Rs 1,20,000 + 18% IGST, and conflicting start dates (rota and invoice say 17-18 Aug; Sneha's e-mail and incident log point to the week of 24 Aug).",
+  "suggested_action": "Ask Vikram when the contractor really started, and whether the retainer is meant to be permanent.",
+  "updates": [
+   {
+    "requires": [
+     "OC2",
+     "OC3"
+    ],
+    "claims": [
+     "OC2"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "R11",
+  "title": "Marketing's numbers and finance's numbers still do not reconcile (Rs 14.3 L in the ledger vs 'one point eight')",
+  "severity": 3,
+  "claims": [
+   "MS1"
+  ],
+  "why": "The GL shows Rs 14.27 L across marketing cost centres; Nikhil quotes 'one point eight' with no unit; the CFO says his numbers never match hers. No marketing-side sheet exists.",
+  "suggested_action": "Ask Nikhil to send the campaign sheet to Meera (the T4 action item) and agree one definition of marketing spend."
+ },
+ {
+  "id": "R12",
+  "title": "Planned reporting-line change (marketing to a new CRO) has no name, date or HR record",
+  "severity": 2,
+  "claims": [
+   "OG1"
+  ],
+  "why": "The CEO says marketing moves under a new CRO 'from next month or the month after'. No CRO exists in Keka or the hiring tracker. Marketing is also losing its product marketer and waiting on a launch date.",
+  "suggested_action": "Confirm the CRO hire, the effective date and who owns the Atlas launch in the meantime."
  }
 ]

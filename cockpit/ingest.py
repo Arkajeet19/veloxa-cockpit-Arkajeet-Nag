@@ -36,6 +36,7 @@ CREATE TABLE topics(topic TEXT PRIMARY KEY, title TEXT, keywords TEXT, open_ques
 CREATE TABLE claims(claim_id TEXT PRIMARY KEY, topic TEXT, role TEXT, statement TEXT,
     confidence TEXT, reasoning TEXT, known_at TEXT, supersedes TEXT);
 CREATE TABLE claim_evidence(claim_id TEXT, rec_id TEXT, quote TEXT);
+CREATE TABLE org_changes(change_id TEXT PRIMARY KEY, person_id TEXT, new_manager_id TEXT, new_manager_label TEXT, status TEXT, effective_from TEXT, note TEXT, rec_id TEXT, known_at TEXT);
 """
 
 
@@ -46,18 +47,20 @@ def norm(s):
 
 def _xlsx(path):
     wb = openpyxl.load_workbook(path, data_only=True)
+    multi = len(wb.sheetnames) > 1
     for ws in wb:
+        pre = f"{ws.title}!" if multi else ""
         rows = [r for r in ws.iter_rows(values_only=True)]
-        header_i = next(i for i, r in enumerate(rows) if sum(c is not None for c in r) >= 3)
+        header_i = next(i for i, r in enumerate(rows) if sum(c is not None for c in r) >= 2)
         header = [str(c) for c in rows[header_i]]
         for i, r in enumerate(rows, start=1):
             if all(c is None for c in r):
                 continue
             if i - 1 < header_i:  # title / note rows above the header
-                yield f"r{i}", norm(r[0]), {"title": r[0]}
+                yield f"{pre}r{i}", norm(r[0]), {"title": r[0]}
             elif i - 1 > header_i:
                 cells = ["" if c is None else str(c) for c in r]
-                yield f"r{i}", " | ".join(cells), dict(zip(header, r))
+                yield f"{pre}r{i}", " | ".join(cells), dict(zip(header, r))
 
 
 def _csv(path):

@@ -52,6 +52,21 @@ def people_aliases(con):
     return out
 
 
+def load_org_changes(con):
+    """Planned and confirmed reporting-line changes, effective-dated. Keka stays the truth until a change is `confirmed`."""
+    f = ROOT / "knowledge" / "org_changes.json"
+    if not f.exists():
+        return
+    for c in json.load(open(f)):
+        try:
+            rec_id, _ = _evidence(con, c["evidence"])
+        except BuildError:
+            continue  # its source has not been released yet
+        known = con.execute("SELECT known_at FROM sources WHERE source_id=?", (rec_id.split(":")[0],)).fetchone()[0]
+        con.execute("INSERT INTO org_changes VALUES (?,?,?,?,?,?,?,?,?)", (c["id"], c["person"], c.get("new_manager"), c["new_manager_label"],
+                    c["status"], c.get("effective_from"), c["note"], rec_id, known))
+
+
 def _insert_claim(con, topic, c, evidence):
     kn = max(con.execute("SELECT known_at FROM sources WHERE source_id=?", (r.split(":")[0],)).fetchone()[0] for r, _ in evidence)
     con.execute("INSERT INTO claims VALUES (?,?,?,?,?,?,?,?)",
@@ -84,6 +99,11 @@ def build(raw_dir=None, db=DB):
             if t.get("keywords") and con.execute("SELECT 1 FROM topics WHERE topic=?", (t["topic"],)).fetchone():
                 have = json.loads(con.execute("SELECT keywords FROM topics WHERE topic=?", (t["topic"],)).fetchone()[0])
                 con.execute("UPDATE topics SET keywords=? WHERE topic=?", (json.dumps(have + [k for k in t["keywords"] if k not in have]), t["topic"]))
+            if t.get("set_dispute"):
+                con.execute("UPDATE topics SET dispute=? WHERE topic=?", (t["set_dispute"], t["topic"]))
+            if t.get("remove_keywords"):
+                have = json.loads(con.execute("SELECT keywords FROM topics WHERE topic=?", (t["topic"],)).fetchone()[0])
+                con.execute("UPDATE topics SET keywords=? WHERE topic=?", (json.dumps([k for k in have if k not in t["remove_keywords"]]), t["topic"]))
             for c in t["claims"]:
                 try:
                     ev = [_evidence(con, e) for e in c["evidence"]]
@@ -96,6 +116,7 @@ def build(raw_dir=None, db=DB):
             if t.get("derived"):
                 for c in derive.DERIVERS[t["derived"]](con):
                     _insert_claim(con, t["topic"], c, [(e["rec_id"], e["quote"]) for e in c["evidence"]])
+    load_org_changes(con)
     con.commit()
     return con, days
 

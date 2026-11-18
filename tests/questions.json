@@ -63,23 +63,23 @@
  {
   "id": "Q07",
   "q": "When was Atlas GA originally planned?",
-  "status": "answered",
+  "status": "answered_with_conflict",
   "contains": [
-   "15 September"
+   "15 Sep 2026"
   ]
  },
  {
   "id": "Q08",
   "q": "What is the new GA date for Atlas?",
-  "status": "unknown",
+  "status": "answered_with_conflict",
   "contains": [
-   "don't know"
+   "15 Dec 2026",
+   "2 Sep"
   ],
-  "not_contains": [
-   "November",
-   "December",
-   "October 2"
-  ]
+  "cites": [
+   "jira_export_atlas"
+  ],
+  "conf": "High"
  },
  {
   "id": "Q09",
@@ -289,11 +289,16 @@
  {
   "id": "Q31",
   "q": "Is Priya a single point of failure for routing?",
-  "status": "answered",
+  "status": "answered_with_conflict",
   "contains": [
-   "second-hand"
+   "588 of 843",
+   "70%"
   ],
-  "conf": "Low"
+  "conf": "High",
+  "cites": [
+   "git_log",
+   "jira_export_atlas"
+  ]
  },
  {
   "id": "Q32",
@@ -500,6 +505,207 @@
   "not_contains": [
    "110000",
    "7,857"
+  ]
+ },
+ {
+  "id": "Q08b",
+  "q": "What is the new GA date for Atlas?",
+  "status": "unknown",
+  "contains": [
+   "don't know"
+  ],
+  "not_contains": [
+   "November",
+   "December",
+   "October 2"
+  ],
+  "as_of": "2026-11-17",
+  "no_citations_from": [
+   "jira_export_atlas"
+  ]
+ },
+ {
+  "id": "Q31b",
+  "q": "Is Priya a single point of failure for routing?",
+  "status": "answered",
+  "contains": [
+   "second-hand"
+  ],
+  "conf": "Low",
+  "as_of": "2026-11-17"
+ },
+ {
+  "id": "Q49",
+  "q": "Who is Snehal?",
+  "status": "sources_disagree",
+  "contains": [
+   "not Sneha Kulkarni",
+   "contractor"
+  ],
+  "cites": [
+   "oncall_rota"
+  ],
+  "dissent": true
+ },
+ {
+  "id": "Q50",
+  "q": "How many incidents did we have?",
+  "status": "answered",
+  "contains": [
+   "11 incidents",
+   "3 SEV1"
+  ],
+  "conf": "High"
+ },
+ {
+  "id": "Q51",
+  "q": "How many incidents did we have?",
+  "as_of": "2026-11-17",
+  "status": "unknown",
+  "no_citations_from": [
+   "incidents_aug-oct"
+  ]
+ },
+ {
+  "id": "Q52",
+  "q": "Is Atlas on track?",
+  "status": "sources_disagree",
+  "contains": [
+   "115 points",
+   "not a forecast"
+  ],
+  "dissent": true
+ },
+ {
+  "id": "Q53",
+  "q": "How much did marketing spend?",
+  "status": "sources_disagree",
+  "contains": [
+   "14.27 L"
+  ],
+  "conf": "Low",
+  "dissent": true
+ },
+ {
+  "id": "Q54",
+  "q": "Were the summit leads any good?",
+  "status": "unknown",
+  "contains": [
+   "don't know",
+   "no lead or pipeline data"
+  ]
+ },
+ {
+  "id": "Q55",
+  "q": "Was the launch kit ready?",
+  "status": "answered",
+  "contains": [
+   "press note",
+   "waiting on engineering"
+  ],
+  "conf": "High"
+ },
+ {
+  "id": "Q56",
+  "q": "Who will marketing report to?",
+  "status": "cannot_predict",
+  "contains": [
+   "can't predict",
+   "not confirmed"
+  ]
+ },
+ {
+  "id": "Q57",
+  "q": "Who is Nikhil Bose?",
+  "status": "answered",
+  "contains": [
+   "reports to Ananya Rao",
+   "Planned change, not confirmed"
+  ]
+ },
+ {
+  "id": "Q58",
+  "q": "Who is Nikhil Bose?",
+  "as_of": "2026-11-17",
+  "status": "answered",
+  "contains": [
+   "reports to Ananya Rao"
+  ],
+  "not_contains": [
+   "Planned change"
+  ]
+ },
+ {
+  "id": "Q59",
+  "q": "Who is on call?",
+  "status": "answered",
+  "contains": [
+   "Snehal",
+   "different person"
+  ]
+ },
+ {
+  "id": "Q60",
+  "q": "Who is Ayesha?",
+  "status": "answered",
+  "contains": [
+   "Aisha Khan",
+   "alias"
+  ],
+  "conf": "Medium"
+ },
+ {
+  "id": "Q61",
+  "q": "Who is doing the late nights on Atlas?",
+  "status": "answered_with_conflict",
+  "contains": [
+   "103 of 103",
+   "not about anyone's plans"
+  ]
+ },
+ {
+  "id": "Q62",
+  "q": "Is the contractor billing us correctly?",
+  "status": "sources_disagree",
+  "contains": [
+   "retainer"
+  ],
+  "dissent": true
+ },
+ {
+  "id": "Q63",
+  "q": "What is the Atlas GA date?",
+  "as_of": "2026-11-17",
+  "status": "answered",
+  "not_contains": [
+   "15 Dec"
+  ],
+  "no_citations_from": [
+   "jira_export_atlas"
+  ]
+ },
+ {
+  "id": "Q64",
+  "q": "Did the VP of Engineering tell the CEO the truth about Atlas being on track?",
+  "status": "sources_disagree|answered_with_conflict",
+  "contains": [
+   "Jira"
+  ],
+  "not_contains": [
+   "lied",
+   "dishonest"
+  ]
+ },
+ {
+  "id": "Q07b",
+  "q": "When was Atlas GA originally planned?",
+  "as_of": "2026-11-16",
+  "status": "answered",
+  "contains": [
+   "15 September"
+  ],
+  "no_citations_from": [
+   "jira_export_atlas"
   ]
  }
 ]

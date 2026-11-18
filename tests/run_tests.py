@@ -57,6 +57,41 @@ def structural_checks(con):
     return errs
 
 
+def scenario_checks(db_path):
+    """T6b: 'make sure the thing doesn't break when we move people around'.
+    Apply hypothetical, effective-dated moves to a throwaway copy of the DB and check the cockpit follows them."""
+    import shutil
+    import tempfile
+    errs = []
+    tmp = Path(tempfile.mkdtemp()) / "whatif.db"
+    shutil.copy(db_path, tmp)
+    con = askmod.connect(tmp)
+    con.execute("INSERT INTO people VALUES ('VX900','Ravi Menon','ravi@veloxa.in','Sales','Chief Revenue Officer','VX001','2026-12-01','Bengaluru','Active',NULL,'employee_master:r4',0)")
+    for cid, pid, eff in (("WHATIF-1", "VX006", "2026-12-01"), ("WHATIF-2", "VX011", "2027-01-01")):
+        con.execute("INSERT INTO org_changes VALUES (?,?,?,?,?,?,?,?,?)", (cid, pid, "VX900", "Ravi Menon", "confirmed", eff, "what-if", "employee_master:r4", "2026-11-16T10:00:00+05:30"))
+    con.commit()
+    expect = [("Who is Nikhil Bose?", "2026-11-20", "reports to Ananya Rao"),
+              ("Who is Nikhil Bose?", "2026-12-05", "reports to Ravi Menon"),
+              ("Who is Aisha Khan?", "2026-12-05", "reports to Nikhil Bose"),
+              ("Who is Aisha Khan?", "2027-01-05", "reports to Ravi Menon"),
+              ("Who is Ravi Menon?", "2027-01-05", "Nikhil Bose, Aisha Khan"),
+              ("Who is Ananya Rao?", "2027-01-05", "Direct reports:")]
+    for q, as_of, want in expect:
+        got = askmod.ask(q, as_of, con)["answer"]
+        if want not in got:
+            errs.append(f"what-if move: {q!r} as of {as_of} should contain {want!r}, got {got[:120]!r}")
+    if "Nikhil Bose" in askmod.ask("Who is Ananya Rao?", "2027-01-05", con)["answer"].split("Direct reports:")[-1]:
+        errs.append("what-if move: Nikhil still listed under Ananya after the move")
+    try:  # the rest of the cockpit must keep working with a changed org
+        from cockpit import worry as w
+        w.worry("2027-01-05", con)
+        for c in json.load(open(Path(__file__).parent / "questions.json")):
+            askmod.ask(c["q"], c.get("as_of"), con)
+    except Exception as e:  # noqa: BLE001
+        errs.append(f"what-if move broke the cockpit: {e!r}")
+    return errs
+
+
 def run():
     con, _ = build.build()
     con.close()
@@ -70,7 +105,7 @@ def run():
         print(("PASS " if not errs else "FAIL ") + c["id"] + "  " + c["q"] + (f"  [as of {c['as_of']}]" if c.get("as_of") else ""))
         for e in errs:
             print("      -", e)
-    for e in structural_checks(con):
+    for e in structural_checks(con) + scenario_checks(build.DB):
         failed += 1
         print("FAIL structural:", e)
     honest = sum(1 for c in cases if c["status"] in ("unknown", "refused", "cannot_predict") or c.get("dissent"))

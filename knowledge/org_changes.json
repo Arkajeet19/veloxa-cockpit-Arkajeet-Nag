@@ -1,0 +1,15 @@
+[
+ {
+  "id": "ORG-1",
+  "person": "VX006",
+  "new_manager": null,
+  "new_manager_label": "the new CRO (unnamed)",
+  "status": "planned",
+  "effective_from": null,
+  "note": "the CEO says marketing will report to the new CRO 'from next month. Or the month after' (Dec 2026 or Jan 2027). No CRO exists in Keka and no date or name is given.",
+  "evidence": {
+   "source": "t6b_ceo",
+   "quote": "marketing will report to the new CRO from next month"
+  }
+ }
+]

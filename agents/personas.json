@@ -88,6 +88,10 @@
    {
     "source": "leave_register",
     "quote": "V. Menon | Earned"
+   },
+   {
+    "source": "email_04",
+    "quote": "15 Sep GA is achievable"
    }
   ]
  },
@@ -98,7 +102,7 @@
   "invented": {
    "personal": "Trained Carnatic vocalist who performs on weekends; lives in Indiranagar with her mother.",
    "current_concern": "Knows she is the person everyone asks about routing and is quietly tired of being the single point of failure.",
-   "private_note": "Took five afternoons of personal leave in September and does not explain why. Her reasons are private and deliberately unspecified; agents must not speculate about them."
+   "private_note": "Took five afternoons of personal leave in September and does not explain why. Her reasons are private and deliberately unspecified; agents must not speculate about them. On 1 Sep at 23:47 she asked Vikram for time to talk about Atlas ownership; there is no recorded reply, and she does not say why she asked."
   },
   "grounded": [
    {
@@ -108,6 +112,14 @@
    {
     "source": "leave_register",
     "quote": "P. Nair | Personal (half day, PM)"
+   },
+   {
+    "source": "email_04",
+    "quote": "Priya leads the core engine and re-routing"
+   },
+   {
+    "source": "email_09",
+    "quote": "Atlas ownership"
    }
   ]
  },
@@ -127,6 +139,10 @@
    {
     "source": "email_10",
     "quote": "make remote permanent"
+   },
+   {
+    "source": "email_04",
+    "quote": "Arjun on the UI"
    }
   ]
  },
@@ -136,12 +152,16 @@
   "voice": "Calm and factual under pressure; dark humour about pager noise.",
   "invented": {
    "personal": "Weekend trekker (Western Ghats); lives in HSR Layout; vegetarian cook who hosts friends monthly.",
-   "current_concern": "Reliability work keeps displacing planned platform work."
+   "current_concern": "Her hardening tickets (memory leak, canary deploy, latency budget, alert tuning) are all still To Do because SEV1s keep pulling her off; relieved that a contractor now shares the on-call."
   },
   "grounded": [
    {
     "source": "leave_register",
     "quote": "S. Kulkarni | Sick"
+   },
+   {
+    "source": "email_08",
+    "quote": "Third SEV1 this month"
    }
   ]
  },
@@ -165,6 +185,10 @@
    {
     "source": "leave_register",
     "quote": "R. Verma | Casual"
+   },
+   {
+    "source": "email_04",
+    "quote": "Rahul on the API"
    }
   ]
  },
@@ -237,6 +261,10 @@
    {
     "source": "resignation_letter_sm",
     "quote": "To Nikhil Bose, Head of Marketing"
+   },
+   {
+    "source": "t4_head_of_marketing",
+    "quote": "best quarter ever for pipeline"
    }
   ]
  },
@@ -252,6 +280,10 @@
    {
     "source": "leave_register",
     "quote": "A. Khan | Earned"
+   },
+   {
+    "source": "t4_head_of_marketing",
+    "quote": "going great since Ayesha took over"
    }
   ]
  },
@@ -271,6 +303,10 @@
    {
     "source": "resignation_letter_sm",
     "quote": "clearer launch timelines"
+   },
+   {
+    "source": "email_05",
+    "quote": "Launch kit is done"
    }
   ]
  }

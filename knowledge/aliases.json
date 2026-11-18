@@ -159,5 +159,33 @@
   "resolves_to": "Backend Engineer (Platform), on hold since 12 Aug 2026",
   "confidence": "High",
   "note": "Hiring tracker. REQ-014 and REQ-015 are 'the two backend roles' (T2, GL, board)."
+ },
+ {
+  "alias": "pnair@users.noreply.github.com",
+  "kind": "person",
+  "resolves_to": "VX007",
+  "confidence": "Medium",
+  "note": "Second git identity in git_log (163 commits, all in atlas-engine, from the first day of the log). Handle 'pnair', same repo as priya.n@veloxa.in, Jira initials PN, only P. Nair in Keka. If wrong, Priya's share of atlas-engine commits is 50% instead of 70%."
+ },
+ {
+  "alias": "Ayesha",
+  "kind": "person",
+  "resolves_to": "VX011",
+  "confidence": "Medium",
+  "note": "T4 'Ayesha (performance)': Aisha Khan, Performance Marketing Manager, is the only match."
+ },
+ {
+  "alias": "Snehal",
+  "kind": "person",
+  "resolves_to": "S. Patil, Patil Infra Services contractor (not in Keka)",
+  "confidence": "Medium",
+  "note": "Appears in the on-call rota and PagerDuty in the same weeks as Sneha, so a different person. Invoices bill 'S. Patil' for on-call SRE support. T5 spells both names, so which one T5 means is ambiguous."
+ },
+ {
+  "alias": "S. Patil",
+  "kind": "vendor",
+  "resolves_to": "Patil Infra Services",
+  "confidence": "High",
+  "note": "Invoice PIS-114: 'On-call SRE support, S. Patil'."
  }
 ]

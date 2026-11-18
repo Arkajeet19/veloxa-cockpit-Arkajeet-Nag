@@ -45,7 +45,8 @@ def worry(as_of=None, con=None, limit=10):
         weakest = min((claims[c]["confidence"] for c in ids), key=WEIGHT.get)
         items.append({"id": r["id"], "title": view["title"], "score": round(view["severity"] * WEIGHT[weakest], 2),
                       "severity": view["severity"], "confidence": weakest, "why": view["why"],
-                      "suggested_action": view["suggested_action"], "citations": _citations(con, ids, when)})
+                      "suggested_action": view["suggested_action"],
+                      "citations": _citations(con, ids + [_latest(c, claims, when) for c in view.get("cite_also", []) if released(c)], when)})
     items.sort(key=lambda i: (-i["score"], i["id"]))
     return items[:limit]
 
