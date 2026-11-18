@@ -23,3 +23,15 @@ Things I (owner) have not yet verified myself: see the unchecked boxes in TRANSC
 | 7 | Rank the risks | After the hiring update the backend-roles risk dropped to 2.8 because it inherited a Medium runway claim that has nothing to do with it. | Let an update replace the claim set |
 | 8 | Test results | Two Day 2 tests I expected to be plain answers are actually "answered with a conflict" (dissent is shown). The code was right; my expectations were wrong. | Changed the tests, not the code |
 | 9 | The data invites a guess about one engineer (September leave pattern) | AI could do this and should not. I decided against it (D-011). | Recorded in TRANSCRIPT_NOTES N-27; refusal tests added |
+
+
+## Day 3 (Wed 18 Nov)
+
+| # | Task given to AI (Claude Code) | Where it was wrong or weak | What I changed |
+|---|---|---|---|
+| 10 | Add Day 3 data, claims, risks, org-change model and tests | The Atlas risk fell from 5.0 to 3.5 once the Jira pace claim (Medium) was added, because the score uses the weakest supporting claim. A High finding was demoted by a Medium side-note. | Added `cite_also`: extra evidence is cited but does not set the score |
+| 11 | Route the question "Which engineer is working late nights?" | The topic keyword "which engineer" (for the unnamed-engineer question) hijacked it into an "I don't know" answer. Fail-safe, but wrong. | Removed that keyword; reworded the test question |
+| 12 | Report Priya's commit share | Integer division printed 69% for 588/843 (69.75%). | Switched to rounding (70%) |
+| 13 | Interpret the leave pattern and the 1 Sep e-mail about "Atlas ownership" | AI could stack these into a flight-risk story and should not. I kept the work facts (concentration) and left out any claim about her intentions (D-011, D-019). | Wording rule added to the claim and to the persona note |
+| 14 | State the new GA date | A first draft read the Jira date as the plain answer. It is as of 31 Oct and may have moved. | Added "as of the 31 Oct export" |
+

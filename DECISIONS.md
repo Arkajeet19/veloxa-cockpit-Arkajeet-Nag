@@ -31,3 +31,16 @@ Choices I could defend either way. Format: context, options, choice, why, revisi
 **D-014 Where possible, compute the claim, do not type it.** Attrition, pulse trend and the payroll/leave checks are computed from the exports in `derive.py`, so a changed export changes the answer. Hand-written claims remain for statements made in transcripts and e-mails.
 
 **D-015 Small-team rule.** Because every team is under 6 people, the cockpit never shows survey comments, and reports engagement only per team. It does not say who did not respond.
+
+
+**D-016 Reporting lines are dated records, and a planned change is not a fact.** Options: edit Keka's manager field when the CEO says so; or store changes with a status and an effective date. Chose the second. A confirmed change takes effect on its date; a planned change only adds a note. The "new CRO" is recorded as planned, unnamed, dates unknown. Test: hypothetical moves applied to a copy of the database.
+
+**D-017 A claim can resolve an open question.** New claim role `resolution`: when a later record supplies a value an earlier answer said was unknown (Atlas GA date), the "I don't know" stops being given for dates after that record's release, and still applies before it.
+
+**D-018 Identity merges are flagged and their sensitivity is reported.** Merging Priya's two git emails changes her share from 50% to 70%. The claim reports both numbers and says the conclusion survives either way.
+
+**D-019 Workload concentration is reported; intentions are not.** The cockpit says which person carries most of Atlas (commits, tickets, late-night work). It does not say what that person plans to do. Statements about concentration always carry the line "this is about concentration of work, not anyone's plans". Consistent with D-011.
+
+**D-020 Jira pace is a warning, not a forecast.** Required points per month vs best month is arithmetic. Because Jira looks stale (nothing resolved after 17 Sep while commits continue), the answer is Medium confidence, `sources_disagree` with the board's "feature-complete", and says "not a forecast".
+
+**D-021 Multi-sheet workbooks get sheet-qualified record ids** (`jira_export_atlas:Versions!r2`). Single-sheet files keep their old ids so earlier citations are stable.

@@ -64,3 +64,39 @@ Format: ID | what looks wrong | evidence | conclusion | confidence | Reviewed.
 
 **N-27 One engineer "I'm worried about" (T3), and a pattern in the leave register.** Five half-day personal leaves by one engineer in September invite a guess. *Conclusion:* I am deliberately not making it. It is a guess about a named person, from thin data; the policy (D-011) is that the cockpit reports team-level indicators only. The register and the persona are kept, but their reasons are left unspecified. Reviewed: [ ]
 
+
+## Day 3 (T4 Head of Marketing, T5 VP Engineering, T6b voice note, Jira, git log, incidents, on-call rota, launch kit, invoice PIS-114, e-mails 04 05 08 09, e-mail printouts)
+
+> DRAFT proposals for owner review. Tick `Reviewed` only after re-reading the evidence and rewriting the reasoning in your own words.
+
+**N-28 Atlas GA date.** Jira's "Atlas GA" version: release date 2026-12-15, original 2026-09-15, last changed 2026-09-02 by `vikram`. Board Q3 (6 Oct): "moved GA", no date. T5 (Vikram): "on track, maybe a couple of weeks of buffer", board date "still September-ish". T1 (CEO): customers promised "by the festive season". *Conclusion:* believe Jira (system record with author and stamp). Vikram's T5 statement is contradicted by his own change on 2 Sep, so I do not rely on it; he owns delivery and has reason to sound reassuring. The date is as of the 31 Oct export. The CEO's festive-season promise (Diwali was 8 Nov, my own calendar knowledge) is missed. High. Reviewed: [ ]
+
+**N-29 Sneha vs "Snehal".** The on-call rota lists both in the same week (a person cannot be primary and secondary at once); PagerDuty has both names as responders; T5 uses both and says it is "unclear if same person"; invoices bill "S. Patil" for on-call SRE support, and a contractor is not in Keka. *Conclusion:* two people: Sneha Kulkarni (employee, VX012) and a contractor I call Snehal (S. Patil). Medium (no record gives the contractor's full name). Reviewed: [ ]
+
+**N-30 Contractor start date (unresolved).** Rota and invoice PIS-108 start 17/18 Aug; Sneha's 24 Aug e-mail says the contractor "starts on the rota this week" and Sneha handled SEV1 INC-205 on 22 Aug. If the later start is right, about a week of the Rs 70,800 invoice may be for time before the contractor started (roughly Rs 34,000 incl. GST on calendar-day pro-rata). I do not resolve this; I flag it as a question for Vikram. Low. Reviewed: [ ]
+
+**N-31 Priya's two git identities.** `priya.n@veloxa.in` (425 commits) and `pnair@users.noreply.github.com` (163), both only in atlas-engine, from the first day of the log. Handle `pnair`, Jira initials PN, only P. Nair in Keka. *Conclusion:* same person (Medium). Matters: together 70% of atlas-engine commits; the company address alone 50%. The conclusion (concentration) holds either way. Reviewed: [ ]
+
+**N-32 Jira quirks.** Assignee is shown as initials (PN, RV, AD, SK); summaries end in "(pn-3)" style counters, which are initials plus a counter, not people. Issue keys start at ATLAS-11 (epics are ATLAS-1..5; 6-10 are absent). Last ticket resolved 17 Sep; last created 1 Aug; yet git shows ~115-137 commits a month through October. *Conclusion:* Jira is partly stale, so the pace figure (about 77 points a month needed vs best month 42) is a warning, not a forecast. Story points are the team's own. Medium. Reviewed: [ ]
+
+**N-33 Incident times.** PagerDuty times are UTC ("Z"); the rest of the data room is IST. I convert to IST. Two of the three SEV1s ran in the early hours IST. The incident count (6 Aug, 3 Sep, 2 Oct) matches Sneha's "third SEV1 this month" (24 Aug) and the board's "difficult August". High. Reviewed: [ ]
+
+**N-34 Late nights.** T5: "Pria has been doing late nights but she likes it", placed after a 4-minute audio gap (11:20 to 15:30), so the wording is unreliable. Git (converted to IST): every one of the 103 late-night (22:00-05:00) commits and all 40 weekend commits are Priya's. "She likes it" cannot be tested. I treat this as concentration of work, not as a statement about her plans (D-011, D-019). Reviewed: [ ]
+
+**N-35 Marketing spend.** T4 "one point eight" (no unit) vs the GL's Rs 14.27 L (Google Ads 4.24 L + summit 10.03 L; selected cost centres only). T2 "Nikhil's numbers never match mine". If it is Rs 18 L the gap is Rs 3.7 L, which could be spend outside the extract. I cannot tell who is right; no marketing-side sheet exists. Low. Reviewed: [ ]
+
+**N-36 Summit leads.** T4: "best quarter ever for pipeline" vs "Manoj from sales says the summit leads are cold" (dismissed by Nikhil). No HubSpot or CRM export. The cockpit says "I don't know". Reviewed: [ ]
+
+**N-37 Names and tools.** "Ayesha" = Aisha Khan (performance marketing); "Hub Spot" = HubSpot; "Linked in campaign manager" = LinkedIn. T5 "tried Linear for a month and went back" explains the CEO's "Linear or Jira" in T1: Jira. Reviewed: [ ]
+
+**N-38 Launch kit.** Kit v1 dated 21 Jul, owner Sid; e-mail 22 Jul "Just need a date from engineering"; T4 "ready since July". Planned launch 22 Sep (one week after the original GA, so no conflict); stale now. Marketing was waiting on engineering. This also explains Siddharth's stated reason. High. Reviewed: [ ]
+
+**N-39 Invoice quirks that are not errors.** IGST at 18% on Rs 1,20,000 = Rs 21,600 is correct (vendor in Maharashtra, customer in Karnataka: inter-state). PIS-108 Rs 70,800 = Rs 60,000 + 18% (half a month's retainer, while a strict 14/31 pro-rata would be Rs 63,949 incl. GST). PIS-114 is dated 1 Oct, outside the Apr-Sep ledger, so its absence from the GL is not a gap. GL amounts are gross of GST. Reviewed: [ ]
+
+**N-40 T4 action item "Backfill Sid's role (owner: unassigned)".** The hiring tracker shows REQ-016 (PMM, Backfill) opened 17 Sep under Nikhil's ID with 7 candidates. Tracker believed; the action item is stale or loosely worded. Reviewed: [ ]
+
+**N-41 Board "engine itself is feature-complete" vs Jira.** Jira has open work in the core engine and re-routing epics and the hardening epic is 6 of 43 points done. Unresolved: either the board text is optimistic or Jira is stale. Reviewed: [ ]
+
+**N-42 The new CRO.** T4 (hearsay) and T6b (CEO) only. No CRO in Keka, the tracker or the ledger. Recorded as a planned change, not applied (D-016). Reviewed: [ ]
+
+**N-43 E-mail printouts.** `Email_Printouts.pdf` repeats e-mails 01-11 word for word. I cite the original .eml files; the printout is a redundant source. Reviewed: [ ]

@@ -60,3 +60,22 @@ Rule for agents: an invented fact must never contradict a record. Where a record
 - **A-P07 (Priya):** five afternoons of personal leave in September are grounded in the leave register; the reason is deliberately unspecified and agents must not speculate (D-011).
 - **A-P09 (Arjun):** relocation leave in March and the remote request e-mail are now grounded; his current concern is revised.
 - **A-P15 (Rohan):** concern revised to the cancelled final round and 8 candidates waiting.
+
+
+## Day 3 additions and revisions (append to ASSUMPTIONS.md; originals stay)
+
+| ID | Date | Assumption | Rests on | Conf. | What would change my mind | Status |
+|---|---|---|---|---|---|---|
+| A-020 | 18 Nov | `pnair@users.noreply.github.com` is Priya Nair's second git identity. | Handle, same repo, same first day, Jira PN, only P. Nair in Keka | Medium | A person with another name using that address | Active; findings hold either way |
+| A-021 | 18 Nov | "Snehal" is the Patil Infra on-call contractor (S. Patil), not Sneha Kulkarni. | Both on the rota in the same weeks; invoice names S. Patil | Medium | A document naming the contractor in full | Active |
+| A-022 | 18 Nov | Git commit times are UTC and the team works in IST, so 22:00-05:00 IST counts as late night. | Export timestamps end in +00:00 | Medium | Local-time stamps in the export | Active |
+| A-023 | 18 Nov | Jira is partly stale after mid-Sep, so I treat the pace gap as a warning rather than a forecast. | No ticket resolved after 17 Sep while git shows steady commits | Medium | A fresh Jira export | Active |
+| A-024 | 18 Nov | Nikhil's "one point eight" means Rs 18 lakh for the half-year. | GL is Rs 14.27 L; Rs 1.8 crore would be 10x | Low | A marketing sheet with units | Active |
+| A-025 | 18 Nov | The "new CRO" is a future, unnamed hire; "next month or the month after" means Dec 2026 or Jan 2027. | T6b, T4; none in Keka | Low-Medium | An HR record or offer letter | Active |
+| A-026 | 18 Nov | Jira's "Atlas GA" release date (15 Dec) is the current date as of 31 Oct and may have moved since. | Versions sheet, last changed 2 Sep | Medium | Any later export | Active |
+
+**Revisions**
+- **A-007** (Patil on-call relates to the August problems) rose from Medium to Medium-High: the rota, the incident log and e-mail 08 line up.
+- **A-008** (product marketing owns launch messaging) rose to Medium: the launch kit was owned by Sid and finished in July.
+- **A-014** (festive-season promise already missed) is now consistent with the Dec GA date.
+- **A-P07 (Priya), A-P12 (Sneha), A-P13 (Siddharth), A-P04 (Vikram), A-P18 (Rahul), A-P09 (Arjun), A-P06 (Nikhil), A-P11 (Aisha):** more grounded quotes from e-mails 04, 05, 08, 09 and T4. Sneha's current concern now rests on her stalled hardening tickets.
