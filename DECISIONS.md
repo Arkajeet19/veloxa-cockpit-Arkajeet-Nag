@@ -44,3 +44,9 @@ Choices I could defend either way. Format: context, options, choice, why, revisi
 **D-020 Jira pace is a warning, not a forecast.** Required points per month vs best month is arithmetic. Because Jira looks stale (nothing resolved after 17 Sep while commits continue), the answer is Medium confidence, `sources_disagree` with the board's "feature-complete", and says "not a forecast".
 
 **D-021 Multi-sheet workbooks get sheet-qualified record ids** (`jira_export_atlas:Versions!r2`). Single-sheet files keep their old ids so earlier citations are stable.
+
+**D-022 No reading of individuals' messages, and the "who will leave" guard is wider.** Options: (a) build the ranking and message viewer the CEO asked for; (b) refuse; (c) refuse and offer team-level indicators. Chose (c). Reasons: no Slack or chat data exists; reading individuals' private messages to judge them is surveillance; a named list is an individual prediction (D-011). A new `SURVEIL` guard handles message-reading requests; the `FLIGHT` guard now also catches "who else might leave", "thinking of leaving", "disgruntled", "who leaves next". The CEO or HR can change this policy, but not by voice note.
+
+**D-023 Events someone reports before HR records them are notes, not statuses.** Options: set Priya's Keka status to "Notice" now, or store the event separately with its source and release date. Chose the second (`reported_events`). It appears on her card, in "who is leaving", in headcount and in the worry list, with the wording "reported, not in Keka". Keka stays the record until HR changes it. Same principle as D-016 (planned org changes).
+
+**D-024 "What does X do to Atlas?" gets facts and open questions, not a forecast.** The question pattern ("what does this do to...") is treated as a forecast request (`cannot_predict`), with what the records show, what they cannot show, and who to ask. No new GA date is produced.

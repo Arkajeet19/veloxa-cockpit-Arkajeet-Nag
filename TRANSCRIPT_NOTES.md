@@ -34,7 +34,6 @@ Format: ID | what looks wrong | evidence | conclusion | confidence | Reviewed.
 
 ## Day 2 (T3 Head of People call, T6a voice note, leave register, hiring tracker, pulse survey, resignation letter, e-mails 06, 07, 10, 11)
 
-> DRAFT proposals for owner review. Tick `Reviewed` only after re-reading the evidence and rewriting the reasoning in your own words.
 
 **N-14 "Twenty-two open roles in April", "lost six of them in August".** T3 (Rohan). The hiring tracker has six requisitions in total; at most one (REQ-011, closed 2 Apr) was open in April; REQ-014/015 opened 18 May. 22 is impossible for a 19-person company. *Conclusion:* misheard or a different measure; tracker believed. "Offer acceptance fifty-something" cannot be checked (one accepted offer recorded). High that 22 is wrong; unknown what was meant. Reviewed: [x]
 
@@ -67,7 +66,6 @@ Format: ID | what looks wrong | evidence | conclusion | confidence | Reviewed.
 
 ## Day 3 (T4 Head of Marketing, T5 VP Engineering, T6b voice note, Jira, git log, incidents, on-call rota, launch kit, invoice PIS-114, e-mails 04 05 08 09, e-mail printouts)
 
-> DRAFT proposals for owner review. Tick `Reviewed` only after re-reading the evidence and rewriting the reasoning in your own words.
 
 **N-28 Atlas GA date.** Jira's "Atlas GA" version: release date 2026-12-15, original 2026-09-15, last changed 2026-09-02 by `vikram`. Board Q3 (6 Oct): "moved GA", no date. T5 (Vikram): "on track, maybe a couple of weeks of buffer", board date "still September-ish". T1 (CEO): customers promised "by the festive season". *Conclusion:* believe Jira (system record with author and stamp). Vikram's T5 statement is contradicted by his own change on 2 Sep, so I do not rely on it; he owns delivery and has reason to sound reassuring. The date is as of the 31 Oct export. The CEO's festive-season promise (Diwali was 8 Nov, my own calendar knowledge) is missed. High. Reviewed: [ ]
 
@@ -100,3 +98,21 @@ Format: ID | what looks wrong | evidence | conclusion | confidence | Reviewed.
 **N-42 The new CRO.** T4 (hearsay) and T6b (CEO) only. No CRO in Keka, the tracker or the ledger. Recorded as a planned change, not applied (D-016). Reviewed: [ ]
 
 **N-43 E-mail printouts.** `Email_Printouts.pdf` repeats e-mails 01-11 word for word. I cite the original .eml files; the printout is a redundant source. Reviewed: [ ]
+
+
+## Day 4 (T6c and T6d voice notes; no data-room files were released today)
+
+
+**N-44 "slag messages".** The T6c transcript says "slag messages". The context ("so I can see what they're saying") and the company's tools point to **Slack**. It is an auto-transcription slip, like "Pria" and "Hub Spot". Either way, no Slack or chat export exists in any day folder, so the answer is the same. Medium-High. Reviewed: [ ]
+
+**N-45 "Pria" in T6d.** Same slip as T1 and T5 ("Pria"); only one Priya/Pria in Keka (Priya Nair, VX007); the alias is already logged at High. Reviewed: [ ]
+
+**N-46 "version three".** Taken to mean Atlas v3 (the GA release): T1 says customers were promised "v3". Medium-High. Reviewed: [ ]
+
+**N-47 The resignation itself.** Only source is the CEO's voice note, on the day it happened, which is after the Keka export (31 Oct) and every other source. Nothing can confirm or contradict it. Keka stays "Active" until HR records it; I store it as a reported event. *Conclusion:* credible report, unconfirmed record. Reviewed: [ ]
+
+**N-48 "Two months, I think".** The CEO is unsure. No notice period for Priya exists in the data room. Siddharth's notice (resigned 15 Sep, last day 31 Oct, 46 days) is a different contract, so it is not a guide. I count two months as 61 days from 19 Nov (about 19 Jan 2027), but only as a conditional. Low. Reviewed: [ ]
+
+**N-49 "Deepa says it's fine."** Second-hand from the CEO, with no source I can check. The same pattern appears in T1 ("Deepa says it's normal" about attrition) where the data shows about 6%, not the 12% in one document, so this is the second time the CEO relays Deepa's reassurance. I do not treat either as a verdict. Deepa's own e-mail 11 says the engineering team is too small to share survey comments. Reviewed: [ ]
+
+**N-50 Day 4 has no new records.** The Day 4 folder contains only T6c and T6d. So the data model, the agents and the claims are unchanged; only the voice notes and the two reported facts are new. The Day 3 findings about concentration (about 70% of atlas-engine commits, 56% of story points) are what T6d plugs into. Reviewed: [ ]

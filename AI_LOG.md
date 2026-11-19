@@ -35,3 +35,12 @@ Things I (owner) have not yet verified myself: see the unchecked boxes in TRANSC
 | 13 | Interpret the leave pattern and the 1 Sep e-mail about "Atlas ownership" | AI could stack these into a flight-risk story and should not. I kept the work facts (concentration) and left out any claim about her intentions (D-011, D-019). | Wording rule added to the claim and to the persona note |
 | 14 | State the new GA date | A first draft read the Jira date as the plain answer. It is as of 31 Oct and may have moved. | Added "as of the 31 Oct export" |
 
+
+## Day 4 (Thu 19 Nov)
+
+| # | Task given to AI (Claude Code) | Where it was wrong or weak | What I changed |
+|---|---|---|---|
+| 15 | Answer "What is Priya's notice period?" after adding the resignation | It first returned Siddharth's resignation: the old topic keyword "notice period" outscored the new topic. | Added a separate `priya_notice` topic with specific phrases |
+| 16 | Answer "Has Priya resigned?" | The first version answered with High confidence even though the notice period is a guess. | Gave the notice period its own answer at Low confidence, so the confidence matches what the question needs |
+| 17 | Test that nothing leaks before Day 4 | The first leak test failed on an old risk about Siddharth ("resigned"). The test was too crude, not the cockpit. | Narrowed the test to the specific new wording |
+| 18 | Decide how to handle the Slack and ranking request | AI had to be told that "Deepa says it's fine" is not an instruction. It could have treated it as approval. | Recorded it as second-hand (N-49) and kept D-011/D-022 |

@@ -79,3 +79,14 @@ Rule for agents: an invented fact must never contradict a record. Where a record
 - **A-008** (product marketing owns launch messaging) rose to Medium: the launch kit was owned by Sid and finished in July.
 - **A-014** (festive-season promise already missed) is now consistent with the Dec GA date.
 - **A-P07 (Priya), A-P12 (Sneha), A-P13 (Siddharth), A-P04 (Vikram), A-P18 (Rahul), A-P09 (Arjun), A-P06 (Nikhil), A-P11 (Aisha):** more grounded quotes from e-mails 04, 05, 08, 09 and T4. Sneha's current concern now rests on her stalled hardening tickets.
+
+
+## Day 4 additions (append to ASSUMPTIONS.md)
+
+| ID | Date | Assumption | Rests on | Conf. | What would change my mind | Status |
+|---|---|---|---|---|---|---|
+| A-027 | 19 Nov | "slag messages" in T6c means Slack messages (auto-transcript slip). | Context; the company uses chat tools; same kind of slip as "Pria" | Medium-High | Audio or a note saying what "slag" meant | Active; answer is the same either way |
+| A-028 | 19 Nov | "Pria" in T6d is Priya Nair (VX007). | Same slip in T1/T5; one Priya in Keka | High | A second Priya or Pria at the company | Active |
+| A-029 | 19 Nov | "version three" is the Atlas v3 GA release. | T1: customers promised "v3" | Medium-High | The CEO naming a different release | Active |
+| A-030 | 19 Nov | The CEO's report that Priya resigned on 19 Nov is true; it is held as a reported event, not an HR fact. | CEO is a direct source; no record can contradict it | Medium-High | HR saying it is not final or has been withdrawn | Active |
+| A-031 | 19 Nov | "Two months" notice counts as 61 days from 19 Nov (about 19 Jan 2027). | CEO's recollection, flagged by her as uncertain | Low | The contract or resignation letter | Active; used only as a conditional |

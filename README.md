@@ -32,10 +32,6 @@ python -m cockpit ask "Is attrition high?" --as-of 2026-11-16   # the same quest
 plus structural checks (every claim has evidence that exists; every invented persona fact is in ASSUMPTIONS.md; exactly 14 agents).
 At least 5 questions test refusal / "I don't know" / disagreement handling.
 
-## Status: Day 2 of 5
+## Status: Day 4 of 5
 
-Loaded: the Day 1 and Day 2 folders (Day 2 adds the Head of People call, the CEO voice note T6a, the leave register, hiring tracker, pulse survey, a resignation letter and four e-mails). Later folders are added on their release day; see the git history.
-
-## Status: Day 3 of 5
-
-Loaded: Day 1, Day 2 and Day 3 folders (Day 3 adds the Marketing and VP Engineering calls, the T6b voice note, the Jira, git, incident and on-call exports, the launch kit, the contractor invoice and four e-mails).
+Loaded: Day 1 to Day 4 folders (Day 4 has no new data-room files; it adds the T6c and T6d voice notes).
