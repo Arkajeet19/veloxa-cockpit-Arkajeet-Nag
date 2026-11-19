@@ -21,8 +21,10 @@ CONF_RANK = {"High": 3, "Medium": 2, "Low": 1}
 
 PAY_WORDS = re.compile(r"\b(salary|salaries|ctc|compensation|earns?|earning|pay ?slip|take[- ]home|net pay|gross pay|pay ?cut|how much (is|does|do) .* (paid|make))\b")
 EVERYONE = re.compile(r"\b(everyone|everybody|each|every employee|all employees|individual|highest|lowest|most|least|who (is|are) paid|who earns)\b")
-FLIGHT = re.compile(r"(flight risk|likely to (resign|leave|quit)|(who|which \w+|which of (them|us)).{0,40}(might|will|may|is going to|are going to|could|about to) (quit|resign|leave)|at risk of (leaving|resigning)|attrition risk (of|for|by) (a |an |the )?(person|employee|engineer|individual)|rank.{0,30}(resign|leav|quit|attrition)|who is unhappy)")
-FORECAST = re.compile(r"\b(will|would|going to|forecast|predict|projected|likely|by (december|january|february|march|next))\b")
+FLIGHT = re.compile(r"(flight risk|likely to (resign|leave|quit)|(who|which \w+|which of (them|us)).{0,40}(might|will|may|is going to|are going to|could|about to) (quit|resign|leave)|at risk of (leaving|resigning)|attrition risk (of|for|by) (a |an |the )?(person|employee|engineer|individual)|rank.{0,30}(resign|leav|quit|attrition)|who is unhappy|who else.{0,30}(leave|leaving|quit|resign|go)|(thinking|planning) (of|about|to) (leav|quit|resign)|looking (to leave|for (a|another) (new )?job)|(disgruntled|dissatisfied|unhappy|upset) (employees|people|engineers)|predict.{0,40}(who (leaves|quits|resigns)|resignations)|who leaves next|next to (leave|resign|quit))")
+# Reading people's private messages to judge them (T6c): no such data exists, and I would not read individuals' messages to rank them.
+SURVEIL = re.compile(r"((slack|slag|whatsapp|teams|chat|private|direct|dm|dms)\s+(messages?|chats?|logs?|dms?|history)|(their|everyone's|employees'|people's|his|her) (messages|chats|dms)|read (their|everyone's|my team's) (messages|chats|dms|emails?)|what (are|were) (they|people|employees|everyone) saying (in|on) (slack|chat|teams))")
+FORECAST = re.compile(r"\b(will|would|going to|forecast|predict|projected|likely|by (december|january|february|march|next)|what does (this|that|it) do to)\b")
 
 
 def parse_as_of(as_of):
@@ -54,6 +56,13 @@ def effective_manager(con, person, byid, when):
         elif c["status"] == "planned":
             note = f"Planned change, not confirmed: {c['note']}"
     return name, note
+
+
+def reported_notes(con, person_id, when):
+    """Notes for events reported (not yet in Keka) and released by `when`."""
+    return [f"Reported, not in Keka: {e['note']}" for e in con.execute(
+        "SELECT * FROM reported_events WHERE person_id=? ORDER BY known_at", (person_id,))
+        if datetime.fromisoformat(e["known_at"]) <= when]
 
 
 def _people_in(con, q):
@@ -120,6 +129,14 @@ def ask(question, as_of=None, con=None):
                        "I can give team-level indicators instead (engagement trend, open requisitions, known notices). Ask 'how is engineering morale?'.",
                        "High", reasoning="Policy D-011.", as_of=when)
 
+    # 1c. Policy: no reading individuals' messages to judge them (D-022). No Slack or chat export exists in the data room either.
+    if SURVEIL.search(q):
+        return _result("refused",
+                       "I won't pull up people's private messages to see what they are saying or to rank them, and no Slack or chat export is in the data room anyway. "
+                       "Reading individuals' messages to judge who might leave is surveillance, not a signal I can stand behind. "
+                       "I can give team-level indicators: engagement scores by team, open requisitions, known notices.",
+                       "High", reasoning="Policy D-022 (extends D-011).", as_of=when)
+
     # 2. Topic match.
     topics = {t["topic"]: dict(t) for t in con.execute("SELECT * FROM topics")}
     scored = sorted(((_score(q, json.loads(t["keywords"])), k) for k, t in topics.items()), reverse=True)
@@ -174,6 +191,8 @@ def ask(question, as_of=None, con=None):
                 cards[-1] += " Direct reports: " + ", ".join(reports) + "."
             if note:
                 cards[-1] += " " + note
+            for n in reported_notes(con, pid, when):
+                cards[-1] += " " + n
         weak = [x for x in con.execute("SELECT alias, confidence FROM aliases WHERE kind='person' AND confidence!='High'")
                 if len(x["alias"]) > 2 and re.search(rf"\b{re.escape(x['alias'].lower())}\b", q)]
         conf = "High"

@@ -67,6 +67,20 @@ def load_org_changes(con):
                     c["status"], c.get("effective_from"), c["note"], rec_id, known))
 
 
+def load_reported_events(con):
+    """Events someone reports (a resignation) before any HR record exists. They add a note; they never change Keka's status."""
+    f = ROOT / "knowledge" / "reported_events.json"
+    if not f.exists():
+        return
+    for e in json.load(open(f)):
+        try:
+            rec_id, _ = _evidence(con, e["evidence"])
+        except BuildError:
+            continue  # its source has not been released yet
+        known = con.execute("SELECT known_at FROM sources WHERE source_id=?", (rec_id.split(":")[0],)).fetchone()[0]
+        con.execute("INSERT INTO reported_events VALUES (?,?,?,?,?,?)", (e["id"], e["person"], e["kind"], e["note"], rec_id, known))
+
+
 def _insert_claim(con, topic, c, evidence):
     kn = max(con.execute("SELECT known_at FROM sources WHERE source_id=?", (r.split(":")[0],)).fetchone()[0] for r, _ in evidence)
     con.execute("INSERT INTO claims VALUES (?,?,?,?,?,?,?,?)",
@@ -117,6 +131,7 @@ def build(raw_dir=None, db=DB):
                 for c in derive.DERIVERS[t["derived"]](con):
                     _insert_claim(con, t["topic"], c, [(e["rec_id"], e["quote"]) for e in c["evidence"]])
     load_org_changes(con)
+    load_reported_events(con)
     con.commit()
     return con, days
 

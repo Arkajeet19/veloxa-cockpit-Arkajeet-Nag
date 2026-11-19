@@ -2,7 +2,7 @@
 import json
 from datetime import datetime
 
-from .ask import IST, _people_in, connect, effective_manager
+from .ask import IST, _people_in, connect, effective_manager, reported_notes
 from .build import ROOT
 
 
@@ -26,6 +26,8 @@ def card(who, con=None):
              f"GROUNDED (Keka {p['rec_id']}): joined {p['join_date']}, {p['location']}, status {p['status']}"
              + (f", reports to {mgr_name}" if mgr_name else "") + (f". {plan}" if plan else ""),
              f"VOICE (invented): {a['voice']}"]
+    for n in reported_notes(con, pid, datetime.now(IST)):
+        lines.append(n)
     for k, v in a["invented"].items():
         lines.append(f"{k.upper()} (invented, see {a['assumption_id']}): {v}")
     for g in a["grounded"]:

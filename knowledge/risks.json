@@ -24,6 +24,24 @@
     "cite_also": [
      "JP1"
     ]
+   },
+   {
+    "requires": [
+     "AG2",
+     "JP1",
+     "RS1"
+    ],
+    "claims": [
+     "AG2"
+    ],
+    "cite_also": [
+     "JP1",
+     "RS1"
+    ],
+    "title": "Atlas GA is 15 Dec (moved on 2 Sep), after the festive season customers were promised, and its main engineer has reportedly resigned",
+    "severity": 5,
+    "why": "Vikram moved the Jira GA date from 15 Sep to 15 Dec on 2 Sep; about half the story points were still open on 31 Oct. Finishing by 15 Dec needs roughly 77 points a month against a best month of 42 (Jira may be stale, so this is a pace warning, not a forecast). On 19 Nov the CEO reported that Priya Nair, who holds most of the engine and re-routing work, resigned. Vikram told the CEO 'on track' (T5).",
+    "suggested_action": "Get a committed date from Vikram that accounts for Priya's notice and handover, and tell customers who were promised the festive season before they ask."
    }
   ]
  },
@@ -124,6 +142,23 @@
     "severity": 4,
     "why": "Priya Nair authors about 70% of atlas-engine commits (50% on her company e-mail alone), holds 56% of Atlas story points and every re-routing story, and all late-night and weekend commits. The paused Routing role (REQ-014) is the one that would have shared this. This is about concentration of work, not about anyone's plans.",
     "suggested_action": "Decide who else owns the core engine and re-routing, and whether to reopen REQ-014. Ask Vikram about Priya's 1 Sep request to discuss Atlas ownership, which has no recorded reply."
+   },
+   {
+    "requires": [
+     "KP3",
+     "RS1"
+    ],
+    "claims": [
+     "KP3",
+     "RS1"
+    ],
+    "cite_also": [
+     "RS3"
+    ],
+    "title": "Priya Nair, who carries about 70% of Atlas engine commits, has reportedly resigned (CEO, 19 Nov; not yet in Keka)",
+    "severity": 5,
+    "why": "The CEO says Priya resigned on 19 Nov; notice 'two months, I think' (unconfirmed). She authors about 70% of atlas-engine commits, holds 56% of Atlas story points and every re-routing story, and no one else is recorded as owning the core engine. The routing role (REQ-014) is still on hold. Atlas GA is 15 Dec in Jira. I cannot predict the effect on v3; I can say the single point of concentration flagged since Day 3 has now happened. This is about concentration of work; her reasons are not in the records and I do not guess them.",
+    "suggested_action": "Before the board call: get her contract notice and last day from HR, ask Vikram for a handover plan for the core engine and re-routing, and decide whether to reopen REQ-014 now."
    }
   ]
  },

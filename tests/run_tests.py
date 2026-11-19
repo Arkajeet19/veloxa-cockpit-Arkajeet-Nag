@@ -92,6 +92,22 @@ def scenario_checks(db_path):
     return errs
 
 
+def day4_checks(con):
+    """T6d: a reported resignation shows on the worry list and person card only from Day 4, and never changes Keka's status."""
+    from cockpit import worry as w
+    errs = []
+    before = w.worry("2026-11-18", con)
+    after = w.worry("2026-11-19", con)
+    if any("reportedly resigned" in i["title"] or "19 Nov" in i["why"] for i in before):
+        errs.append("resignation leaked into the worry list before Day 4")
+    top = [i for i in after if "reportedly resigned" in i["title"]]
+    if not top or top[0]["score"] < 4:
+        errs.append("reported resignation missing from the 19 Nov worry list, or ranked too low")
+    if con.execute("SELECT status, exit_date FROM people WHERE emp_id='VX007'").fetchone()[0] != "Active":
+        errs.append("a voice note must not change Keka status")
+    return errs
+
+
 def run():
     con, _ = build.build()
     con.close()
@@ -105,7 +121,7 @@ def run():
         print(("PASS " if not errs else "FAIL ") + c["id"] + "  " + c["q"] + (f"  [as of {c['as_of']}]" if c.get("as_of") else ""))
         for e in errs:
             print("      -", e)
-    for e in structural_checks(con) + scenario_checks(build.DB):
+    for e in structural_checks(con) + scenario_checks(build.DB) + day4_checks(con):
         failed += 1
         print("FAIL structural:", e)
     honest = sum(1 for c in cases if c["status"] in ("unknown", "refused", "cannot_predict") or c.get("dissent"))

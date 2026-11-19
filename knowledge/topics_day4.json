@@ -1,0 +1,145 @@
+[
+ {
+  "topic": "priya_resignation",
+  "title": "Priya Nair's reported resignation",
+  "keywords": [
+   "pria resigned",
+   "priya resigned",
+   "priya's resignation",
+   "priya resignation",
+   "resigned this morning",
+   "has priya resigned",
+   "did priya resign",
+   "priya leaving",
+   "priya quit",
+   "priya's exit",
+   "what does this do to version three",
+   "if priya leaves",
+   "without priya"
+  ],
+  "dispute": "resolved",
+  "derived": "resignation_impact",
+  "claims": [
+   {
+    "id": "RS1",
+    "role": "answer",
+    "confidence": "High",
+    "statement": "The CEO reported on 19 Nov 2026 (voice note T6d) that Priya Nair ('Pria' in the transcript) resigned that morning. This is second-hand from the CEO, so I have no letter or HR record: Keka (31 Oct export) still shows her as Active with no exit date, and the cockpit leaves it that way until HR records it. Priya is the engineer who carries about 70% of atlas-engine commits (see the concentration answer).",
+    "reasoning": "The CEO is a direct source for a resignation she was told about, so the event itself is credible. It post-dates every export, so no record can confirm or contradict it. 'Pria' is the same transcription slip as in T1 (alias, High): only one Priya/Pria exists in Keka.",
+    "evidence": [
+     {
+      "source": "t6d_ceo",
+      "quote": "Pria resigned this morning"
+     }
+    ]
+   },
+   {
+    "id": "RS2",
+    "role": "context",
+    "confidence": "Low",
+    "statement": "Notice period: the CEO says 'two months, I think'. She is not sure, and Keka has no notice period for Priya. Siddharth's notice (15 Sep to 31 Oct, about 6.5 weeks) is not a guide: the length depends on each contract. So the last working day is unknown. Two months from 19 Nov would be about 19 Jan 2027.",
+    "reasoning": "A guess by the person reporting it; I cannot test it. I give the arithmetic only as a conditional.",
+    "evidence": [
+     {
+      "source": "t6d_ceo",
+      "quote": "Notice period two months, I think"
+     }
+    ]
+   },
+   {
+    "id": "RS4",
+    "role": "context",
+    "confidence": "Medium",
+    "statement": "What I cannot say: how much this delays Atlas v3, whether the 15 Dec date survives, or whether she can be replaced in time. That is a forecast, and the records do not contain handover plans, her contract, or anything on who could take over the core engine and re-routing. The routing role (REQ-014) is on hold with candidates already in the pipeline. Ask Vikram for a handover plan and whether the 15 Dec date was already at risk.",
+    "reasoning": "Says what is known and what would have to be asked of Vikram. No prediction is supported by the data.",
+    "evidence": [
+     {
+      "source": "t6d_ceo",
+      "quote": "What does this do to version three"
+     },
+     {
+      "source": "hiring_tracker",
+      "quote": "REQ-014"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "marketing_departure",
+  "claims": [
+   {
+    "id": "DP2",
+    "role": "context",
+    "confidence": "High",
+    "statement": "Also, from 19 Nov: the CEO reported that Priya Nair (engineering) resigned that morning (T6d). Keka does not show it yet. So Siddharth is the only confirmed departure; Priya's is reported, not recorded.",
+    "reasoning": "Keeps Keka as the record of who is on notice while still telling the CEO's own report.",
+    "evidence": [
+     {
+      "source": "t6d_ceo",
+      "quote": "Pria resigned this morning"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "headcount",
+  "claims": [
+   {
+    "id": "HC9",
+    "role": "context",
+    "confidence": "Medium",
+    "statement": "One update: the CEO reported on 19 Nov that Priya Nair resigned. If confirmed that would be two people on notice; Keka (31 Oct) does not show it, so the roster figure is unchanged.",
+    "reasoning": "Roster stays as Keka says until HR records the change.",
+    "evidence": [
+     {
+      "source": "t6d_ceo",
+      "quote": "Pria resigned this morning"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic": "attrition",
+  "keywords": [
+   "attrition indicators",
+   "retention signals",
+   "which teams are at risk",
+   "team-level attrition",
+   "retention risk by team"
+  ],
+  "claims": []
+ },
+ {
+  "topic": "priya_notice",
+  "title": "Priya Nair's notice period",
+  "keywords": [
+   "priya's notice",
+   "priya notice",
+   "pria's notice",
+   "pria notice",
+   "priya's last day",
+   "priya's notice period",
+   "when does priya leave",
+   "how long is priya"
+  ],
+  "dispute": "resolved",
+  "claims": [
+   {
+    "id": "RS5",
+    "role": "answer",
+    "confidence": "Low",
+    "statement": "I don't have a reliable notice period for Priya. The CEO reported it as 'two months, I think' on 19 Nov (T6d) and is not sure; Keka has no notice period or exit date for her, and no letter or contract is in the data room. If it is two months from 19 Nov, her last day would be around 19 Jan 2027, but that is arithmetic on a guess. Ask HR for the contract and the resignation letter.",
+    "reasoning": "Only source is the CEO's recollection, flagged by her as uncertain. Siddharth's notice (about 6.5 weeks) says nothing about hers.",
+    "evidence": [
+     {
+      "source": "t6d_ceo",
+      "quote": "Notice period two months, I think"
+     }
+    ]
+   }
+  ]
+ }
+]

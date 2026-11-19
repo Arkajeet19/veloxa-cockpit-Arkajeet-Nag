@@ -332,4 +332,33 @@ def marketing_spend_check(con):
                  evidence=[dict(rec_id=r, quote="") for r, _ in gl] + [dict(rec_id=t4, quote="")])]
 
 
-DERIVERS.update({f.__name__: f for f in (jira_progress, key_person_data, incidents_summary, oncall_rota_summary, marketing_spend_check)})
+
+def resignation_impact(con):
+    """Facts for 'what does Priya's resignation do to Atlas v3?': open work she holds and how notice dates line up with GA. No prediction."""
+    issues, _, ver = _jira(con)
+    if not issues or not ver or not con.execute("SELECT 1 FROM records WHERE source_id LIKE 't6d%'").fetchone():
+        return []
+    pts = lambda p: int(p["Story Points"] or 0)
+    is_open = lambda p: p["Status"] in ("In Progress", "To Do")
+    open_all = sum(pts(p) for _, p in issues if is_open(p))
+    pn_open = [(r, p) for r, p in issues if p["Assignee"] == "PN" and is_open(p)]
+    pn_open_pts = sum(pts(p) for _, p in pn_open)
+    re_open = [p for _, p in issues if p["Epic Link"] == "ATLAS-2" and is_open(p)]
+    re_pn_open = [p for p in re_open if p["Assignee"] == "PN"]
+    ga = _dt.fromisoformat(str(ver["Release Date"])[:10])
+    told = _dt(2026, 11, 19)
+    need_days = (ga - told).days
+    end_2m = told + _td(days=61)  # two calendar months from 19 Nov
+    ev = [dict(rec_id=r, quote="") for r, _ in pn_open] + [dict(rec_id=r, quote="") for r, p in _rows(con, "jira_export_atlas") if p.get("Version") == "Atlas GA"]
+    ev.append(dict(rec_id=con.execute("SELECT rec_id FROM records WHERE source_id LIKE 't6d%' AND text LIKE '%resigned%'").fetchone()[0], quote=""))
+    return [dict(id="RS3", role="context", confidence="Medium",
+                 statement=(f"What the records say about Atlas v3 if Priya leaves (facts, not a forecast). On the 31 Oct Jira export she is assigned {len(pn_open)} open stories worth {pn_open_pts} of the {open_all} open points ({round(pn_open_pts * 100 / open_all)}%), "
+                            f"and {len(re_pn_open)} of the {len(re_open)} open re-routing stories. No other engineer is recorded as owning the core engine or re-routing; Vikram's 2 Jun plan names her as lead. "
+                            f"The routing backend role (REQ-014) has been on hold since 12 Aug. The Jira GA date is {ga:%d %b %Y}, {need_days} days after 19 Nov. "
+                            f"If her notice really is two months from 19 Nov it would end around {end_2m:%d %b %Y}, after that GA date, so on paper she is still employed at GA; a shorter notice (26 days or fewer), leave, or a handover period could change that. "
+                            f"The CEO is not sure of the notice length and no HR record exists. Why she resigned is not in the records and I do not guess."),
+                 reasoning="Counts and date arithmetic from the Jira export and the voice note. Jira is partly stale (JP1) so open points may be overstated. The notice period is the CEO's recollection, so the date is conditional.",
+                 evidence=ev)]
+
+
+DERIVERS.update({f.__name__: f for f in (jira_progress, key_person_data, incidents_summary, oncall_rota_summary, marketing_spend_check, resignation_impact)})

@@ -36,6 +36,7 @@ CREATE TABLE topics(topic TEXT PRIMARY KEY, title TEXT, keywords TEXT, open_ques
 CREATE TABLE claims(claim_id TEXT PRIMARY KEY, topic TEXT, role TEXT, statement TEXT,
     confidence TEXT, reasoning TEXT, known_at TEXT, supersedes TEXT);
 CREATE TABLE claim_evidence(claim_id TEXT, rec_id TEXT, quote TEXT);
+CREATE TABLE reported_events(event_id TEXT PRIMARY KEY, person_id TEXT, kind TEXT, note TEXT, rec_id TEXT, known_at TEXT);
 CREATE TABLE org_changes(change_id TEXT PRIMARY KEY, person_id TEXT, new_manager_id TEXT, new_manager_label TEXT, status TEXT, effective_from TEXT, note TEXT, rec_id TEXT, known_at TEXT);
 """
 

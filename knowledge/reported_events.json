@@ -1,0 +1,9 @@
+[
+ {
+  "id": "EV-1",
+  "person": "VX007",
+  "kind": "resignation",
+  "note": "the CEO says Priya Nair resigned on the morning of 19 Nov 2026 (T6d); notice period 'two months, I think' (the CEO is unsure). Keka still shows her as Active with no exit date, and no HR record or letter is in the data room.",
+  "evidence": {"source": "t6d_ceo", "quote": "Pria resigned this morning"}
+ }
+]
