@@ -108,6 +108,43 @@ def day4_checks(con):
     return errs
 
 
+def simulation_checks(con):
+    """Stretch: simulated activity is deterministic, consistent with the data, labelled, and never leaks into answers."""
+    from datetime import date
+    from cockpit import simulate as sim
+    errs = []
+    ev = sim.simulate(con=con)
+    if ev != sim.simulate(con=con):
+        errs.append("simulation is not deterministic for the same seed")
+    if not ev:
+        errs.append("simulation produced no events")
+    claims = {r[0] for r in con.execute("SELECT claim_id FROM claims")}
+    people = {r[0]: r for r in con.execute("SELECT emp_id, exit_date FROM people")}
+    for d, pid, kind, text, based_on in ev:
+        dd = date.fromisoformat(d)
+        if dd <= date(2026, 10, 31) or dd.weekday() >= 5:
+            errs.append(f"{d} {pid}: simulated event outside the post-31-Oct working days")
+        if not based_on or any(b not in claims for b in based_on):
+            errs.append(f"{d} {pid}: based_on {based_on} names a claim that does not exist")
+        if people[pid][1] and dd > date.fromisoformat(people[pid][1]):
+            errs.append(f"{d} {pid}: acts after their exit date")
+        if pid == "VX007" and dd >= sim.RESIGNATION and kind == "commit":
+            errs.append(f"{d}: Priya simulated doing new feature work after the resignation report")
+        if any(w in text.lower() for w in ("shipped", "released ga", "salary", "resign", "quit", "leav")) and pid != "VX004":
+            errs.append(f"{d} {pid}: text breaks a consistency rule: {text!r}")
+    if any(pid == "VX013" for _, pid, *_ in ev):
+        errs.append("Siddharth (exit 31 Oct) must have no simulated activity")
+    if not any(pid == "VX007" and kind == "handover" for _, pid, kind, *_ in ev):
+        errs.append("expected Priya handover activity after the resignation report")
+    # never evidence: the cockpit must not answer from, or cite, simulated events
+    sim.store(con, ev)
+    res = askmod.ask("What is Priya working on in December?", None, con)
+    if "SIM-" in str(res) or "handover notes" in res["answer"]:
+        errs.append("a simulated event leaked into a cockpit answer")
+    con.execute("DROP TABLE IF EXISTS simulated_events")
+    return errs
+
+
 def run():
     con, _ = build.build()
     con.close()
@@ -121,7 +158,7 @@ def run():
         print(("PASS " if not errs else "FAIL ") + c["id"] + "  " + c["q"] + (f"  [as of {c['as_of']}]" if c.get("as_of") else ""))
         for e in errs:
             print("      -", e)
-    for e in structural_checks(con) + scenario_checks(build.DB) + day4_checks(con):
+    for e in structural_checks(con) + scenario_checks(build.DB) + day4_checks(con) + simulation_checks(con):
         failed += 1
         print("FAIL structural:", e)
     honest = sum(1 for c in cases if c["status"] in ("unknown", "refused", "cannot_predict") or c.get("dissent"))

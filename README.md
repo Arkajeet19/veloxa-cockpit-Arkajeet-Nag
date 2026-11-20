@@ -8,30 +8,51 @@ The CEO asks one question and gets a short answer that cites the exact records b
 ## Run (one command, fresh clone)
 
 ```bash
-./run.sh
+python run.py
 ```
 
-Needs Python 3.10+ and internet for `pip install` (openpyxl, python-docx, pypdf). It builds the database, runs the test set, and prints the worry list and a sample answer.
+Use `python3 run.py` on macOS or Linux. Needs Python 3.10+ and internet for `pip install` (openpyxl, python-docx, pypdf).
+It creates a `.venv`, builds the database from `data/raw`, runs the full test set, then prints the worry list and a sample answer.
+(`./run.sh` does the same on macOS and Linux.)
 
 ## Use
 
+After `python run.py` has created `.venv`, use its Python: `.venv\Scripts\python` on Windows, `.venv/bin/python` on macOS and Linux. Below, `python` means that one.
+
 ```bash
-.venv/bin/python -m cockpit ask "How many people work at Veloxa?"
-.venv/bin/python -m cockpit ask "What is our ARR?" --as-of 2026-11-15   # nothing released yet -> "I don't know"
-.venv/bin/python -m cockpit worry
-.venv/bin/python -m cockpit agent "Fatima"        # or no name for all 14
-./run.sh repl                                      # interactive
-python -m cockpit              # no arguments: the top three things to worry about
-python -m cockpit serve        # local page at http://127.0.0.1:8000: top three, then an ask box
-python -m cockpit ask "Is attrition high?" --as-of 2026-11-16   # the same question as it stood on Day 1
+python -m cockpit                       # no arguments: the top three things to worry about
+python -m cockpit ask "How many people work at Veloxa?"
+python -m cockpit ask "What is our ARR?" --as-of 2026-11-15   # nothing released yet -> "I don't know"
+python -m cockpit ask "Is attrition high?" --as-of 2026-11-16 # the same question as it stood on Day 1
+python -m cockpit worry                 # the full ranked list, each item with evidence
+python -m cockpit agent "Fatima"        # one agent card, or no name for all 14
+python -m cockpit serve                 # local page at http://127.0.0.1:8000: top three, then an ask box
+python run.py repl                      # interactive
 ```
 
 ## Tests
 
-`.venv/bin/python -m cockpit test` runs every question in `tests/questions.json` (expected status, required/forbidden text, required citations, confidence)
-plus structural checks (every claim has evidence that exists; every invented persona fact is in ASSUMPTIONS.md; exactly 14 agents).
-At least 5 questions test refusal / "I don't know" / disagreement handling.
+`python -m cockpit test` runs 82 questions from `tests/questions.json` (expected status, required and forbidden text, required citations, confidence, as-of leakage cases; 33 of them test refusal, "I don't know", conflicts or forecasts) plus:
+- structural checks: every claim has evidence that exists; every invented persona fact is in ASSUMPTIONS.md; every grounded persona quote is in its source; exactly 14 agents;
+- a what-if scenario for T6b (hypothetical, dated reporting-line moves applied to a copy of the database);
+- Day 4 checks (a reported resignation appears only from 19 Nov and never changes Keka's status);
+- simulation checks (deterministic, consistent with the data, never leaks into answers).
 
-## Status: Day 4 of 5
+## Stretch: simulated activity after 31 Oct
 
-Loaded: Day 1 to Day 4 folders (Day 4 has no new data-room files; it adds the T6c and T6d voice notes).
+```bash
+python -m cockpit simulate                  # all 14 agents, to 15 Dec 2026
+python -m cockpit simulate --who Priya      # one person
+```
+
+Rule-based and seeded. Every line is labelled SIMULATED and names the claims it rests on. It is never used as evidence: `ask` and `worry` do not read it (ARCHITECTURE.md section 6).
+
+## Where to look
+
+- `ARCHITECTURE.md` design; `DECISIONS.md` choices I could defend either way; `ASSUMPTIONS.md` everything invented or uncertain.
+- `TRANSCRIPT_NOTES.md` mishearings and contradictions, with my reasoning on which source I believed.
+- `VOICE_NOTES.md` my response to each CEO voice note (T6a to T6d). `AI_LOG.md` how I used AI and where it was wrong.
+
+## Status: Day 5 of 5 (final)
+
+All four day folders are loaded and reconciled. The full test set passes with one command.

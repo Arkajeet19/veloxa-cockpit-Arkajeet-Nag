@@ -22,6 +22,10 @@ def main(argv=None):
     s = sub.add_parser("serve", help="local web page: top three on open, ask box below")
     s.add_argument("--port", type=int, default=8000)
     s.add_argument("--as-of")
+    m = sub.add_parser("simulate", help="stretch: SIMULATED agent activity after 31 Oct (never used as evidence)")
+    m.add_argument("--until", default="2026-12-15")
+    m.add_argument("--who")
+    m.add_argument("--seed", type=int, default=7)
     sub.add_parser("test", help="run the automated question set")
     r = sub.add_parser("repl", help="interactive cockpit")
     r.add_argument("--as-of")
@@ -48,6 +52,11 @@ def main(argv=None):
         print(worrymod.format_worry(worrymod.worry(as_of)))
     elif cmd == "agent":
         print(agents.card(args.who) if args.who else agents.all_cards())
+    elif cmd == "simulate":
+        from . import simulate as sim
+        con = askmod.connect()
+        sim.store(con, sim.simulate(end=args.until, seed=args.seed, con=con))
+        print(sim.run(args.until, args.who, args.seed))
     elif cmd == "serve":
         from .serve import serve
         serve(args.port, as_of)

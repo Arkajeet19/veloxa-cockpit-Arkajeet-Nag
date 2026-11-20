@@ -60,36 +60,51 @@ Two dates exist for every fact: when it happened and when I learned it.
 - **Event date (planned).** Filtering by when something happened, for questions like "what was the state of the company on 15 Sep". Not built; see Known limits.
 
 ## 6. Agents
-14 agents: everyone in Engineering, Finance, People & Ops and Marketing in Keka (5+3+3+3), as the brief asks. Role, manager, join date and location come from Keka. Where the data mentions them (e.g. Fatima's wedding, Karthik's CFA), the card carries the quote. Invented private lives are labelled and logged as assumptions; a test fails if one is missing from ASSUMPTIONS.md.
-Planned: conversational agents using an LLM that may only answer from that person's records and the as-of snapshot. Not built.
+14 agents: everyone in Engineering, Finance, People & Ops and Marketing in Keka (5+3+3+3), as the brief asks. Role, manager, join date and location come from Keka (the manager shown follows confirmed, effective-dated changes; see section 7). Where the data mentions them (e.g. Fatima's wedding, Karthik's CFA, Priya's 1 Sep e-mail to Vikram), the card carries the quote. Invented private lives are labelled and logged as assumptions; a test fails if one is missing from ASSUMPTIONS.md, and another fails if a "grounded" quote is not found in its source.
+Not built: conversational agents using an LLM. The agents are cards plus the simulation below.
+
+**Stretch: simulated activity after 31 Oct (`python -m cockpit simulate`).** Rule-based and seeded (same seed, same events). Each agent has a short plan of plausible activity (commits, Jira moves, payroll, hiring calls, on-call) and a few dated events that follow from facts in the data (Vikram asks HR for the notice terms after the T6d report; November payroll; the 15 Dec GA review). Every event names the claims it rests on (`based_on`). Output is labelled SIMULATED, goes to its own table, and is never read by `ask` or `worry`, so it can never become evidence or leak into an answer. Consistency rules are tested: nobody acts after their exit date (Siddharth: none), Priya does only handover work after the 19 Nov resignation report, nothing says Atlas shipped, working days only, based_on claims must exist.
 
 ## 7. Cockpit behaviour
-1. Policy guard: individual pay is refused (built).
-2. Match the question to a topic and filter by release date (built).
-3. Answer from believed claims, show conflicting sources and why they were not relied on, attach citations and confidence (built).
-4. If the question asks for something the sources lack (new Atlas GA date) or a forecast, say so (built).
-5. No topic matched: "I don't know" (built).
+Order of checks for each question:
+1. Policy guards: individual pay (D-005), ranking or naming individuals by likelihood to leave (D-011), reading individuals' private messages (D-022). Refused with the reason and a safer alternative.
+2. Match the question to a topic (keyword score) and keep only claims released by the as-of date.
+3. Answer from the believed claims. Roles: `answer`, `resolution` (supplies a value an earlier claim said was missing), `context`, `dissent` (a conflicting source, shown with why it was not relied on). `supersedes` chains make the latest released claim win.
+4. Status: `answered`, `answered_with_conflict` (I resolved it; reasoning shown), `sources_disagree` (I could not), `unknown` ("I don't know"), `refused`, `cannot_predict` (forecasts and "what does X do to Y" questions: facts so far, no prediction).
+5. No topic matched: look up a person (Keka, with effective-dated manager and any reported event), else "I don't know".
+Every answer carries citations (record id plus the verbatim quote, checked at build time) and a confidence level.
 
-## 8. Privacy and safety
-- Individual salaries are never shown to the CEO; only totals. Payroll errors use bucketed amounts (built, D-005).
-- Planned for Day 2 data: do not expose small-team survey comments where individuals could be identified; do not rank individual employees by resignation likelihood; report aggregate retention indicators only. Each will get tests when the data arrives.
-- Private communications are quoted only where needed as evidence.
+Worry view: score = severity (my judgement, D-007) x confidence weight of the weakest supporting claim (High 1.0, Medium 0.7, Low 0.4); ties by risk id. A risk appears only when all its claims are released by the as-of date. `updates` swap in richer text when later claims arrive; `cite_also` adds evidence without lowering the score. Default view is the top three (T6a).
+
+Time-varying structure: `org_changes` (planned or confirmed reporting-line changes with effective dates; T6b) and `reported_events` (things the CEO reports before HR records them, such as Priya's resignation; shown as notes, never changing Keka's status; T6d).
+
+## 8. Privacy and safety (all built)
+- Individual salaries are never shown; only totals. Payroll errors use bucketed amounts (D-005).
+- Survey comments are not shown for teams under 6 (small-team rule).
+- No ranking or naming of individuals by likelihood to leave; team-level indicators instead (D-011).
+- No reading of individuals' messages; no Slack or chat export exists (D-022).
+- Workload concentration is reported as concentration of work, never as someone's intentions (D-019).
+- Invented personal details about agents are labelled and logged in ASSUMPTIONS.md.
 
 ## 9. Evaluation
-`python -m cockpit test` runs 34 questions (status, required and forbidden text, required citations, confidence, as-of cases; 14 cover refusal, uncertainty or disagreement) plus structural checks (all claims have existing evidence, all invented persona facts are logged, exactly 14 agents). Target is to keep growing it each day.
+`python -m cockpit test` runs 82 questions (expected status, required and forbidden text, required citations, confidence, as-of leakage cases; 33 cover refusal, uncertainty, conflict or "I don't know") plus: structural checks (every claim has evidence that exists, every invented persona fact is logged, every grounded persona quote is in its source, exactly 14 agents); a what-if scenario for T6b (hypothetical confirmed reporting-line moves applied to a copy of the database); Day 4 checks (reported resignation absent before 19 Nov, present after, Keka status untouched); and simulation checks (deterministic, consistent, never leaks into answers).
 
-## 10. Extension plan
-- Day 2 (People): leave register, hiring tracker, pulse survey, resignation letter, e-mails, T3, T6a. Add claims; revisit the attrition claim; use `supersedes` so as-of answers stay correct.
-- Day 3 (Engineering/Marketing): Jira, git, incidents, on-call, launch kit, invoice, T4/T5/T6b. Test the Priya key-person claim against commits; reconcile marketing vs finance spend.
-- Day 4: voice notes T6c/T6d.
-- Day 5: stretch (agents continuing after 31 Oct), hardening, freeze.
+## 10. Build history
+- Day 1: ingestion, provenance, claims with checked quotes, derived metrics, 14 agent cards, ask and worry views, as-of filtering.
+- Day 2: People data; claim roles and `supersedes`; attrition and pulse checks; individual-risk refusal; top-three view; local page.
+- Day 3: Jira, git, incidents, on-call, launch kit, invoice; `resolution` claims; computed concentration and Jira pace claims; effective-dated org changes (T6b).
+- Day 4: voice notes only; message-surveillance guard; `reported_events` (T6c, T6d).
+- Day 5: simulation (stretch), README and docs finalised, freeze.
 
 ## 11. Known limits
-- Question routing is keyword-based; unusual wording can miss or hit the wrong topic. It fails safe, but coverage is limited.
-- Claims are curated by hand, so coverage is only as wide as what I have curated.
-- No LLM and no semantic search yet. If added, they supplement, and never replace, the structured evidence store.
-- Event-date time travel not built.
-- Burn, ARR and runway do not reconcile; the cockpit reports this rather than hiding it.
+- Question routing is keyword-based; unusual wording can miss or hit the wrong topic. It fails safe (an "I don't know"), but coverage is limited. Several wrong routings were found and fixed during the week (see AI_LOG.md).
+- Claims are curated by hand, so coverage is only as wide as what I curated. Every claim is checked against its source quote at build time, but a wrong judgement is still possible.
+- No LLM and no semantic search. If added, they would supplement, and never replace, the structured evidence store.
+- Event-date time travel (what was true on a date, as opposed to what was known) is not built; only the release-date axis is.
+- Jira looks stale after mid-September while git does not, so Jira-based pace figures are warnings, not forecasts.
+- Several people and names are resolved by judgement (two git identities for Priya, Sneha vs the contractor "Snehal"); each is logged with its confidence.
+- The simulation is template-based: plausible, not predictive.
+- Burn, ARR and runway do not reconcile across sources; the cockpit reports this rather than hiding it.
 
 ## 12. Principles
 Evidence before generation. Traceability for every claim. Uncertainty stated, never faked. Release-aware reasoning. Privacy by default. Modular enough for requirements that arrive over time. Reproducible setup from a fresh clone.
