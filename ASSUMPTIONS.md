@@ -90,3 +90,12 @@ Rule for agents: an invented fact must never contradict a record. Where a record
 | A-029 | 19 Nov | "version three" is the Atlas v3 GA release. | T1: customers promised "v3" | Medium-High | The CEO naming a different release | Active |
 | A-030 | 19 Nov | The CEO's report that Priya resigned on 19 Nov is true; it is held as a reported event, not an HR fact. | CEO is a direct source; no record can contradict it | Medium-High | HR saying it is not final or has been withdrawn | Active |
 | A-031 | 19 Nov | "Two months" notice counts as 61 days from 19 Nov (about 19 Jan 2027). | CEO's recollection, flagged by her as uncertain | Low | The contract or resignation letter | Active; used only as a conditional |
+
+
+## Day 5 additions (append to ASSUMPTIONS.md)
+
+| ID | Date | Assumption | Rests on | Conf. | What would change my mind | Status |
+|---|---|---|---|---|---|---|
+| A-032 | 20 Nov | Simulated activity assumes each agent keeps doing the kind of work their role and the data show, about two events per person per working week. | Roles in Keka; commit, Jira, payroll and hiring patterns in the data | Low | Real post-31 Oct activity | Active; labelled SIMULATED, never evidence |
+| A-033 | 20 Nov | For the simulation, Priya does handover work only from 20 Nov and keeps working through 15 Dec. | CEO's T6d report; notice length unknown (A-031) | Low | Her real last day | Active |
+| A-034 | 20 Nov | Working days are Monday to Friday (IST). | Standard Bengaluru office pattern; git shows weekend work only by Priya | Medium | A holiday calendar | Active |

@@ -50,3 +50,9 @@ Choices I could defend either way. Format: context, options, choice, why, revisi
 **D-023 Events someone reports before HR records them are notes, not statuses.** Options: set Priya's Keka status to "Notice" now, or store the event separately with its source and release date. Chose the second (`reported_events`). It appears on her card, in "who is leaving", in headcount and in the worry list, with the wording "reported, not in Keka". Keka stays the record until HR changes it. Same principle as D-016 (planned org changes).
 
 **D-024 "What does X do to Atlas?" gets facts and open questions, not a forecast.** The question pattern ("what does this do to...") is treated as a forecast request (`cannot_predict`), with what the records show, what they cannot show, and who to ask. No new GA date is produced.
+
+
+**D-025 The stretch (simulated activity after 31 Oct) is rule-based, labelled, and kept out of the evidence path.** Options: (a) an LLM per agent that writes new activity; (b) a seeded, rule-based generator with short plans per agent. Chose (b). Reasons: I can explain and change every line of it without AI; the output is reproducible; and it cannot hallucinate facts into the cockpit. Simulated events go to a separate table, each names the claims it rests on, and `ask` and `worry` never read it, so simulated material cannot be cited or answer a question (tested). Consistency rules are tested: nobody acts after their exit date, Priya does only handover work after the 19 Nov report, nothing says Atlas shipped, working days only. Trade-off: the activity is plausible but repetitive and not predictive.
+
+**D-026 The submitted command is `python run.py`.** It works in PowerShell, Command Prompt, macOS and Linux (the original `run.sh` needs bash). It creates a virtual environment, installs three libraries, builds the database from `data/raw`, runs all tests and prints the worry list.
+

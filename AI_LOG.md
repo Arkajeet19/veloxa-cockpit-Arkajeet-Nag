@@ -44,3 +44,13 @@ Things I (owner) have not yet verified myself: see the unchecked boxes in TRANSC
 | 16 | Answer "Has Priya resigned?" | The first version answered with High confidence even though the notice period is a guess. | Gave the notice period its own answer at Low confidence, so the confidence matches what the question needs |
 | 17 | Test that nothing leaks before Day 4 | The first leak test failed on an old risk about Siddharth ("resigned"). The test was too crude, not the cockpit. | Narrowed the test to the specific new wording |
 | 18 | Decide how to handle the Slack and ranking request | AI had to be told that "Deepa says it's fine" is not an instruction. It could have treated it as approval. | Recorded it as second-hand (N-49) and kept D-011/D-022 |
+
+
+## Day 5 (Fri 20 Nov)
+
+| # | Task given to AI (Claude Code) | Where it was wrong or weak | What I changed |
+|---|---|---|---|
+| 19 | Build the stretch: agents producing activity after 31 Oct | First version picked templates at random, so Priya "pushed the same fix" four days in a row. | Switched to least-recently-used templates so lines do not repeat back to back |
+| 20 | Same | It had Priya do handover work on 19 Nov itself, the morning she resigned. | Handover starts the next day (20 Nov) |
+| 21 | Final README | AI rewrote the README from its own copy, which was older than my repo's (my Day 4 edits were missing). | Rebuilt it from my current README, then reviewed every line |
+| 22 | Final check of my repo | AI cloned my public repo and ran it fresh. It confirmed the tests passed but also that the README still said `./run.sh`, which does not work in PowerShell. | README now says `python run.py` |
